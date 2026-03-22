@@ -41,7 +41,16 @@ class JobListCreateView(APIView):
         job = serializer.save() #both do the same thing
         # job = Job.objects.create(job_type=serializer.validated_data['job_type'], payload=serializer.validated_data['payload'])
 
-        process_job.delay(str(job.id))
+        queue_map = {
+            'high': 'jobs.high',
+            'default' : 'jobs.default',
+            'low' : 'jobs.low',
+        }
+
+        queue = queue_map.get(job.priority, 'jobs.default')
+
+        # process_job.delay(str(job.id))
+        process_job.apply_async(args=[str(job.id)], queue= queue)
 
         logger.info(f"Job {job.id} created and enqueued | type={job.job_type}")
 

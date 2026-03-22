@@ -103,6 +103,16 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Kolkata'
 CELERY_TASK_TRACK_STARTED = True             # important for timing
 
+#Pririty queue cnfiguration
+CELERY_TASK_QUEUES = {
+    'jobs.high': {'exchange':'jobs', 'routing_keys':'high'},
+    'jobs.default': {'exchange':'jobs', 'routing_keys':'default'},
+    'jobs.low': {'exchange':'jobs', 'routing_keys':'low'},
+}
+
+CELERY_TASK_DEFAULT_QUEUE = 'jobs.default'
+
+CELERY_TASK_ROUTES = {'jobs.tasks.process_job': {'queue': 'jobs.default'}}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

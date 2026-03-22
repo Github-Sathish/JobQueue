@@ -23,6 +23,11 @@ class Job(models.Model):
         DATA_PROCESS  = 'data_process',  'Data Processing'
         IMAGE_RESIZE  = 'image_resize',  'Image Resize'
 
+    class Priority(models.TextChoices):
+        HIGH = 'high', 'High'
+        Default = 'default', 'Default'
+        LOW = 'low', 'LOW' 
+
     # identity
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     job_type = models.CharField(max_length=50, choices=JobType.choices)
@@ -44,6 +49,8 @@ class Job(models.Model):
 
     # Celery task reference
     celery_task_id = models.CharField(max_length=255, null=True, blank=True)
+
+    priority = models.CharField(max_length=10, choices=Priority.choices, default = Priority.Default)
 
     class Meta:
         ordering = ['-created_at']
