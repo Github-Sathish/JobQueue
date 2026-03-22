@@ -1,0 +1,83 @@
+.\jobvenv\Scripts\activate   
+
+pip install -r requirements.txt   
+
+django-admin startproject config .
+
+python .\manage.py startapp jobs
+
+
+
+
+
+
+
+
+
+
+Here's why each one exists:
+django — the core web framework. Everything runs on top of this. Views, models, ORM, admin — all Django.
+djangorestframework — adds DRF on top of Django. Gives you APIView, serializers, Response, and JSON handling. Without this, you'd be writing raw JsonResponse everywhere and manually validating input.
+celery — the task queue library itself. This is what gives you @shared_task, .delay(), and the worker process. Django alone has no concept of background tasks.
+redis — the Python client that lets Celery talk to your Redis server. Celery uses Redis as its broker (the queue), but it needs this library to actually connect to it. Think of Redis the server as the road, and this package as the vehicle.
+django-celery-results — stores Celery task results in your PostgreSQL database instead of losing them when Redis restarts. This is what makes CELERY_RESULT_BACKEND = 'django-db' work. Without it, you'd have no persistence of task outcomes.
+psycopg2-binary — the PostgreSQL adapter for Python. Django's ORM speaks Python, but PostgreSQL speaks its own protocol. This package is the translator between them. The -binary suffix means it comes pre-compiled — no build tools needed. In production you'd use psycopg2 (non-binary) for better performance, but binary is fine for development.
+python-decouple — reads your .env file and injects values into settings.py via config('SECRET_KEY'). Without this, you'd either hardcode secrets (security risk) or write your own env-parsing logic.
+django-celery-beat — adds a scheduler on top of Celery. This is what will power your periodic tasks on Day 2 — things like "clean up jobs older than 7 days" running automatically every night. Without this, Celery can only run tasks when explicitly triggered.
+locust — the load testing library. You'll write your Locust script on Day 3 to simulate 50, 100, 200 concurrent users hitting your API. This is your performance engineering angle — the thing that separates your project from every other CRUD portfolio project.
+
+
+
+laptop's pip freeze > requirements.txt
+astroid==3.3.11
+bidict==0.23.1
+blinker==1.9.0
+Brotli==1.1.0
+certifi==2025.8.3
+cffi==2.0.0
+charset-normalizer==3.4.3
+click==8.3.0
+colorama==0.4.6
+ConfigArgParse==1.7.1
+dill==0.4.0
+Flask==3.1.2
+flask-cors==6.0.1
+Flask-Login==0.6.3
+gevent==25.5.1
+geventhttpclient==2.3.4
+greenlet==3.2.4
+h11==0.16.0
+har2locust==0.9.3
+idna==3.10
+iniconfig==2.1.0
+isort==6.0.1
+itsdangerous==2.2.0
+Jinja2==3.1.6
+locust==2.41.1
+locust-cloud==1.27.1
+MarkupSafe==3.0.2
+mccabe==0.7.0
+msgpack==1.1.1
+packaging==25.0
+platformdirs==4.4.0
+pluggy==1.6.0
+psutil==7.1.0
+pycparser==2.23
+Pygments==2.19.2
+pylint==3.3.8
+pytest==8.4.2
+python-engineio==4.12.2
+python-socketio==5.13.0
+pywin32==311
+pyzmq==27.1.0
+requests==2.32.5
+ruff==0.13.2
+setuptools==80.9.0
+simple-websocket==1.1.0
+tomlkit==0.13.3
+urllib3==2.5.0
+websocket-client==1.8.0
+Werkzeug==3.1.3
+wsproto==1.2.0
+zope.event==6.0
+zope.interface==8.0.1

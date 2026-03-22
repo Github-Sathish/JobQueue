@@ -1,0 +1,69 @@
+import logging
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
+from django.db.models import Avg, Count, Q
+
+from .models import Job
+from .serialzers import JobCreateSerializer, JobDetailSerializer, JobListSerializer
+from .tasks import process_job
+
+logger = logging.getLogger(__name__)
+
+
+
+
+
+
+class JobListCreateView(APIView):
+    def get(self, request):
+        """get /jobs/ - list all jobs with optional status filter"""
+        jobs = Job.objects.all()
+
+        status_filter = request.query_params.get('status')
+        if status_filter:
+            jobs = jobs.filter(status=status_filter)
+        
+        job_type_filter = request.query_params.get('job_type')
+        if job_type_filter:
+            jobs = jobs.filter(job_type= job_type_filter)
+
+        serializer = JobListSerializer(jobs[:50], many = True) #cap at 50 for now
+        return Response(serializer.data)
+    
+    def post(self, request):
+        """POST /jobs/ - Create job and enqueue it immediately"""
+        serializer = JobCreateSerializer(data = request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        job = serializer.save() #both do the same thing
+        # job = Job.objects.create(job_type=serializer.validated_data['job_type'], payload=serializer.validated_data['payload'])
+
+        process_job.delay(str(job.id))
+
+        logger.info(f"Job {job.id} created and enqueued | type={job.job_type}")
+
+        return Response(JobDetailSerializer(job).data, status=status.HTTP_201_CREATED)
+    
+
+class JobDetailView(APIView):
+    def get(self, request, job_id):
+        """Get /jobs/{id}/ - poll for job status and result"""
+        job = get_object_or_404(Job, id=job_id)
+        serializer = JobDetailSerializer(job)
+        return Response(serializer.data)
+    
+
+class JobStatsView(APIView):
+    def get(self, request):
+        """Get /jobs/stats/ - aggregates stats for monitring dashboard"""
+        stats = Job.objects.aggregate(
+            total=Count('id'),
+            pending=Count('id', filter=Q(status='pending')),
+            processing=Count('id', filter=Q(status='processing')),
+            completed=Count('id', filter=Q(status='completed')),
+            failed=Count('id', filter=Q(status='failed')),
+        )
+        return Response(stats)
