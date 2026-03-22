@@ -91,4 +91,44 @@ def _move_to_dead_letter(job, error_message):
     from .models import DeadLetterJob
     DeadLetterJob.objects.get_or_create(original_job = job, defaults={'failure_reason': 'Exhausted all retries', 'retry_count': job.retry_count, 'last_error': error_message})
 
-    
+
+
+@shared_task
+def cleanup_old_jobs():
+    """
+    Deletes completed/failed jobs older than 7 days.
+    Runs nightly via Celery Beat.
+    Keeps the jobs table lean for production.
+    """
+    from .models import Job
+    from django.utils import timezone
+    import datetime
+
+    cutoff = timezone.now() - datetime.timedelta(days=7)
+
+    deleted_count, _ = Job.objects.filter(
+        status__in=[Job.Status.COMPLETED, Job.Status.FAILED],
+        completed_at__lt=cutoff
+    ).delete()
+
+    logger.info(f"Cleanup: deleted {deleted_count} old jobs")
+    return {'deleted': deleted_count}
+
+
+@shared_task
+def log_queue_stats():
+    """
+    Logs current queue depth every 5 minutes.
+    Useful for spotting buildup before it becomes a problem.
+    Your performance engineering instinct — instrument everything.
+    """
+    from .models import Job
+    from django.db.models import Count, Q
+
+    stats = Job.objects.aggregate(
+        pending=Count('id', filter=Q(status='pending')),
+        processing=Count('id', filter=Q(status='processing')),
+        failed=Count('id', filter=Q(status='failed')),
+    )
+    logger.info(f"Queue stats: {stats}")
+    return stats

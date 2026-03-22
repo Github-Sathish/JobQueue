@@ -1,5 +1,6 @@
 from pathlib import Path
 from decouple import config
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -114,6 +115,34 @@ CELERY_TASK_DEFAULT_QUEUE = 'jobs.default'
 
 CELERY_TASK_ROUTES = {'jobs.tasks.process_job': {'queue': 'jobs.default'}}
 
+
+CELERY_BEAT_SCHEDULE = {
+
+    # Every day at 2am — clean up completed jobs older than 7 days
+    'cleanup-old-jobs': {
+        'task': 'jobs.tasks.cleanup_old_jobs',
+        'schedule': crontab(hour=2, minute=0),
+    },
+
+    # Every 5 minutes — log queue depth (useful for your performance README)
+    'log-queue-stats': {
+        'task': 'jobs.tasks.log_queue_stats',
+        'schedule': 300.0,   # seconds
+    },
+}
+#to log those from the celery cron tasks
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
