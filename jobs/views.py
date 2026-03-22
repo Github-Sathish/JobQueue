@@ -106,3 +106,45 @@ class DeadLetterReplayView(APIView):
         process_job.apply_async(args=[str(job.id)], queue = 'jobs.high') #replay get priority
 
         return Response({"message": "Re-enqueued successfully",}, status=status.HTTP_200_OK)
+
+
+class HealthCheckView(APIView):
+    """
+    GET /health/
+    Returns status of all system dependencies.
+    Used by load balancers and monitoring tools to decide
+    whether to send traffic to this instance.
+    """
+    def get(self, request):
+        import django.db
+        health = {
+            'status': 'healthy',
+            'checks':{}
+        }
+
+        #check postgres
+        try:
+            django.db.connection.ensure_connection()
+            health['checks']['database'] = 'ok'
+        except Exception as exc:
+            health['checks']['database'] = f"error: {str(exc)}"
+            health['status'] = 'unhealthy'
+        
+        #check redis
+        try:
+            from django.core.cache import cache
+            cache.set('health_check', 'ok', 10)
+            assert cache.get('health_check') == 'ok'
+            health['checks']['redis'] = 'ok'
+        except Exception as exc:
+            health['checks']['redis'] = f"error: {str(exc)}"
+            health['status'] = 'unhealthy'
+
+        # Queue depth snapshot
+        from .models import Job
+        health['queue_depth'] = Job.objects.filter(
+            status='pending'
+        ).count()
+
+        status_code = 200 if health['status'] == 'healthy' else 503
+        return Response(health, status=status_code)
