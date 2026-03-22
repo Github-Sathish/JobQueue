@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from django.db.models import Avg, Count, Q
+from django.utils import timezone
 
 from .models import Job
 from .serialzers import JobCreateSerializer, JobDetailSerializer, JobListSerializer
@@ -76,3 +77,32 @@ class JobStatsView(APIView):
             failed=Count('id', filter=Q(status='failed')),
         )
         return Response(stats)
+
+
+class DeadLetterReplayView(APIView):
+    """POST /jobs/dlq/{job_id}/replay/
+    Manually requeue a permanently failed job."""
+    def post(self, request, job_id):
+        from .models import DeadLetterJob
+        dlq_entry = get_object_or_404(DeadLetterJob, original_id__id = job_id)
+
+        if dlq_entry.replayed:
+            return Response({"error":"job already replayed"}, status=status.HTTP_400_BAD_REQUEST)
+
+        #Reset the job detials to new
+        job = dlq_entry.original_job
+        job.status = Job.Status.PENDING
+        job.retry_count = 0
+        job.started_at = None
+        job.completed_at = None
+        job.error = None
+        job.save()
+
+        dlq_entry.replayed = True
+        dlq_entry.replayed_at = timezone.now()
+        dlq_entry.save()
+
+        #Re-enqueue
+        process_job.apply_async(args=[str(job.id)], queue = 'jobs.high') #replay get priority
+
+        return Response({"message": "Re-enqueued successfully",}, status=status.HTTP_200_OK)

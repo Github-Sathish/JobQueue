@@ -43,6 +43,7 @@ def process_job(self, job_id):
             raise self.retry(exc= exc, countdown=countdown)
         else:
             job.mark_failed(error=str(exc))
+            _move_to_dead_letter(job, str(exc))
             logger.error(f"Job {job_id} exhaust all retries. Marked as failed")
 
 
@@ -82,3 +83,12 @@ def _execute_job(job_type, payload):
     
     else:
         return ValueError(f"Unknown job type: {job_type}")
+    
+
+
+def _move_to_dead_letter(job, error_message):
+    """Move failed job to Dead letter queue"""
+    from .models import DeadLetterJob
+    DeadLetterJob.objects.get_or_create(original_job = job, defaults={'failure_reason': 'Exhausted all retries', 'retry_count': job.retry_count, 'last_error': error_message})
+
+    
