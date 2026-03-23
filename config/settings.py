@@ -117,17 +117,13 @@ CELERY_TASK_ROUTES = {'jobs.tasks.process_job': {'queue': 'jobs.default'}}
 
 
 CELERY_BEAT_SCHEDULE = {
-
-    # Every day at 2am — clean up completed jobs older than 7 days
     'cleanup-old-jobs': {
         'task': 'jobs.tasks.cleanup_old_jobs',
         'schedule': crontab(hour=2, minute=0),
     },
-
-    # Every 5 minutes — log queue depth (useful for your performance README)
     'log-queue-stats': {
         'task': 'jobs.tasks.log_queue_stats',
-        'schedule': 300.0,   # seconds
+        'schedule': 300.0,
     },
 }
 #to log those from the celery cron tasks
