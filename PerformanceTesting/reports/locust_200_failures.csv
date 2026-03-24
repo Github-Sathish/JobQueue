@@ -1,9 +1,0 @@
-Method,Name,Error,Occurrences
-GET,GET /health/,CatchResponseError('0'),1
-GET,GET /jobs/stats/,CatchResponseError('500'),28
-GET,GET /health/,CatchResponseError('503'),21
-GET,GET /health/,CatchResponseError('500'),19
-POST,POST /jobs/,"CatchResponseError('500 - <!DOCTYPE html>\n<html lang=""en"">\n<head>\n  <meta http-equiv=""content-type"" content=""text/html; charset=utf-8"">\n  <meta na')",58
-GET,GET /jobs/stats/,CatchResponseError('0'),1
-GET,GET /jobs/{id}/,CatchResponseError('500'),85
-POST,POST /jobs/,CatchResponseError('0 - '),7
