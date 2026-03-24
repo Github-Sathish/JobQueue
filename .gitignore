@@ -1,3 +1,6 @@
+PerformanceTesting/reports/
+*.csv
+*.html
 mynotes.txt
 
 # Python Virtual Environment
