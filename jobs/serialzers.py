@@ -6,7 +6,7 @@ class JobCreateSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Job
-        fields = ['job_type', 'payload']
+        fields = ['job_type', 'payload', 'priority']
     
     def validate_job_type(self, value):
         valid_types = [choice[0] for choice in Job.JobType.choices]

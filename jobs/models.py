@@ -23,6 +23,11 @@ class Job(models.Model):
         DATA_PROCESS  = 'data_process',  'Data Processing'
         IMAGE_RESIZE  = 'image_resize',  'Image Resize'
 
+    class Priority(models.TextChoices):
+        HIGH = 'high', 'High'
+        Default = 'default', 'Default'
+        LOW = 'low', 'LOW' 
+
     # identity
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     job_type = models.CharField(max_length=50, choices=JobType.choices)
@@ -44,6 +49,8 @@ class Job(models.Model):
 
     # Celery task reference
     celery_task_id = models.CharField(max_length=255, null=True, blank=True)
+
+    priority = models.CharField(max_length=10, choices=Priority.choices, default = Priority.Default)
 
     class Meta:
         ordering = ['-created_at']
@@ -102,3 +109,20 @@ class Job(models.Model):
         self.save(update_fields=['status', 'completed_at', 'error'])
     
 
+class DeadLetterJob(models.Model):
+    """jobs that exhausted all retries land here."""
+    original_job = models.OneToOneField(Job, on_delete = models.CASCADE, related_name = 'deal_letter')
+    failure_reason = models.TextField()
+    failed_at = models.DateTimeField(auto_now_add = True)
+    retry_count = models.PositiveSmallIntegerField()
+    last_error = models.TextField()
+
+    #for future replay support
+    replayed = models.BooleanField(default = False)
+    replayed_at = models.DateTimeField(null = True, blank = True)
+
+    class Meta:
+        ordering = ["-failed_at"]
+
+    def __str__(self) -> str:
+        return f"DLQ: {self.original_job.job_type} [{self.original_job.id}]"
