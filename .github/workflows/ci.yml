@@ -24,7 +24,12 @@ jobs:
           python -m pip install --upgrade pip
           grep -v "backports.zoneinfo" req.txt > req_ci.txt
           pip install -r req_ci.txt
-      
+
       - name: Run Pytest
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          DEBUG: "False"
+          DATABASE_URL: ""
+          REDIS_URL: ""
         run: |
           python -m pytest tests/ -v
