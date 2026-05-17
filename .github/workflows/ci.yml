@@ -10,6 +10,21 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 1234
+          POSTGRES_DB: jobqueue_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -25,11 +40,18 @@ jobs:
           grep -v "backports.zoneinfo" req.txt > req_ci.txt
           pip install -r req_ci.txt
 
+      - name: Run Migrations
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          DEBUG: "False"
+          REDIS_URL: "redis://localhost:6379/0"
+        run: |
+          python manage.py migrate
+
       - name: Run Pytest
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           DEBUG: "False"
-          DATABASE_URL: ""
-          REDIS_URL: ""
+          REDIS_URL: "redis://localhost:6379/0"
         run: |
           python -m pytest tests/ -v
