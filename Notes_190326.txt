@@ -1,13 +1,271 @@
 .\jobvenv\Scripts\activate   
 
+cd ../after_fix
+
+source /home/sathish/Documents/JobQueue/jobvenv/bin/activate
+
+source /home/sathish/Documents/VS_code/JobQueue/JobQueue/jobvenv/bin/activate
+
 pip install -r requirements.txt   
 
 django-admin startproject config .
 
 python .\manage.py startapp jobs
 
+python3 manage.py runserver
+curl -X POST http://localhost:8000/jobs/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "job_type": "email_send",
+    "payload": {
+      "to": "test@example.com",
+      "subject": "Load test email",
+      "body": "This is a load test message"
+    },
+    "priority": "high"
+  }'
+    
+celery -A config worker --loglevel=info --concurrency=4 -Q jobs.high,jobs.default,jobs.low
 
 
+ -------------- celery@sathish-Lenovo-E41-25 v5.3.6 (emerald-rush)
+--- ***** ----- 
+-- ******* ---- Linux-5.15.0-67-generic-x86_64-with-glibc2.29 2026-07-22 23:23:45
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         config:0x7f5a12ed8d00
+- ** ---------- .> transport:   redis://localhost:6379/0
+- ** ---------- .> results:     
+- *** --- * --- .> concurrency: 4 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> jobs.default     exchange=jobs(direct) key=jobs.default
+                .> jobs.high        exchange=jobs(direct) key=jobs.high
+                .> jobs.low         exchange=jobs(direct) key=jobs.low
+
+[tasks]
+  . config.celery.debug_task
+  . jobs.tasks.cleanup_old_jobs
+  . jobs.tasks.log_queue_stats
+  . jobs.tasks.process_job
+
+[2026-07-22 23:23:46,017: WARNING/MainProcess] /home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/celery/worker/consumer/consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2026-07-22 23:23:46,034: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2026-07-22 23:23:46,043: WARNING/MainProcess] /home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/celery/worker/consumer/consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2026-07-22 23:23:46,054: INFO/MainProcess] mingle: searching for neighbors
+[2026-07-22 23:23:47,077: INFO/MainProcess] mingle: all alone
+
+
+
+celery -A config beat --loglevel=warning
+
+celery beat v5.3.6 (emerald-rush) is starting.
+__    -    ... __   -        _
+LocalTime -> 2026-07-22 23:26:19
+Configuration ->
+    . broker -> redis://localhost:6379/0
+    . loader -> celery.loaders.app.AppLoader
+    . scheduler -> celery.beat.PersistentScheduler
+    . db -> celerybeat-schedule
+    . logfile -> [stderr]@%WARNING
+    . maxinterval -> 5.00 minutes (300s)
+
+
+redis-cli FLUSHDB
+
+
+chmod +x cleanup.sh
+./cleanup.sh
+bash cleanup.sh
+
+
+chmod +x log_connections.sh
+
+
+./log_connections.sh before_fix_150_connections.csv
+# and later:
+./log_connections.sh after_fix_150_connections.csv
+
+
+
+curl -X POST http://localhost:8000/jobs/ -H "Content-Type: application/json" -d '{"job_type": "email_send", "payload": {"to": "test@example.com"}, "priority": "high"}'
+
+locust -f locustfile.py --host=http://localhost:8000 --users=150 --spawn-rate=20 --run-time=2m --headless --csv=/home/sathish/Documents/VS_code/JobQueue/JobQueue/PerformanceTesting/celery_thread_test/locust_150_21082026_celery_thread --html=/home/sathish/Documents/VS_code/JobQueue/JobQueue/PerformanceTesting/celery_thread_test/locust_150_21082026_celery_thread.html
+
+#same
+locust -f locustfile.py \
+  --host=http://localhost:8000 \
+  --users=1000 --spawn-rate=20 \
+  --run-time=5m --headless \
+  --csv=reports/locust_1000_22072026_v04 \
+  --html=reports/locust_1000_22072026_v04.html
+
+
+
+
+#PostgreSQL
+sudo systemctl status postgresql
+
+postgresql.service - PostgreSQL RDBMS
+     Loaded: loaded (/lib/systemd/system/postgresql.service; enabled; vendor preset: enabled)
+     Active: active (exited) since Wed 2026-07-22 22:15:44 IST; 2h 10min ago
+   Main PID: 1183 (code=exited, status=0/SUCCESS)
+      Tasks: 0 (limit: 4478)
+     Memory: 0B
+     CGroup: /system.slice/postgresql.service
+
+
+
+
+sathish@sathish-Lenovo-E41-25:~$ sudo apt install pgbouncer
+[sudo] password for sathish: 
+Reading package lists... Done
+Building dependency tree) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.9) ...
+
+sathish@sathish-Lenovo-E41-25:~$ pgbouncer -V
+PgBouncer 1.12.0
+
+sathish@sathish-Lenovo-E41-25:~$ sudo nano /etc/pgbouncer/pgbouncer.ini
+sathish@sathish-Lenovo-E41-25:~$ sudo -u postgres psql -c "SELECT usename, passwd FROM pg_shadow WHERE usename='postgres';"
+[sudo] password for sathish: 
+ usename  |               passwd                
+----------+-------------------------------------
+ postgres | md524bb002702969490e41e26e1a454036c
+(1 row)
+
+
+
+to check the connection:
+(jobvenv) sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue$ python manage.py shell
+
+(InteractiveConsole)
+>>> "from django.db import connection; connection.ensure_connection(); print(connection.get_connection_params())"
+'from django.db import connection; connection.ensure_connection(); print(connection.get_connection_params())'
+>>> from django.db import connection; connection.ensure_connection(); print(connection.get_connection_params())
+{'dbname': 'jobqueue_db', 'client_encoding': 'UTF8', 'cursor_factory': <class 'psycopg2.extensions.cursor'>, 'user': 'postgres', 'password': '1234', 'host': 'localhost', 'port': '6432'}
+>>> from django.db import connection; connection.ensure_connection(); print(connection.get_connection_params())
+{'dbname': 'jobqueue_db', 'client_encoding': 'UTF8', 'cursor_factory': <class 'psycopg2.extensions.cursor'>, 'user': 'postgres', 'password': '1234', 'host': 'localhost', 'port': '6432'}
+
+
+
+
+
+athish@sathish-Lenovo-E41-25:~$ psql -h 127.0.0.1 -p 6432 -U postgres -d pgbouncer -c "SHOW POOLS;"
+Password for user postgres: 
+ database  |   user    | cl_active | cl_waiting | sv_active | sv_idle | sv_used | sv_tested | sv_login | maxwait | maxwait_us | pool_mode 
+-----------+-----------+-----------+------------+-----------+---------+---------+-----------+----------+---------+------------+-----------
+ pgbouncer | pgbouncer |         1 |          0 |         0 |       0 |       0 |         0 |        0 |       0 |          0 | statement
+(1 row)
+
+-----------------After runserver----------------------
+
+sathish@sathish-Lenovo-E41-25:~$ psql -h 127.0.0.1 -p 6432 -U postgres -d pgbouncer -c "SHOW POOLS;"
+Password for user postgres: 
+  database   |   user    | cl_active | cl_waiting | sv_active | sv_idle | sv_used | sv_tested | sv_login | maxwait | maxwait_us |  pool_mode  
+-------------+-----------+-----------+------------+-----------+---------+---------+-----------+----------+---------+------------+-------------
+ jobqueue_db | postgres  |         2 |          0 |         0 |       0 |       1 |         0 |        0 |       0 |          0 | transaction
+ pgbouncer   | pgbouncer |         1 |          0 |         0 |       0 |       0 |         0 |        0 |       0 |          0 | statement
+(2 rows)
+
+
+
+
+
+sathish@sathish-Lenovo-E41-25:~$ sudo systemctl restart pgbouncer
+sathish@sathish-Lenovo-E41-25:~$ sudo systemctl status pgbouncer
+● pgbouncer.service - LSB: start pgbouncer
+     Loaded: loaded (/etc/init.d/pgbouncer; generated)
+     Active: active (running) since Sun 2026-08-02 17:51:49 IST; 6s ago
+       Docs: man:systemd-sysv-generator(8)
+    Process: 169074 ExecStart=/etc/init.d/pgbouncer start (code=exited, status=0/SUCCESS)
+      Tasks: 2 (limit: 4478)
+     Memory: 992.0K
+     CGroup: /system.slice/pgbouncer.service
+             └─169080 /usr/sbin/pgbouncer -d /etc/pgbouncer/pgbouncer.ini
+
+Aug 02 17:51:49 sathish-Lenovo-E41-25 systemd[1]: Starting LSB: start pgbouncer...
+Aug 02 17:51:49 sathish-Lenovo-E41-25 pgbouncer[169074]:  * Starting PgBouncer pgbouncer
+Aug 02 17:51:49 sathish-Lenovo-E41-25 pgbouncer[169074]:    ...done.
+Aug 02 17:51:49 sathish-Lenovo-E41-25 systemd[1]: Started LSB: start pgbouncer.
+
+sathish@sathish-Lenovo-E41-25:~$ sudo journalctl -u pgbouncer -n 50 --no-pager
+-- Logs begin at Sat 2024-09-21 15:11:38 IST, end at Sun 2026-08-02 17:59:22 IST. --
+Aug 02 17:10:49 sathish-Lenovo-E41-25 systemd[1]: Starting LSB: start pgbouncer...
+Aug 02 17:10:49 sathish-Lenovo-E41-25 pgbouncer[168017]:  * Starting PgBouncer pgbouncer
+Aug 02 17:10:50 sathish-Lenovo-E41-25 pgbouncer[168017]:    ...done.
+Aug 02 17:10:50 sathish-Lenovo-E41-25 systemd[1]: Started LSB: start pgbouncer.
+Aug 02 17:51:49 sathish-Lenovo-E41-25 systemd[1]: Stopping LSB: start pgbouncer...
+Aug 02 17:51:49 sathish-Lenovo-E41-25 pgbouncer[169068]:  * Stopping PgBouncer pgbouncer
+Aug 02 17:51:49 sathish-Lenovo-E41-25 pgbouncer[169068]:    ...done.
+Aug 02 17:51:49 sathish-Lenovo-E41-25 systemd[1]: pgbouncer.service: Succeeded.
+Aug 02 17:51:49 sathish-Lenovo-E41-25 systemd[1]: Stopped LSB: start pgbouncer.
+Aug 02 17:51:49 sathish-Lenovo-E41-25 systemd[1]: Starting LSB: start pgbouncer...
+Aug 02 17:51:49 sathish-Lenovo-E41-25 pgbouncer[169074]:  * Starting PgBouncer pgbouncer
+Aug 02 17:51:49 sathish-Lenovo-E41-25 pgbouncer[169074]:    ...done.
+Aug 02 17:51:49 sathish-Lenovo-E41-25 systemd[1]: Started LSB: start pgbouncer.
+
+sathish@sathish-Lenovo-E41-25:~$ psql -h 127.0.0.1 -p 6432 -U postgres -d jobqueue_db
+Password for user postgres: 
+psql (12.22 (Ubuntu 12.22-0ubuntu0.20.04.4))
+Type "help" for help.
+
+jobqueue_db=# SHOW POOLS;
+ERROR:  unrecognized configuration parameter "pools"
+jobqueue_db=# \q
+sathish@sathish-Lenovo-E41-25:~$ sudo ss -tlnp | grep 6432
+LISTEN    0         128              127.0.0.1:6432             0.0.0.0:*        users:(("pgbouncer",pid=169080,fd=7))                                          
+sathish@sathish-Lenovo-E41-25:~$ psql -h 127.0.0.1 -p 6432 -U postgres -d pgbouncer -c "SHOW POOLS;"
+psql: error: ERROR:  not allowed
+sathish@sathish-Lenovo-E41-25:~$ sudo cat /etc/pgbouncer/pgbouncer.ini | grep -A3 "\[pgbouncer\]"
+[pgbouncer]
+
+;;;
+;;; Administrative settings
+sathish@sathish-Lenovo-E41-25:~$ sudo cat /etc/pgbouncer/pgbouncer.ini | grep -A3 "\[pgbouncer\]"
+[pgbouncer]
+
+;;;
+;;; Administrative settings
+
+------------after adding postgres as admin user in ini file----------------------
+sathish@sathish-Lenovo-E41-25:~$ sudo nano /etc/pgbouncer/pgbouncer.ini
+sathish@sathish-Lenovo-E41-25:~$ sudo systemctl restart pgbouncer
+sathish@sathish-Lenovo-E41-25:~$ psql -h 127.0.0.1 -p 6432 -U postgres -d pgbouncer -c "SHOW POOLS;"
+Password for user postgres: 
+ database  |   user    | cl_active | cl_waiting | sv_active | sv_idle | sv_used | sv_tested | sv_login | maxwait | maxwait_us | pool_mode 
+-----------+-----------+-----------+------------+-----------+---------+---------+-----------+----------+---------+------------+-----------
+ pgbouncer | pgbouncer |         1 |          0 |         0 |       0 |       0 |         0 |        0 |       0 |          0 | statement
+(1 row)
+
+---------after runserver-------------
+
+sathish@sathish-Lenovo-E41-25:~$ psql -h 127.0.0.1 -p 6432 -U postgres -d pgbouncer -c "SHOW POOLS;"
+Password for user postgres: 
+ database  |   user    | cl_active | cl_waiting | sv_active | sv_idle | sv_used | sv_tested | sv_login | maxwait | maxwait_us | pool_mode 
+-----------+-----------+-----------+------------+-----------+---------+---------+-----------+----------+---------+------------+-----------
+ pgbouncer | pgbouncer |         1 |          0 |         0 |       0 |       0 |         0 |        0 |       0 |          0 | statement
+(1 row)
+
+sathish@sathish-Lenovo-E41-25:~$ psql -h 127.0.0.1 -p 6432 -U postgres -d pgbouncer -c "SHOW POOLS;"
+Password for user postgres: 
+  database   |   user    | cl_active | cl_waiting | sv_active | sv_idle | sv_used | sv_tested | sv_login | maxwait | maxwait_us |  pool_mode  
+-------------+-----------+-----------+------------+-----------+---------+---------+-----------+----------+---------+------------+-------------
+ jobqueue_db | postgres  |         2 |          0 |         0 |       0 |       1 |         0 |        0 |       0 |          0 | transaction
+ pgbouncer   | pgbouncer |         1 |          0 |         0 |       0 |       0 |         0 |        0 |       0 |          0 | statement
+(2 rows)
 
 
 

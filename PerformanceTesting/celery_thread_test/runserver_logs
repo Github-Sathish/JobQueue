@@ -1,0 +1,10 @@
+(jobvenv) sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue$ python3 manage.py runserver
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 21, 2026 - 14:24:23
+Django version 4.2.13, using settings 'config.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+^C(jobvenv) sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue$ 

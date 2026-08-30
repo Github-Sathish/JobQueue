@@ -55,7 +55,7 @@ def _init_csv():
 
 
 #User behaviour
-class JpbQueueUser(HttpUser):
+class JobQueueUser(HttpUser):
     wait_time = between(1,3)
     created_job_ids : list
 

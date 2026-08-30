@@ -87,6 +87,10 @@ DATABASES = {
         'PASSWORD': '1234',
         'HOST': 'localhost',
         'PORT': '5432',
+        # 'PORT': '6432',  # PgBouncer port, not 5432
+        # 'CONN_MAX_AGE': 60, 
+        # 'CONN_MAX_AGE': 0,  # As PgBouncer manage pooling, not Django
+
     }
 }
 
@@ -123,7 +127,7 @@ CELERY_BEAT_SCHEDULE = {
     },
     'log-queue-stats': {
         'task': 'jobs.tasks.log_queue_stats',
-        'schedule': 300.0,
+        'schedule': 180.0,
     },
 }
 #to log those from the celery cron tasks

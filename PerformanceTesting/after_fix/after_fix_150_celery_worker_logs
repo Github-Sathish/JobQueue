@@ -1,0 +1,1377 @@
+(jobvenv) sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue/PerformanceTesting/after_fix$ celery -A config worker --loglevel=info --concurrency=4 -Q jobs.high,jobs.default,jobs.low
+Usage: celery [OPTIONS] COMMAND [ARGS]...
+Try 'celery --help' for help.
+
+Error: Invalid value for '-A' / '--app': 
+Unable to load celery application.
+The module config was not found.
+(jobvenv) sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue/PerformanceTesting/after_fix$ cd ..
+(jobvenv) sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue/PerformanceTesting$ cd ..
+(jobvenv) sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue$ celery -A config worker --loglevel=info --concurrency=4 -Q jobs.high,jobs.default,jobs.low
+
+ 
+ -------------- celery@sathish-Lenovo-E41-25 v5.3.6 (emerald-rush)
+--- ***** ----- 
+-- ******* ---- Linux-5.15.0-67-generic-x86_64-with-glibc2.29 2026-08-02 00:12:44
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         config:0x7f9f1561ebe0
+- ** ---------- .> transport:   redis://localhost:6379/0
+- ** ---------- .> results:     
+- *** --- * --- .> concurrency: 4 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> jobs.default     exchange=jobs(direct) key=jobs.default
+                .> jobs.high        exchange=jobs(direct) key=jobs.high
+                .> jobs.low         exchange=jobs(direct) key=jobs.low
+
+[tasks]
+  . config.celery.debug_task
+  . jobs.tasks.cleanup_old_jobs
+  . jobs.tasks.log_queue_stats
+  . jobs.tasks.process_job
+
+[2026-08-02 00:12:44,881: WARNING/MainProcess] /home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/celery/worker/consumer/consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2026-08-02 00:12:44,902: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2026-08-02 00:12:44,904: WARNING/MainProcess] /home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/celery/worker/consumer/consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2026-08-02 00:12:44,912: INFO/MainProcess] mingle: searching for neighbors
+[2026-08-02 00:12:45,934: INFO/MainProcess] mingle: all alone
+[2026-08-02 00:12:46,096: INFO/MainProcess] Task jobs.tasks.log_queue_stats[cd3405ad-c1fb-42de-bc41-8bc05b7bb8ba] received
+[2026-08-02 00:12:46,099: INFO/MainProcess] Task jobs.tasks.log_queue_stats[a39b52cd-862e-40b4-9892-ea436008cf68] received
+[2026-08-02 00:12:46,125: INFO/MainProcess] Task jobs.tasks.log_queue_stats[61849516-ae76-43f9-8b22-19dc3cbb1948] received
+[2026-08-02 00:12:47,160: INFO/ForkPoolWorker-2] Queue stats: {'pending': 0, 'processing': 0, 'failed': 0}
+[2026-08-02 00:12:47,395: INFO/ForkPoolWorker-3] Queue stats: {'pending': 0, 'processing': 0, 'failed': 0}
+[2026-08-02 00:12:47,481: INFO/ForkPoolWorker-4] Queue stats: {'pending': 0, 'processing': 0, 'failed': 0}
+[2026-08-02 00:13:28,983: INFO/MainProcess] Task jobs.tasks.process_job[79f54249-6699-4d9f-9eb2-efc3a7b2de32] received
+[2026-08-02 00:13:29,003: INFO/MainProcess] Task jobs.tasks.process_job[89e5472b-b08c-44b5-a9a3-858af4810ce9] received
+[2026-08-02 00:13:29,024: INFO/MainProcess] Task jobs.tasks.process_job[9c353e40-b349-47fe-a467-b1b879da5823] received
+[2026-08-02 00:13:29,061: INFO/MainProcess] Task jobs.tasks.process_job[7fc5bc1b-4497-477f-b24f-4a905fbd4027] received
+[2026-08-02 00:13:29,090: INFO/MainProcess] Task jobs.tasks.process_job[327c36be-04d2-4c15-9b24-459150537dfa] received
+[2026-08-02 00:13:29,107: INFO/MainProcess] Task jobs.tasks.process_job[33f23032-5045-43dc-a9c5-e26812245993] received
+[2026-08-02 00:13:29,180: INFO/MainProcess] Task jobs.tasks.process_job[29664307-7771-4ebb-a7ab-cee23ccab379] received
+[2026-08-02 00:13:29,462: INFO/ForkPoolWorker-4] Processing job db09f84c-8cb9-40bd-9b39-15b562184185 | type=image_resize | attempt=1
+[2026-08-02 00:13:29,620: INFO/ForkPoolWorker-3] Processing job cba9e21a-d71f-4e77-8c44-74e0d46e6b80 | type=data_process | attempt=1
+[2026-08-02 00:13:29,620: INFO/ForkPoolWorker-1] Processing job 1bcf5c57-6971-4419-8242-704f6049f837 | type=report_gen | attempt=1
+[2026-08-02 00:13:29,621: INFO/ForkPoolWorker-2] Processing job 5a7824bd-a943-4070-8b8f-a8078cc3118e | type=data_process | attempt=1
+[2026-08-02 00:13:29,981: INFO/MainProcess] Task jobs.tasks.process_job[7226ae60-1b18-4346-9d6f-87fbebc22bda] received
+[2026-08-02 00:13:30,063: INFO/MainProcess] Task jobs.tasks.process_job[5846e6d1-b95d-4481-9978-80cdc8fcfa8b] received
+[2026-08-02 00:13:30,125: INFO/MainProcess] Task jobs.tasks.process_job[91002624-8cb1-4856-bd80-f4583ef35d44] received
+[2026-08-02 00:13:30,131: INFO/MainProcess] Task jobs.tasks.process_job[c5f169e4-b2e0-43d7-a694-b0dbc62889c7] received
+[2026-08-02 00:13:30,259: INFO/MainProcess] Task jobs.tasks.process_job[5a177912-5608-40a1-910c-9e68dd6e50ad] received
+[2026-08-02 00:13:30,406: INFO/MainProcess] Task jobs.tasks.process_job[f3502351-c345-485f-b745-564a0fa2973c] received
+[2026-08-02 00:13:30,433: INFO/MainProcess] Task jobs.tasks.process_job[0b05b976-2105-4f13-8f66-edc3a12c9050] received
+[2026-08-02 00:13:30,552: INFO/MainProcess] Task jobs.tasks.process_job[533df8a4-d632-46a3-b956-5127faf144be] received
+[2026-08-02 00:13:30,807: INFO/ForkPoolWorker-4] Job db09f84c-8cb9-40bd-9b39-15b562184185 completed in 0.97s
+[2026-08-02 00:13:31,501: INFO/MainProcess] Task jobs.tasks.process_job[03ea73d1-1db3-4338-9ad3-56fc0835d44d] received
+[2026-08-02 00:13:31,551: INFO/ForkPoolWorker-3] Job cba9e21a-d71f-4e77-8c44-74e0d46e6b80 completed in 1.97s
+[2026-08-02 00:13:31,553: INFO/ForkPoolWorker-2] Job 5a7824bd-a943-4070-8b8f-a8078cc3118e completed in 1.97s
+[2026-08-02 00:13:31,722: INFO/MainProcess] Task jobs.tasks.process_job[65cb2c83-9701-47f0-a07b-4ba6e391ce9d] received
+[2026-08-02 00:13:31,763: INFO/MainProcess] Task jobs.tasks.process_job[4652f15d-422f-441f-aaa0-15a3a0ca3e46] received
+[2026-08-02 00:13:31,766: INFO/MainProcess] Task jobs.tasks.process_job[d96f1093-c6ba-4970-bf18-c54ca8d61caf] received
+[2026-08-02 00:13:31,817: INFO/ForkPoolWorker-4] Processing job 2e039606-10bc-473d-ae8b-5a92795d1c2c | type=data_process | attempt=1
+[2026-08-02 00:13:31,984: INFO/MainProcess] Task jobs.tasks.process_job[c5aee777-c1d3-4b0c-9732-3e02d9b8d643] received
+[2026-08-02 00:13:32,011: INFO/MainProcess] Task jobs.tasks.process_job[605678cf-c6d7-4500-a744-ad0f6382f93f] received
+[2026-08-02 00:13:32,029: INFO/MainProcess] Task jobs.tasks.process_job[b26524b8-7014-400a-9a11-cfb67e442533] received
+[2026-08-02 00:13:32,060: INFO/MainProcess] Task jobs.tasks.process_job[fb2fe68f-0d9d-4627-a89b-2d4fcc186c19] received
+[2026-08-02 00:13:32,084: INFO/ForkPoolWorker-2] Processing job f418a924-5aa5-4f08-9c87-c4ccbe2537d6 | type=report_gen | attempt=1
+[2026-08-02 00:13:32,194: INFO/ForkPoolWorker-3] Processing job f6eb3fcc-a104-4762-9f79-4d390220c28f | type=image_resize | attempt=1
+[2026-08-02 00:13:32,827: INFO/ForkPoolWorker-3] Job f6eb3fcc-a104-4762-9f79-4d390220c28f completed in 0.79s
+[2026-08-02 00:13:32,853: INFO/MainProcess] Task jobs.tasks.process_job[67fe3fdf-d423-4626-af73-bcd2d3424696] received
+[2026-08-02 00:13:32,939: INFO/ForkPoolWorker-3] Processing job 4cc7af9c-4066-43d1-8a5a-c4c8e6d93be9 | type=email_send | attempt=1
+[2026-08-02 00:13:33,393: INFO/ForkPoolWorker-1] Job 1bcf5c57-6971-4419-8242-704f6049f837 completed in 3.96s
+[2026-08-02 00:13:33,419: INFO/MainProcess] Task jobs.tasks.process_job[612ce06f-9c67-47c2-9f65-a9597f92615b] received
+[2026-08-02 00:13:33,527: INFO/ForkPoolWorker-1] Processing job 2e5c988d-d003-4f4f-bb55-d7e9caadc740 | type=image_resize | attempt=1
+[2026-08-02 00:13:34,037: INFO/ForkPoolWorker-3] Job 4cc7af9c-4066-43d1-8a5a-c4c8e6d93be9 completed in 1.09s
+[2026-08-02 00:13:34,059: INFO/MainProcess] Task jobs.tasks.process_job[22cf4f1f-1bb8-4b69-b21c-b5e8637117ec] received
+[2026-08-02 00:13:34,207: INFO/ForkPoolWorker-3] Processing job 734701fb-b08b-4b75-bc56-fe0798d80f86 | type=report_gen | attempt=1
+[2026-08-02 00:13:34,249: INFO/ForkPoolWorker-4] Job 2e039606-10bc-473d-ae8b-5a92795d1c2c completed in 2.72s
+[2026-08-02 00:13:34,319: INFO/MainProcess] Task jobs.tasks.process_job[49eef6ed-dc08-4252-9847-793eeccc8c37] received
+[2026-08-02 00:13:34,392: INFO/ForkPoolWorker-1] Job 2e5c988d-d003-4f4f-bb55-d7e9caadc740 completed in 0.79s
+[2026-08-02 00:13:34,550: INFO/MainProcess] Task jobs.tasks.process_job[c0723fc7-56f3-400b-b7a4-abe7eb0597f7] received
+[2026-08-02 00:13:34,637: INFO/ForkPoolWorker-4] Processing job 0d39478b-8f9f-4dc0-a64f-763c49ffb26f | type=data_process | attempt=1
+[2026-08-02 00:13:34,814: INFO/ForkPoolWorker-1] Processing job ab80167b-69d4-44c6-89b5-65343058babb | type=data_process | attempt=1
+[2026-08-02 00:13:34,904: INFO/ForkPoolWorker-2] Job f418a924-5aa5-4f08-9c87-c4ccbe2537d6 completed in 2.76s
+[2026-08-02 00:13:35,439: INFO/MainProcess] Task jobs.tasks.process_job[bb6c6cd2-e56e-42d9-b62a-06596a760e4b] received
+[2026-08-02 00:13:35,625: INFO/ForkPoolWorker-2] Processing job 5ff521f6-6b54-456d-80b2-53bcb8c3d923 | type=data_process | attempt=1
+[2026-08-02 00:13:36,324: INFO/ForkPoolWorker-4] Job 0d39478b-8f9f-4dc0-a64f-763c49ffb26f completed in 1.79s
+[2026-08-02 00:13:36,449: INFO/MainProcess] Task jobs.tasks.process_job[4060c695-9026-4dee-b3b6-d9f66e63d5f0] received
+[2026-08-02 00:13:36,613: INFO/ForkPoolWorker-4] Processing job 1a8bf2a7-75f4-43b9-8143-bf50887dbdae | type=data_process | attempt=1
+[2026-08-02 00:13:36,957: INFO/ForkPoolWorker-2] Job 5ff521f6-6b54-456d-80b2-53bcb8c3d923 completed in 1.33s
+[2026-08-02 00:13:37,110: INFO/MainProcess] Task jobs.tasks.process_job[7b8b1300-26f2-4ba5-ade1-f016aa390648] received
+[2026-08-02 00:13:37,367: INFO/ForkPoolWorker-1] Job ab80167b-69d4-44c6-89b5-65343058babb completed in 2.44s
+[2026-08-02 00:13:37,478: INFO/ForkPoolWorker-2] Processing job 6ef7573b-6c01-4f48-b64f-9e8819102c89 | type=image_resize | attempt=1
+[2026-08-02 00:13:37,484: INFO/MainProcess] Task jobs.tasks.process_job[8bcdbd76-3f8b-4d25-ab64-0df63d282704] received
+[2026-08-02 00:13:37,745: INFO/ForkPoolWorker-1] Processing job 7d72ca84-396b-4718-9f0a-56a13029974c | type=report_gen | attempt=1
+[2026-08-02 00:13:37,878: INFO/ForkPoolWorker-2] Job 6ef7573b-6c01-4f48-b64f-9e8819102c89 completed in 0.44s
+[2026-08-02 00:13:37,995: INFO/MainProcess] Task jobs.tasks.process_job[1d21e931-49b2-4c01-9b27-692749a597e9] received
+[2026-08-02 00:13:38,044: INFO/ForkPoolWorker-4] Job 1a8bf2a7-75f4-43b9-8143-bf50887dbdae completed in 1.48s
+[2026-08-02 00:13:38,047: INFO/ForkPoolWorker-3] Job 734701fb-b08b-4b75-bc56-fe0798d80f86 completed in 3.86s
+[2026-08-02 00:13:38,288: INFO/MainProcess] Task jobs.tasks.process_job[6f9d2b27-4d8f-4d26-b005-018c60bfb4fa] received
+[2026-08-02 00:13:38,378: INFO/ForkPoolWorker-2] Processing job 7a51ddac-45ac-41d0-8e7b-db1b7ac752f3 | type=email_send | attempt=1
+[2026-08-02 00:13:38,401: INFO/MainProcess] Task jobs.tasks.process_job[442d3b2f-1174-4986-b646-fe78564adbc5] received
+[2026-08-02 00:13:38,577: INFO/ForkPoolWorker-4] Processing job cabc4a79-275b-4961-b253-b2ec66f3660b | type=email_send | attempt=1
+[2026-08-02 00:13:38,666: INFO/ForkPoolWorker-3] Processing job 46d991fd-0ac0-445e-a7fc-c50c0f2d9978 | type=report_gen | attempt=1
+[2026-08-02 00:13:39,199: INFO/ForkPoolWorker-4] Job cabc4a79-275b-4961-b253-b2ec66f3660b completed in 0.65s
+[2026-08-02 00:13:39,532: INFO/ForkPoolWorker-2] Job 7a51ddac-45ac-41d0-8e7b-db1b7ac752f3 completed in 1.06s
+[2026-08-02 00:13:39,576: INFO/MainProcess] Task jobs.tasks.process_job[ea62a022-2506-4bad-a96d-e11e61ad8643] received
+[2026-08-02 00:13:39,762: INFO/MainProcess] Task jobs.tasks.process_job[31f39e23-1736-4b78-a8a0-f228131560f3] received
+[2026-08-02 00:13:39,857: INFO/ForkPoolWorker-4] Processing job 5f4fb1f8-8d9c-4905-837e-a52fcf513f25 | type=email_send | attempt=1
+[2026-08-02 00:13:39,921: INFO/ForkPoolWorker-2] Processing job c036f719-7cd8-4a1f-9207-7a881f3e6508 | type=email_send | attempt=1
+[2026-08-02 00:13:40,530: INFO/ForkPoolWorker-2] Job c036f719-7cd8-4a1f-9207-7a881f3e6508 completed in 0.63s
+[2026-08-02 00:13:40,563: INFO/MainProcess] Task jobs.tasks.process_job[e21fb992-eeb9-4c29-a818-24c5af466c82] received
+[2026-08-02 00:13:40,608: INFO/ForkPoolWorker-2] Processing job 7bbf2eeb-a64b-461e-b87c-c9e03925c662 | type=email_send | attempt=1
+[2026-08-02 00:13:41,063: INFO/ForkPoolWorker-3] Job 46d991fd-0ac0-445e-a7fc-c50c0f2d9978 completed in 2.50s
+[2026-08-02 00:13:41,095: INFO/MainProcess] Task jobs.tasks.process_job[a017cb76-9039-4267-ae9a-95936f868454] received
+[2026-08-02 00:13:41,119: INFO/ForkPoolWorker-3] Processing job 6071226d-c239-4e28-9a88-a50a4a288506 | type=report_gen | attempt=1
+[2026-08-02 00:13:41,341: INFO/ForkPoolWorker-4] Job 5f4fb1f8-8d9c-4905-837e-a52fcf513f25 completed in 1.60s
+[2026-08-02 00:13:41,380: INFO/MainProcess] Task jobs.tasks.process_job[d06004e5-4ed4-4ba3-ba61-5244ebd27386] received
+[2026-08-02 00:13:41,407: INFO/ForkPoolWorker-4] Processing job 71f7112b-9c31-414c-aaea-97ec64d3abde | type=data_process | attempt=1
+[2026-08-02 00:13:41,509: INFO/ForkPoolWorker-2] Job 7bbf2eeb-a64b-461e-b87c-c9e03925c662 completed in 0.87s
+[2026-08-02 00:13:41,520: INFO/ForkPoolWorker-1] Job 7d72ca84-396b-4718-9f0a-56a13029974c completed in 3.78s
+[2026-08-02 00:13:41,552: INFO/MainProcess] Task jobs.tasks.process_job[4c03057d-eaa8-4d39-9313-f4273a253012] received
+[2026-08-02 00:13:41,580: INFO/MainProcess] Task jobs.tasks.process_job[85a89850-2f4f-4f93-8c17-b66543ee7e8f] received
+[2026-08-02 00:13:41,586: INFO/ForkPoolWorker-2] Processing job cf8870a9-78d2-4eff-a97e-75bce34d8603 | type=email_send | attempt=1
+[2026-08-02 00:13:41,607: INFO/ForkPoolWorker-1] Processing job dfa963e6-b7d8-485e-909a-b95138b900f9 | type=report_gen | attempt=1
+[2026-08-02 00:13:42,939: INFO/ForkPoolWorker-2] Job cf8870a9-78d2-4eff-a97e-75bce34d8603 completed in 1.26s
+[2026-08-02 00:13:43,039: WARNING/ForkPoolWorker-4] Job 71f7112b-9c31-414c-aaea-97ec64d3abde failed on attempt 1: Simulated data processing error
+[2026-08-02 00:13:43,039: INFO/ForkPoolWorker-4] Retrying job 71f7112b-9c31-414c-aaea-97ec64d3abde in 60s
+[2026-08-02 00:13:43,134: INFO/MainProcess] Task jobs.tasks.process_job[9b61a57b-f734-4eef-9f99-0c9e227c13dc] received
+[2026-08-02 00:13:43,208: INFO/MainProcess] Task jobs.tasks.process_job[cae56801-0833-4cff-b52b-516619fb87ae] received
+[2026-08-02 00:13:43,407: INFO/ForkPoolWorker-2] Processing job 6c9c90c1-df66-4668-903f-6ff402badd3a | type=email_send | attempt=1
+[2026-08-02 00:13:43,462: INFO/ForkPoolWorker-4] Processing job 3e928545-5386-41a3-bbda-fcef06f9351b | type=email_send | attempt=1
+[2026-08-02 00:13:44,661: INFO/ForkPoolWorker-3] Job 6071226d-c239-4e28-9a88-a50a4a288506 completed in 3.33s
+[2026-08-02 00:13:44,745: INFO/MainProcess] Task jobs.tasks.process_job[61275b9c-6eb4-4908-8128-dae345096dd9] received
+[2026-08-02 00:13:44,972: INFO/ForkPoolWorker-1] Job dfa963e6-b7d8-485e-909a-b95138b900f9 completed in 3.16s
+[2026-08-02 00:13:44,975: INFO/ForkPoolWorker-4] Job 3e928545-5386-41a3-bbda-fcef06f9351b completed in 1.47s
+[2026-08-02 00:13:45,011: INFO/ForkPoolWorker-2] Job 6c9c90c1-df66-4668-903f-6ff402badd3a completed in 1.52s
+[2026-08-02 00:13:45,517: INFO/MainProcess] Task jobs.tasks.process_job[2dc56bda-b3e2-4053-86a2-21580a3dfbd9] received
+[2026-08-02 00:13:45,587: INFO/MainProcess] Task jobs.tasks.process_job[d2653709-d63b-4cd6-a623-ea0d80fd96ba] received
+[2026-08-02 00:13:45,629: INFO/MainProcess] Task jobs.tasks.process_job[a8919d71-2ac8-48d3-85ea-0dc83e5e98e9] received
+[2026-08-02 00:13:45,633: INFO/ForkPoolWorker-3] Processing job 8e61b646-a66c-4158-bb9b-98d805693dd6 | type=image_resize | attempt=1
+[2026-08-02 00:13:45,978: INFO/ForkPoolWorker-1] Processing job 1af12b16-4f2d-4e8e-a36c-f944895e84da | type=data_process | attempt=1
+[2026-08-02 00:13:45,978: INFO/ForkPoolWorker-4] Processing job c092b8f9-d1f9-4e0b-8524-8b7a186e1684 | type=email_send | attempt=1
+[2026-08-02 00:13:45,979: INFO/ForkPoolWorker-2] Processing job c21435c9-5a90-49e3-b0af-c2b1fcb205bd | type=email_send | attempt=1
+[2026-08-02 00:13:46,011: INFO/ForkPoolWorker-3] Job 8e61b646-a66c-4158-bb9b-98d805693dd6 completed in 0.45s
+[2026-08-02 00:13:46,061: INFO/MainProcess] Task jobs.tasks.process_job[d00555fd-5e5e-4ae6-9975-f5ba5c93ba20] received
+[2026-08-02 00:13:46,166: INFO/ForkPoolWorker-3] Processing job 23f86661-0ff0-4fcd-b883-bdaf6296bd13 | type=email_send | attempt=1
+[2026-08-02 00:13:46,589: INFO/ForkPoolWorker-4] Job c092b8f9-d1f9-4e0b-8524-8b7a186e1684 completed in 0.90s
+[2026-08-02 00:13:46,849: INFO/MainProcess] Task jobs.tasks.process_job[56c80d15-8a5d-44b7-9eb9-fb8203ad465c] received
+[2026-08-02 00:13:46,921: INFO/ForkPoolWorker-4] Processing job cce7761f-e8e5-4584-a70d-e69a38a90141 | type=report_gen | attempt=1
+[2026-08-02 00:13:47,177: INFO/ForkPoolWorker-3] Job 23f86661-0ff0-4fcd-b883-bdaf6296bd13 completed in 1.02s
+[2026-08-02 00:13:47,209: INFO/MainProcess] Task jobs.tasks.process_job[71f41a94-cf95-4663-90a9-853030439a14] received
+[2026-08-02 00:13:47,288: INFO/ForkPoolWorker-2] Job c21435c9-5a90-49e3-b0af-c2b1fcb205bd completed in 1.56s
+[2026-08-02 00:13:47,300: INFO/ForkPoolWorker-3] Processing job b52e778b-7fa0-4f78-88ce-da497c61044a | type=data_process | attempt=1
+[2026-08-02 00:13:47,324: INFO/MainProcess] Task jobs.tasks.process_job[60e67f6c-1956-48a9-b783-fb0455a764f4] received
+[2026-08-02 00:13:47,388: INFO/ForkPoolWorker-2] Processing job 35f8bb1a-4b52-41dc-a5c8-0c665ab139df | type=data_process | attempt=1
+[2026-08-02 00:13:48,020: INFO/ForkPoolWorker-1] Job 1af12b16-4f2d-4e8e-a36c-f944895e84da completed in 2.31s
+[2026-08-02 00:13:48,039: INFO/MainProcess] Task jobs.tasks.process_job[6b307287-dbaf-40be-9b54-b82a41d44060] received
+[2026-08-02 00:13:48,065: INFO/ForkPoolWorker-1] Processing job 07cad392-f2ab-404c-b09e-739853bac614 | type=data_process | attempt=1
+[2026-08-02 00:13:48,542: INFO/ForkPoolWorker-3] Job b52e778b-7fa0-4f78-88ce-da497c61044a completed in 1.25s
+[2026-08-02 00:13:48,579: INFO/MainProcess] Task jobs.tasks.process_job[f43a42a6-f409-4190-baa3-cee2c7f30b75] received
+[2026-08-02 00:13:48,634: INFO/ForkPoolWorker-3] Processing job 24c63cdd-9a5c-43d5-8abc-37934d5d0c0b | type=data_process | attempt=1
+[2026-08-02 00:13:50,018: INFO/ForkPoolWorker-2] Job 35f8bb1a-4b52-41dc-a5c8-0c665ab139df completed in 2.54s
+[2026-08-02 00:13:50,089: INFO/MainProcess] Task jobs.tasks.process_job[60011f39-8b7e-4153-b71b-6783fe550b34] received
+[2026-08-02 00:13:50,108: INFO/ForkPoolWorker-2] Processing job 2a05c8f6-7a85-458a-bc5f-48db4f8dcee7 | type=email_send | attempt=1
+[2026-08-02 00:13:50,475: INFO/ForkPoolWorker-4] Job cce7761f-e8e5-4584-a70d-e69a38a90141 completed in 3.54s
+[2026-08-02 00:13:50,484: INFO/ForkPoolWorker-1] Job 07cad392-f2ab-404c-b09e-739853bac614 completed in 2.42s
+[2026-08-02 00:13:50,510: INFO/MainProcess] Task jobs.tasks.process_job[b1452df3-3587-40b4-ba7d-29efed5ebf54] received
+[2026-08-02 00:13:50,554: INFO/MainProcess] Task jobs.tasks.process_job[e72f38f1-f53d-4c1f-b8d7-559623291e33] received
+[2026-08-02 00:13:50,562: INFO/ForkPoolWorker-4] Processing job f47b3e8c-082a-4614-9f9f-02897631fa9f | type=report_gen | attempt=1
+[2026-08-02 00:13:50,628: INFO/ForkPoolWorker-1] Processing job d4b63c03-4ddc-452f-95e2-81df715b68b0 | type=data_process | attempt=1
+[2026-08-02 00:13:51,139: INFO/ForkPoolWorker-2] Job 2a05c8f6-7a85-458a-bc5f-48db4f8dcee7 completed in 1.02s
+[2026-08-02 00:13:51,170: INFO/MainProcess] Task jobs.tasks.process_job[5d26234f-a4de-4dbe-8b29-93da03f08116] received
+[2026-08-02 00:13:51,206: INFO/ForkPoolWorker-2] Processing job 9589331f-f878-49cf-bef9-ec5a0bde9e84 | type=email_send | attempt=1
+[2026-08-02 00:13:51,228: INFO/ForkPoolWorker-3] Job 24c63cdd-9a5c-43d5-8abc-37934d5d0c0b completed in 2.59s
+[2026-08-02 00:13:51,260: INFO/MainProcess] Task jobs.tasks.process_job[1095c5eb-cf53-44c4-bc2a-974192411162] received
+[2026-08-02 00:13:51,283: INFO/ForkPoolWorker-3] Processing job 63b25829-dcdf-42d5-89b6-504f0bca6b92 | type=report_gen | attempt=1
+[2026-08-02 00:13:52,038: INFO/ForkPoolWorker-2] Job 9589331f-f878-49cf-bef9-ec5a0bde9e84 completed in 0.82s
+[2026-08-02 00:13:52,056: INFO/MainProcess] Task jobs.tasks.process_job[c927e9ae-e27f-4190-87a7-5cb94687743d] received
+[2026-08-02 00:13:52,093: INFO/ForkPoolWorker-2] Processing job 5e4b541d-38b0-43b0-872b-f2a3d1a02e17 | type=email_send | attempt=1
+[2026-08-02 00:13:52,373: INFO/ForkPoolWorker-1] Job d4b63c03-4ddc-452f-95e2-81df715b68b0 completed in 1.75s
+[2026-08-02 00:13:52,399: INFO/MainProcess] Task jobs.tasks.process_job[d7459879-3eba-4be8-b482-76d6f56b0ca0] received
+[2026-08-02 00:13:52,437: INFO/ForkPoolWorker-1] Processing job 2a3bc9ff-14a6-46dd-8645-0f0c624a4a5b | type=image_resize | attempt=1
+[2026-08-02 00:13:52,615: INFO/ForkPoolWorker-2] Job 5e4b541d-38b0-43b0-872b-f2a3d1a02e17 completed in 0.51s
+[2026-08-02 00:13:52,653: INFO/MainProcess] Task jobs.tasks.process_job[fa4106a0-3d41-41d9-8045-6c7740141c1f] received
+[2026-08-02 00:13:52,670: INFO/ForkPoolWorker-2] Processing job 2a5a2153-1aa6-4c8b-87ac-97d8ee018d19 | type=image_resize | attempt=1
+[2026-08-02 00:13:53,316: INFO/ForkPoolWorker-4] Job f47b3e8c-082a-4614-9f9f-02897631fa9f completed in 2.75s
+[2026-08-02 00:13:53,364: INFO/MainProcess] Task jobs.tasks.process_job[8430902b-6051-4e3d-8985-b14e5d16478b] received
+[2026-08-02 00:13:53,392: INFO/ForkPoolWorker-1] Job 2a3bc9ff-14a6-46dd-8645-0f0c624a4a5b completed in 0.96s
+[2026-08-02 00:13:53,403: INFO/ForkPoolWorker-4] Processing job f65b172c-a240-4b6e-986e-77aad844e4cf | type=report_gen | attempt=1
+[2026-08-02 00:13:53,422: INFO/MainProcess] Task jobs.tasks.process_job[ea28b617-efba-4eba-9222-93d3d650874c] received
+[2026-08-02 00:13:53,503: INFO/ForkPoolWorker-1] Processing job 1f32b5d5-e033-40b6-92ef-5e7c0f05dbee | type=image_resize | attempt=1
+[2026-08-02 00:13:53,647: INFO/ForkPoolWorker-2] Job 2a5a2153-1aa6-4c8b-87ac-97d8ee018d19 completed in 0.97s
+[2026-08-02 00:13:53,675: INFO/MainProcess] Task jobs.tasks.process_job[42904e9b-5962-45d8-bf84-2dd0437a0406] received
+[2026-08-02 00:13:53,713: INFO/ForkPoolWorker-2] Processing job 9a632c4b-6047-42de-93de-2376727faad2 | type=data_process | attempt=1
+[2026-08-02 00:13:54,501: INFO/ForkPoolWorker-1] Job 1f32b5d5-e033-40b6-92ef-5e7c0f05dbee completed in 0.99s
+[2026-08-02 00:13:54,542: INFO/MainProcess] Task jobs.tasks.process_job[6d04b7ee-9c2b-447e-b17c-68e52a75102b] received
+[2026-08-02 00:13:54,561: INFO/ForkPoolWorker-3] Job 63b25829-dcdf-42d5-89b6-504f0bca6b92 completed in 3.27s
+[2026-08-02 00:13:54,630: INFO/ForkPoolWorker-1] Processing job 3fa11e63-439c-4943-af93-375abcfba2fa | type=report_gen | attempt=1
+[2026-08-02 00:13:54,643: INFO/MainProcess] Task jobs.tasks.process_job[9a01f869-0bce-4dad-9e0d-1658b7ff8aff] received
+[2026-08-02 00:13:54,668: INFO/ForkPoolWorker-3] Processing job 4fbbcdbf-3233-41c2-9abd-790f07568f87 | type=report_gen | attempt=1
+[2026-08-02 00:13:56,035: INFO/ForkPoolWorker-2] Job 9a632c4b-6047-42de-93de-2376727faad2 completed in 2.30s
+[2026-08-02 00:13:56,066: INFO/MainProcess] Task jobs.tasks.process_job[4d2f788e-7a92-4a23-8899-7dcd2289cb9b] received
+[2026-08-02 00:13:56,100: INFO/ForkPoolWorker-4] Job f65b172c-a240-4b6e-986e-77aad844e4cf completed in 2.70s
+[2026-08-02 00:13:56,111: INFO/ForkPoolWorker-2] Processing job 2f0991ad-2aef-41b4-813f-fbe4f76a4efb | type=report_gen | attempt=1
+[2026-08-02 00:13:56,139: INFO/MainProcess] Task jobs.tasks.process_job[1e579d7b-2418-42bc-9ce2-941a63803647] received
+[2026-08-02 00:13:56,189: INFO/ForkPoolWorker-4] Processing job 25aa84d4-f06d-45a5-86d8-25b02b1db499 | type=data_process | attempt=1
+[2026-08-02 00:13:57,036: INFO/ForkPoolWorker-3] Job 4fbbcdbf-3233-41c2-9abd-790f07568f87 completed in 2.26s
+[2026-08-02 00:13:57,092: INFO/MainProcess] Task jobs.tasks.process_job[24d498d5-979d-4df8-a9df-48c582768d5b] received
+[2026-08-02 00:13:57,315: INFO/ForkPoolWorker-3] Processing job e60548c5-6a49-48d3-87fa-86dbe01c0627 | type=image_resize | attempt=1
+[2026-08-02 00:13:57,609: INFO/ForkPoolWorker-4] Job 25aa84d4-f06d-45a5-86d8-25b02b1db499 completed in 1.41s
+[2026-08-02 00:13:57,636: INFO/MainProcess] Task jobs.tasks.process_job[1a25a377-5fbd-4863-9150-914a3759edd4] received
+[2026-08-02 00:13:57,686: INFO/ForkPoolWorker-4] Processing job 69421727-dad0-4865-a85c-0c393a29ec0c | type=email_send | attempt=1
+[2026-08-02 00:13:57,876: INFO/ForkPoolWorker-3] Job e60548c5-6a49-48d3-87fa-86dbe01c0627 completed in 0.70s
+[2026-08-02 00:13:57,903: INFO/MainProcess] Task jobs.tasks.process_job[66621fa2-267d-435c-af60-c39665656e0d] received
+[2026-08-02 00:13:57,997: INFO/ForkPoolWorker-3] Processing job 43faeedb-d315-454d-82ea-633f735c6920 | type=image_resize | attempt=1
+[2026-08-02 00:13:58,575: INFO/ForkPoolWorker-1] Job 3fa11e63-439c-4943-af93-375abcfba2fa completed in 3.96s
+[2026-08-02 00:13:58,586: INFO/ForkPoolWorker-4] Job 69421727-dad0-4865-a85c-0c393a29ec0c completed in 0.88s
+[2026-08-02 00:13:58,609: INFO/MainProcess] Task jobs.tasks.process_job[c2db9bd0-b0a8-48c8-9e8f-7ddf373fb1e2] received
+[2026-08-02 00:13:58,647: INFO/MainProcess] Task jobs.tasks.process_job[6b00b4aa-2c4d-40da-9df7-693edf27c3f9] received
+[2026-08-02 00:13:58,663: INFO/ForkPoolWorker-1] Processing job c446e6b9-7d2d-49e0-8fe1-0dd9d9f4f986 | type=image_resize | attempt=1
+[2026-08-02 00:13:58,674: INFO/ForkPoolWorker-4] Processing job 41d6ad1b-64df-4963-80fb-36a5faba0068 | type=data_process | attempt=1
+[2026-08-02 00:13:58,941: INFO/ForkPoolWorker-2] Job 2f0991ad-2aef-41b4-813f-fbe4f76a4efb completed in 2.80s
+[2026-08-02 00:13:58,998: INFO/MainProcess] Task jobs.tasks.process_job[6b810141-0e75-4f98-8b03-4cf9427f8b05] received
+[2026-08-02 00:13:59,063: INFO/ForkPoolWorker-3] Job 43faeedb-d315-454d-82ea-633f735c6920 completed in 1.04s
+[2026-08-02 00:13:59,097: INFO/MainProcess] Task jobs.tasks.process_job[c88c7800-cf46-4599-873d-836030405f23] received
+[2026-08-02 00:13:59,099: INFO/ForkPoolWorker-2] Processing job 3b1cea05-e359-4d79-b41f-2c9d95c5a783 | type=image_resize | attempt=1
+[2026-08-02 00:13:59,174: INFO/ForkPoolWorker-3] Processing job 82ab0084-d29d-448b-9101-0f2b44e2546e | type=data_process | attempt=1
+[2026-08-02 00:13:59,562: INFO/ForkPoolWorker-1] Job c446e6b9-7d2d-49e0-8fe1-0dd9d9f4f986 completed in 0.90s
+[2026-08-02 00:13:59,633: INFO/MainProcess] Task jobs.tasks.process_job[426cf949-6592-46eb-9593-6a28903e7c3a] received
+[2026-08-02 00:13:59,662: INFO/ForkPoolWorker-1] Processing job d70a67b9-8530-48f6-8e6e-27b9face4396 | type=data_process | attempt=1
+[2026-08-02 00:14:00,196: INFO/ForkPoolWorker-2] Job 3b1cea05-e359-4d79-b41f-2c9d95c5a783 completed in 1.02s
+[2026-08-02 00:14:00,208: INFO/ForkPoolWorker-4] Job 41d6ad1b-64df-4963-80fb-36a5faba0068 completed in 1.43s
+[2026-08-02 00:14:00,236: INFO/MainProcess] Task jobs.tasks.process_job[ff2c45ff-9054-4c1b-9594-2b59d187a89d] received
+[2026-08-02 00:14:00,271: INFO/MainProcess] Task jobs.tasks.process_job[38f3a05a-1723-4c7b-938b-0463acd0c027] received
+[2026-08-02 00:14:00,294: INFO/ForkPoolWorker-4] Processing job 59e0c792-b54d-4e48-949b-1f80f7bd2a37 | type=email_send | attempt=1
+[2026-08-02 00:14:00,339: INFO/ForkPoolWorker-2] Processing job 551e780d-cb58-4ee2-a5eb-b1ae0ca21dac | type=email_send | attempt=1
+[2026-08-02 00:14:01,060: INFO/ForkPoolWorker-2] Job 551e780d-cb58-4ee2-a5eb-b1ae0ca21dac completed in 0.67s
+[2026-08-02 00:14:01,110: INFO/MainProcess] Task jobs.tasks.process_job[d04354d4-1d20-4afa-ab4d-b9a6fc8fc7c7] received
+[2026-08-02 00:14:01,127: INFO/ForkPoolWorker-1] Job d70a67b9-8530-48f6-8e6e-27b9face4396 completed in 1.46s
+[2026-08-02 00:14:01,160: INFO/MainProcess] Task jobs.tasks.process_job[576fb290-33ba-441a-a054-f90e74ddf3fe] received
+[2026-08-02 00:14:01,162: INFO/ForkPoolWorker-2] Processing job a631968b-19fc-4cfb-a0d3-5fb4fc2c2f91 | type=report_gen | attempt=1
+[2026-08-02 00:14:01,193: INFO/ForkPoolWorker-1] Processing job 76d826ff-82e4-46c1-9b0a-99a0ef7a876a | type=email_send | attempt=1
+[2026-08-02 00:14:01,227: INFO/ForkPoolWorker-3] Job 82ab0084-d29d-448b-9101-0f2b44e2546e completed in 2.09s
+[2026-08-02 00:14:01,304: INFO/ForkPoolWorker-4] Job 59e0c792-b54d-4e48-949b-1f80f7bd2a37 completed in 0.98s
+[2026-08-02 00:14:01,309: INFO/MainProcess] Task jobs.tasks.process_job[5fb77465-fc44-4640-b46c-a2dc057286c2] received
+[2026-08-02 00:14:01,379: INFO/MainProcess] Task jobs.tasks.process_job[141a797f-fe25-4f37-b716-81d8486d7f6b] received
+[2026-08-02 00:14:01,438: INFO/ForkPoolWorker-3] Processing job f2de8065-9053-4c86-9c1d-24c1ca15e54a | type=data_process | attempt=1
+[2026-08-02 00:14:01,449: INFO/ForkPoolWorker-4] Processing job c9473d09-24af-4fdb-9886-ba143db8e1ab | type=email_send | attempt=1
+[2026-08-02 00:14:02,392: INFO/ForkPoolWorker-4] Job c9473d09-24af-4fdb-9886-ba143db8e1ab completed in 0.96s
+[2026-08-02 00:14:02,463: INFO/MainProcess] Task jobs.tasks.process_job[67fe3fdf-d423-4626-af73-bcd2d3424696] received
+[2026-08-02 00:14:02,469: INFO/MainProcess] Task jobs.tasks.process_job[4b6d0669-2f96-4008-a88c-c2485a84491f] received
+[2026-08-02 00:14:02,492: INFO/ForkPoolWorker-4] Processing job f2fa8c79-190c-447c-9e68-22b1d0ba43ae | type=data_process | attempt=1
+[2026-08-02 00:14:02,592: INFO/ForkPoolWorker-1] Job 76d826ff-82e4-46c1-9b0a-99a0ef7a876a completed in 1.38s
+[2026-08-02 00:14:02,616: INFO/MainProcess] Task jobs.tasks.process_job[20914f94-a4fb-4e85-92e3-cdd93e7a309d] received
+[2026-08-02 00:14:02,703: INFO/ForkPoolWorker-1] Processing job 6a6d0698-87b4-4af8-9aa5-038395ee6fce | type=image_resize | attempt=1
+[2026-08-02 00:14:03,202: INFO/ForkPoolWorker-1] Job 6a6d0698-87b4-4af8-9aa5-038395ee6fce completed in 0.53s
+[2026-08-02 00:14:03,233: INFO/MainProcess] Task jobs.tasks.process_job[71a8ac68-744b-4035-90f5-b875105eca94] received
+[2026-08-02 00:14:03,257: INFO/ForkPoolWorker-1] Processing job 44ddfee6-872a-40d1-90b6-e32994458f54 | type=email_send | attempt=1
+[2026-08-02 00:14:03,391: INFO/ForkPoolWorker-3] Job f2de8065-9053-4c86-9c1d-24c1ca15e54a completed in 1.97s
+[2026-08-02 00:14:03,422: INFO/MainProcess] Task jobs.tasks.process_job[01e1fdc6-be4e-446d-a71b-c01170de0bdd] received
+[2026-08-02 00:14:03,457: INFO/ForkPoolWorker-3] Processing job 476e50e4-a9bf-4e2a-b104-10bc84c2a8d1 | type=data_process | attempt=1
+[2026-08-02 00:14:03,757: INFO/ForkPoolWorker-2] Job a631968b-19fc-4cfb-a0d3-5fb4fc2c2f91 completed in 2.55s
+[2026-08-02 00:14:03,785: INFO/MainProcess] Task jobs.tasks.process_job[0cabc2f2-c80d-4ee8-84dc-a5259e08bdce] received
+[2026-08-02 00:14:03,835: INFO/ForkPoolWorker-2] Processing job a71b49e2-e555-41c2-9958-092868057b8d | type=email_send | attempt=1
+[2026-08-02 00:14:04,274: INFO/ForkPoolWorker-1] Job 44ddfee6-872a-40d1-90b6-e32994458f54 completed in 0.95s
+[2026-08-02 00:14:04,318: INFO/MainProcess] Task jobs.tasks.process_job[73623b29-776b-4f0b-8c24-71755713e7ed] received
+[2026-08-02 00:14:04,401: INFO/ForkPoolWorker-1] Processing job 8a166136-9b6d-4652-afd4-ab04f59715c7 | type=data_process | attempt=1
+[2026-08-02 00:14:04,623: INFO/ForkPoolWorker-2] Job a71b49e2-e555-41c2-9958-092868057b8d completed in 0.76s
+[2026-08-02 00:14:04,659: INFO/MainProcess] Task jobs.tasks.process_job[14641c84-08a5-4ef4-b36f-89de8daeed9d] received
+[2026-08-02 00:14:04,689: INFO/ForkPoolWorker-2] Processing job 812092b4-3d2f-4c27-9f28-bb79129a000d | type=report_gen | attempt=1
+[2026-08-02 00:14:04,889: INFO/ForkPoolWorker-3] Job 476e50e4-a9bf-4e2a-b104-10bc84c2a8d1 completed in 1.43s
+[2026-08-02 00:14:04,918: INFO/MainProcess] Task jobs.tasks.process_job[8a50fa5d-f9c6-4fa6-aea0-c22a188ee36c] received
+[2026-08-02 00:14:04,957: INFO/ForkPoolWorker-3] Processing job 13f9d2ec-80b7-4d6c-a080-2c8399505c24 | type=report_gen | attempt=1
+[2026-08-02 00:14:05,311: INFO/ForkPoolWorker-4] Job f2fa8c79-190c-447c-9e68-22b1d0ba43ae completed in 2.77s
+[2026-08-02 00:14:05,329: INFO/MainProcess] Task jobs.tasks.process_job[3d906c10-2ae7-4f90-9cef-ac172706cb77] received
+[2026-08-02 00:14:05,377: INFO/ForkPoolWorker-4] Processing job 53473ad6-41c8-4d12-98d9-b7a07d0c24c9 | type=data_process | attempt=1
+[2026-08-02 00:14:06,065: INFO/ForkPoolWorker-1] Job 8a166136-9b6d-4652-afd4-ab04f59715c7 completed in 1.70s
+[2026-08-02 00:14:06,163: INFO/MainProcess] Task jobs.tasks.process_job[c78fec80-885f-4dca-9fd7-52dcbd0cb503] received
+[2026-08-02 00:14:06,254: INFO/ForkPoolWorker-1] Processing job 30a263b8-9bf9-4a13-bbf3-edd99804ee23 | type=report_gen | attempt=1
+[2026-08-02 00:14:07,220: INFO/ForkPoolWorker-2] Job 812092b4-3d2f-4c27-9f28-bb79129a000d completed in 2.50s
+[2026-08-02 00:14:07,309: INFO/MainProcess] Task jobs.tasks.process_job[71768e54-9459-4214-af8a-4a083debf085] received
+[2026-08-02 00:14:07,396: INFO/ForkPoolWorker-2] Processing job 5ad6bfab-82c6-466b-87c2-635f64a55770 | type=email_send | attempt=1
+[2026-08-02 00:14:07,985: INFO/ForkPoolWorker-3] Job 13f9d2ec-80b7-4d6c-a080-2c8399505c24 completed in 2.99s
+[2026-08-02 00:14:08,008: INFO/MainProcess] Task jobs.tasks.process_job[b8cc4176-72a3-43e3-b911-d9ddbdeedb15] received
+[2026-08-02 00:14:08,085: INFO/ForkPoolWorker-3] Processing job ff35c8d0-0b4c-41da-a602-307f11db86cb | type=email_send | attempt=1
+[2026-08-02 00:14:08,153: WARNING/ForkPoolWorker-4] Job 53473ad6-41c8-4d12-98d9-b7a07d0c24c9 failed on attempt 1: Simulated data processing error
+[2026-08-02 00:14:08,154: INFO/ForkPoolWorker-4] Retrying job 53473ad6-41c8-4d12-98d9-b7a07d0c24c9 in 60s
+[2026-08-02 00:14:08,197: INFO/MainProcess] Task jobs.tasks.process_job[924b791f-6cc9-4ef1-a920-27ebee6d2afc] received
+[2026-08-02 00:14:08,229: INFO/ForkPoolWorker-4] Processing job ef18a7ca-f4cc-4089-b6aa-be1508d7ca48 | type=image_resize | attempt=1
+[2026-08-02 00:14:08,285: INFO/ForkPoolWorker-2] Job 5ad6bfab-82c6-466b-87c2-635f64a55770 completed in 0.91s
+[2026-08-02 00:14:08,337: INFO/MainProcess] Task jobs.tasks.process_job[b0ff88e9-b854-4388-9ff9-cffe4c180545] received
+[2026-08-02 00:14:08,362: INFO/ForkPoolWorker-2] Processing job a8eb6d3c-cc71-47ec-a090-0f99aba2d057 | type=image_resize | attempt=1
+[2026-08-02 00:14:08,862: INFO/ForkPoolWorker-2] Job a8eb6d3c-cc71-47ec-a090-0f99aba2d057 completed in 0.49s
+[2026-08-02 00:14:08,900: INFO/MainProcess] Task jobs.tasks.process_job[ff950cc5-7442-4785-acff-23ae6cb342ba] received
+[2026-08-02 00:14:08,951: INFO/ForkPoolWorker-2] Processing job b63fbe8a-7802-497b-9933-83f12d0f50b3 | type=email_send | attempt=1
+[2026-08-02 00:14:08,951: INFO/ForkPoolWorker-4] Job ef18a7ca-f4cc-4089-b6aa-be1508d7ca48 completed in 0.72s
+[2026-08-02 00:14:09,022: INFO/MainProcess] Task jobs.tasks.process_job[dfb4f708-fcd2-4ef5-b44f-5124a229bf2b] received
+[2026-08-02 00:14:09,084: INFO/ForkPoolWorker-4] Processing job 0ad39c73-7fa8-4219-baa1-a3ab8aa4897d | type=data_process | attempt=1
+[2026-08-02 00:14:09,228: INFO/ForkPoolWorker-1] Job 30a263b8-9bf9-4a13-bbf3-edd99804ee23 completed in 2.99s
+[2026-08-02 00:14:09,255: INFO/MainProcess] Task jobs.tasks.process_job[e031c3fb-e4aa-4a01-8842-44b791729924] received
+[2026-08-02 00:14:09,295: INFO/ForkPoolWorker-1] Processing job 0ac65a7f-99c7-4417-a84c-9b531671a01c | type=report_gen | attempt=1
+[2026-08-02 00:14:09,505: INFO/ForkPoolWorker-3] Job ff35c8d0-0b4c-41da-a602-307f11db86cb completed in 1.41s
+[2026-08-02 00:14:09,546: INFO/MainProcess] Task jobs.tasks.process_job[4235d0d4-8792-4046-82f3-ff2774cd7966] received
+[2026-08-02 00:14:09,554: INFO/ForkPoolWorker-2] Job b63fbe8a-7802-497b-9933-83f12d0f50b3 completed in 0.60s
+[2026-08-02 00:14:09,617: INFO/ForkPoolWorker-3] Processing job 6f7ef54c-6f96-4d55-aa8c-a18d7f42bb55 | type=data_process | attempt=1
+[2026-08-02 00:14:09,621: INFO/MainProcess] Task jobs.tasks.process_job[7ce0d04e-0b8b-4c9c-9a5f-5a782bc9d5de] received
+[2026-08-02 00:14:09,650: INFO/ForkPoolWorker-2] Processing job c9239622-efb9-4738-93a7-b2f6b4263981 | type=data_process | attempt=1
+[2026-08-02 00:14:10,693: WARNING/ForkPoolWorker-2] Job c9239622-efb9-4738-93a7-b2f6b4263981 failed on attempt 1: Simulated data processing error
+[2026-08-02 00:14:10,693: INFO/ForkPoolWorker-2] Retrying job c9239622-efb9-4738-93a7-b2f6b4263981 in 60s
+[2026-08-02 00:14:10,777: INFO/MainProcess] Task jobs.tasks.process_job[9abfde4b-730c-4b94-b2d6-ffd1a40561f3] received
+[2026-08-02 00:14:10,849: INFO/ForkPoolWorker-2] Processing job b25a9654-d84d-4a2a-bc3a-83d7be7ce5ea | type=email_send | attempt=1
+[2026-08-02 00:14:11,436: INFO/ForkPoolWorker-3] Job 6f7ef54c-6f96-4d55-aa8c-a18d7f42bb55 completed in 1.83s
+[2026-08-02 00:14:11,467: INFO/MainProcess] Task jobs.tasks.process_job[f425f625-2f33-461e-84eb-c007b1192552] received
+[2026-08-02 00:14:11,503: INFO/ForkPoolWorker-3] Processing job 65a6c64c-5004-4a09-83fc-c3b580108236 | type=report_gen | attempt=1
+[2026-08-02 00:14:11,936: WARNING/ForkPoolWorker-4] Job 0ad39c73-7fa8-4219-baa1-a3ab8aa4897d failed on attempt 1: Simulated data processing error
+[2026-08-02 00:14:11,936: INFO/ForkPoolWorker-4] Retrying job 0ad39c73-7fa8-4219-baa1-a3ab8aa4897d in 60s
+[2026-08-02 00:14:11,977: INFO/MainProcess] Task jobs.tasks.process_job[fa0def76-3f0b-495f-99f3-10fc35c9f25e] received
+[2026-08-02 00:14:12,014: INFO/ForkPoolWorker-4] Processing job be57c930-5f19-4756-8836-d99f7e493b5b | type=image_resize | attempt=1
+[2026-08-02 00:14:12,346: INFO/ForkPoolWorker-2] Job b25a9654-d84d-4a2a-bc3a-83d7be7ce5ea completed in 1.48s
+[2026-08-02 00:14:12,365: INFO/MainProcess] Task jobs.tasks.process_job[80412be0-3df3-4852-accd-4991468014d0] received
+[2026-08-02 00:14:12,413: INFO/ForkPoolWorker-2] Processing job 59a35ed7-e005-4567-b9f1-43459864a4da | type=email_send | attempt=1
+[2026-08-02 00:14:12,835: INFO/ForkPoolWorker-1] Job 0ac65a7f-99c7-4417-a84c-9b531671a01c completed in 3.55s
+[2026-08-02 00:14:12,861: INFO/MainProcess] Task jobs.tasks.process_job[0cc695b6-93b8-4ebd-b2dc-08baed0fed96] received
+[2026-08-02 00:14:12,879: INFO/ForkPoolWorker-1] Processing job 88fe1b35-0550-42e0-8a44-cd40dfd77d1e | type=data_process | attempt=1
+[2026-08-02 00:14:12,969: INFO/ForkPoolWorker-4] Job be57c930-5f19-4756-8836-d99f7e493b5b completed in 0.93s
+[2026-08-02 00:14:13,019: INFO/MainProcess] Task jobs.tasks.process_job[0cbda24d-8e77-431a-be26-a8aea9baefed] received
+[2026-08-02 00:14:13,079: INFO/ForkPoolWorker-4] Processing job 69d69084-12e7-4694-8698-684aba400da0 | type=data_process | attempt=1
+[2026-08-02 00:14:13,656: INFO/ForkPoolWorker-2] Job 59a35ed7-e005-4567-b9f1-43459864a4da completed in 1.20s
+[2026-08-02 00:14:13,682: INFO/MainProcess] Task jobs.tasks.process_job[dfb1f741-1f7d-47df-a118-39df0e7e2e91] received
+[2026-08-02 00:14:13,711: INFO/ForkPoolWorker-2] Processing job 598ae350-2bc8-4074-9308-8a6bcb083869 | type=image_resize | attempt=1
+[2026-08-02 00:14:14,378: INFO/ForkPoolWorker-1] Job 88fe1b35-0550-42e0-8a44-cd40dfd77d1e completed in 1.47s
+[2026-08-02 00:14:14,388: INFO/ForkPoolWorker-2] Job 598ae350-2bc8-4074-9308-8a6bcb083869 completed in 0.64s
+[2026-08-02 00:14:14,464: INFO/MainProcess] Task jobs.tasks.process_job[762ea993-6d99-4356-ad91-924f804a5865] received
+[2026-08-02 00:14:14,506: INFO/MainProcess] Task jobs.tasks.process_job[1aedea2e-5984-457b-a270-4ed54de97222] received
+[2026-08-02 00:14:14,574: INFO/ForkPoolWorker-1] Processing job 3d69f04d-c144-4e18-9a6d-947fcdc42308 | type=image_resize | attempt=1
+[2026-08-02 00:14:14,588: INFO/ForkPoolWorker-2] Processing job 2fa62bf2-df6e-4249-a604-31900dfc6e74 | type=email_send | attempt=1
+[2026-08-02 00:14:14,721: INFO/ForkPoolWorker-3] Job 65a6c64c-5004-4a09-83fc-c3b580108236 completed in 3.20s
+[2026-08-02 00:14:14,780: INFO/MainProcess] Task jobs.tasks.process_job[c44d57ad-6aff-4dcd-ae85-e03875bbb91d] received
+[2026-08-02 00:14:14,810: INFO/ForkPoolWorker-3] Processing job f88e59ce-3feb-424b-99e6-bfdfcfcd1e9c | type=email_send | attempt=1
+[2026-08-02 00:14:15,110: INFO/ForkPoolWorker-1] Job 3d69f04d-c144-4e18-9a6d-947fcdc42308 completed in 0.55s
+[2026-08-02 00:14:15,145: INFO/MainProcess] Task jobs.tasks.process_job[916a3c49-616c-45e9-baf3-02279a13fe70] received
+[2026-08-02 00:14:15,177: INFO/ForkPoolWorker-1] Processing job a823a341-22a9-4e72-8e81-cdc0c755761d | type=image_resize | attempt=1
+[2026-08-02 00:14:15,332: INFO/ForkPoolWorker-4] Job 69d69084-12e7-4694-8698-684aba400da0 completed in 2.25s
+[2026-08-02 00:14:15,370: INFO/MainProcess] Task jobs.tasks.process_job[91bdfe53-5dfa-44e3-9fed-a629e4a0bccd] received
+[2026-08-02 00:14:15,421: INFO/ForkPoolWorker-4] Processing job ceee8eda-f494-44ee-97cc-de02e0535d5c | type=image_resize | attempt=1
+[2026-08-02 00:14:15,543: INFO/ForkPoolWorker-3] Job f88e59ce-3feb-424b-99e6-bfdfcfcd1e9c completed in 0.71s
+[2026-08-02 00:14:15,592: INFO/MainProcess] Task jobs.tasks.process_job[4e785aab-7709-46e4-a144-d650aa111746] received
+[2026-08-02 00:14:15,620: INFO/ForkPoolWorker-3] Processing job cd681c65-0672-4372-b96b-abcb4dee2d9f | type=email_send | attempt=1
+[2026-08-02 00:14:15,787: INFO/ForkPoolWorker-2] Job 2fa62bf2-df6e-4249-a604-31900dfc6e74 completed in 1.21s
+[2026-08-02 00:14:15,820: INFO/ForkPoolWorker-1] Job a823a341-22a9-4e72-8e81-cdc0c755761d completed in 0.62s
+[2026-08-02 00:14:15,871: INFO/MainProcess] Task jobs.tasks.process_job[b623b904-c412-4f42-b111-d6d93465254e] received
+[2026-08-02 00:14:15,890: INFO/MainProcess] Task jobs.tasks.process_job[2516b924-f26d-4b33-8a69-efda4bd216d9] received
+[2026-08-02 00:14:15,931: INFO/ForkPoolWorker-2] Processing job b7beb575-8c16-4d55-bec1-318217d6ee6d | type=report_gen | attempt=1
+[2026-08-02 00:14:15,964: INFO/ForkPoolWorker-1] Processing job 847af3bc-5e11-4c0f-995a-ea864b51399f | type=report_gen | attempt=1
+[2026-08-02 00:14:16,442: INFO/ForkPoolWorker-4] Job ceee8eda-f494-44ee-97cc-de02e0535d5c completed in 1.04s
+[2026-08-02 00:14:16,453: INFO/ForkPoolWorker-3] Job cd681c65-0672-4372-b96b-abcb4dee2d9f completed in 0.83s
+[2026-08-02 00:14:16,497: INFO/MainProcess] Task jobs.tasks.process_job[07cb3ae4-d239-439d-baeb-c5c396f6ad93] received
+[2026-08-02 00:14:16,507: INFO/MainProcess] Task jobs.tasks.process_job[b3bfb2e5-a8c7-488f-a785-450d4c5aaace] received
+[2026-08-02 00:14:16,553: INFO/ForkPoolWorker-4] Processing job 420fb394-654c-4dfa-86ae-307441055516 | type=email_send | attempt=1
+[2026-08-02 00:14:16,564: INFO/ForkPoolWorker-3] Processing job 10b9eda0-5ea9-4859-8b3d-50c13718f1d5 | type=report_gen | attempt=1
+[2026-08-02 00:14:18,063: INFO/ForkPoolWorker-4] Job 420fb394-654c-4dfa-86ae-307441055516 completed in 1.36s
+[2026-08-02 00:14:18,099: INFO/MainProcess] Task jobs.tasks.process_job[2d8aae41-9ecd-407c-b127-7ceac9998fd8] received
+[2026-08-02 00:14:18,139: INFO/ForkPoolWorker-4] Processing job 381a5e12-97f4-4077-a2b1-6defd5f8f966 | type=data_process | attempt=1
+[2026-08-02 00:14:18,253: INFO/ForkPoolWorker-1] Job 847af3bc-5e11-4c0f-995a-ea864b51399f completed in 2.28s
+[2026-08-02 00:14:18,325: INFO/MainProcess] Task jobs.tasks.process_job[4b1e3afa-776c-4e7c-9aed-6517dac997b3] received
+[2026-08-02 00:14:18,361: INFO/ForkPoolWorker-1] Processing job 22a335db-d971-4ccd-bd2d-7b2a2969329e | type=report_gen | attempt=1
+[2026-08-02 00:14:19,241: INFO/ForkPoolWorker-3] Job 10b9eda0-5ea9-4859-8b3d-50c13718f1d5 completed in 2.57s
+[2026-08-02 00:14:19,276: INFO/MainProcess] Task jobs.tasks.process_job[593b2727-b8ec-466a-9299-280dc8624206] received
+[2026-08-02 00:14:19,305: INFO/ForkPoolWorker-3] Processing job 60b35070-7b75-44ca-971d-d6140c55a1b1 | type=data_process | attempt=1
+[2026-08-02 00:14:19,582: INFO/ForkPoolWorker-2] Job b7beb575-8c16-4d55-bec1-318217d6ee6d completed in 3.66s
+[2026-08-02 00:14:19,605: INFO/MainProcess] Task jobs.tasks.process_job[a0ec2f81-01bc-4fd2-97ac-7e5fb0455a39] received
+[2026-08-02 00:14:19,641: INFO/ForkPoolWorker-2] Processing job 3a4c500b-5370-408a-aad8-a231c206f5fc | type=report_gen | attempt=1
+[2026-08-02 00:14:21,058: INFO/ForkPoolWorker-1] Job 22a335db-d971-4ccd-bd2d-7b2a2969329e completed in 2.56s
+[2026-08-02 00:14:21,073: INFO/ForkPoolWorker-4] Job 381a5e12-97f4-4077-a2b1-6defd5f8f966 completed in 2.90s
+[2026-08-02 00:14:21,108: INFO/MainProcess] Task jobs.tasks.process_job[a71b758e-34a2-49cd-9b6a-f4859335b126] received
+[2026-08-02 00:14:21,128: INFO/MainProcess] Task jobs.tasks.process_job[faf70e23-b999-480b-86b1-b79ebd3fc718] received
+[2026-08-02 00:14:21,191: INFO/ForkPoolWorker-1] Processing job 21f65c7d-ba68-47fc-8544-d1cf14014298 | type=image_resize | attempt=1
+[2026-08-02 00:14:21,236: INFO/ForkPoolWorker-4] Processing job 852e21c7-1bf6-4ef5-ba7c-d0413339b15e | type=data_process | attempt=1
+[2026-08-02 00:14:21,757: INFO/ForkPoolWorker-1] Job 21f65c7d-ba68-47fc-8544-d1cf14014298 completed in 0.58s
+[2026-08-02 00:14:21,786: INFO/MainProcess] Task jobs.tasks.process_job[630d68a3-1195-454c-8247-b5dc08481aa0] received
+[2026-08-02 00:14:21,890: INFO/ForkPoolWorker-1] Processing job 982d0ce6-fde0-4968-b2f1-38087bd97198 | type=image_resize | attempt=1
+[2026-08-02 00:14:21,957: WARNING/ForkPoolWorker-3] Job 60b35070-7b75-44ca-971d-d6140c55a1b1 failed on attempt 1: Simulated data processing error
+[2026-08-02 00:14:21,958: INFO/ForkPoolWorker-3] Retrying job 60b35070-7b75-44ca-971d-d6140c55a1b1 in 60s
+[2026-08-02 00:14:22,076: INFO/MainProcess] Task jobs.tasks.process_job[2ec2bf19-3cbd-42bd-b547-b93a2b87746c] received
+[2026-08-02 00:14:22,135: INFO/ForkPoolWorker-3] Processing job cfc9614d-ac86-4adb-a09a-f3fa41eb91c0 | type=report_gen | attempt=1
+[2026-08-02 00:14:22,634: INFO/ForkPoolWorker-1] Job 982d0ce6-fde0-4968-b2f1-38087bd97198 completed in 0.74s
+[2026-08-02 00:14:22,669: INFO/MainProcess] Task jobs.tasks.process_job[cbdc0bbb-79db-4964-b0c9-1f7e9dc7ffe1] received
+[2026-08-02 00:14:22,690: INFO/ForkPoolWorker-1] Processing job 757cd739-a65e-4c9c-a0db-b37a47ae5ac8 | type=image_resize | attempt=1
+[2026-08-02 00:14:22,856: INFO/ForkPoolWorker-4] Job 852e21c7-1bf6-4ef5-ba7c-d0413339b15e completed in 1.68s
+[2026-08-02 00:14:22,880: INFO/MainProcess] Task jobs.tasks.process_job[7c59f877-a7ec-446d-8644-7894cb33e59d] received
+[2026-08-02 00:14:22,967: INFO/ForkPoolWorker-4] Processing job 5ad91ef5-06b2-4fc5-9830-e99a85a1a9c9 | type=report_gen | attempt=1
+[2026-08-02 00:14:23,222: INFO/ForkPoolWorker-1] Job 757cd739-a65e-4c9c-a0db-b37a47ae5ac8 completed in 0.52s
+[2026-08-02 00:14:23,248: INFO/MainProcess] Task jobs.tasks.process_job[908a53d6-2663-46c6-84f4-6d515d030d42] received
+[2026-08-02 00:14:23,278: INFO/ForkPoolWorker-1] Processing job 0d1bfb6a-a0eb-46de-ab80-8fb7b86864b1 | type=data_process | attempt=1
+[2026-08-02 00:14:23,333: INFO/ForkPoolWorker-2] Job 3a4c500b-5370-408a-aad8-a231c206f5fc completed in 3.69s
+[2026-08-02 00:14:23,359: INFO/MainProcess] Task jobs.tasks.process_job[62d526f3-e83d-4a57-9050-f0ff1b7191aa] received
+[2026-08-02 00:14:23,389: INFO/ForkPoolWorker-2] Processing job 459cb686-d6f7-491a-9550-c4b39c6f07be | type=email_send | attempt=1
+[2026-08-02 00:14:24,300: INFO/ForkPoolWorker-2] Job 459cb686-d6f7-491a-9550-c4b39c6f07be completed in 0.89s
+[2026-08-02 00:14:24,386: INFO/MainProcess] Task jobs.tasks.process_job[de9d82c3-c973-4c0a-ba72-c776ae0207fd] received
+[2026-08-02 00:14:24,593: INFO/ForkPoolWorker-1] Job 0d1bfb6a-a0eb-46de-ab80-8fb7b86864b1 completed in 1.22s
+[2026-08-02 00:14:24,622: INFO/ForkPoolWorker-2] Processing job 6363b9fd-674f-4fc5-b4ce-9b15c9215488 | type=data_process | attempt=1
+[2026-08-02 00:14:24,681: INFO/MainProcess] Task jobs.tasks.process_job[c3b0d3ff-0edc-4cd5-82bc-d5b78f80cdd5] received
+[2026-08-02 00:14:24,733: INFO/ForkPoolWorker-1] Processing job ded0db13-e694-4e1e-b13b-c54e6d5188aa | type=data_process | attempt=1
+[2026-08-02 00:14:25,565: INFO/ForkPoolWorker-4] Job 5ad91ef5-06b2-4fc5-9830-e99a85a1a9c9 completed in 2.58s
+[2026-08-02 00:14:25,610: INFO/MainProcess] Task jobs.tasks.process_job[ce46a0c5-49bc-486e-934f-7e1246fb0404] received
+[2026-08-02 00:14:25,676: INFO/ForkPoolWorker-4] Processing job e6eef317-8a9b-43f2-b0aa-9da6c973a833 | type=data_process | attempt=1
+[2026-08-02 00:14:25,965: INFO/ForkPoolWorker-3] Job cfc9614d-ac86-4adb-a09a-f3fa41eb91c0 completed in 3.86s
+[2026-08-02 00:14:25,993: INFO/MainProcess] Task jobs.tasks.process_job[c2334a6e-4029-41c9-a948-74a7d5b47939] received
+[2026-08-02 00:14:26,032: INFO/ForkPoolWorker-2] Job 6363b9fd-674f-4fc5-b4ce-9b15c9215488 completed in 1.47s
+[2026-08-02 00:14:26,042: INFO/ForkPoolWorker-3] Processing job c489ae2b-b66b-4d3f-8283-47a995720c1c | type=report_gen | attempt=1
+[2026-08-02 00:14:26,067: INFO/MainProcess] Task jobs.tasks.process_job[ef9dc8b1-0b99-49a9-a1b7-ca48b6cabade] received
+[2026-08-02 00:14:26,109: INFO/ForkPoolWorker-2] Processing job 30597b95-e1b2-4b6a-a7f6-a438205527ef | type=data_process | attempt=1
+[2026-08-02 00:14:27,031: INFO/ForkPoolWorker-1] Job ded0db13-e694-4e1e-b13b-c54e6d5188aa completed in 2.30s
+[2026-08-02 00:14:27,073: INFO/MainProcess] Task jobs.tasks.process_job[006885ee-6f48-4ec6-89b9-56b411f315a8] received
+[2026-08-02 00:14:27,096: INFO/ForkPoolWorker-1] Processing job 03587263-3376-47b0-b056-04f9a90a9dd9 | type=data_process | attempt=1
+[2026-08-02 00:14:27,130: INFO/ForkPoolWorker-4] Job e6eef317-8a9b-43f2-b0aa-9da6c973a833 completed in 1.47s
+[2026-08-02 00:14:27,146: INFO/MainProcess] Task jobs.tasks.process_job[942bd634-7bdd-48c4-b769-bd5f0bff91ee] received
+[2026-08-02 00:14:27,174: INFO/ForkPoolWorker-4] Processing job e79e5cde-75b4-4398-a7a2-55f9893b6771 | type=data_process | attempt=1
+[2026-08-02 00:14:28,673: INFO/ForkPoolWorker-1] Job 03587263-3376-47b0-b056-04f9a90a9dd9 completed in 1.56s
+[2026-08-02 00:14:28,701: INFO/MainProcess] Task jobs.tasks.process_job[43a4b748-b1e7-42a6-aa92-612365ff41f4] received
+[2026-08-02 00:14:28,728: INFO/ForkPoolWorker-1] Processing job 0199bcc5-4825-4090-849b-4a160863c64d | type=email_send | attempt=1
+[2026-08-02 00:14:29,117: INFO/ForkPoolWorker-2] Job 30597b95-e1b2-4b6a-a7f6-a438205527ef completed in 2.99s
+[2026-08-02 00:14:29,170: INFO/MainProcess] Task jobs.tasks.process_job[406054b9-fb33-4547-b974-6864f7509a17] received
+[2026-08-02 00:14:29,216: INFO/ForkPoolWorker-2] Processing job 090d0ae7-9c2b-4e98-b886-c45d804b79ed | type=image_resize | attempt=1
+[2026-08-02 00:14:29,438: INFO/ForkPoolWorker-4] Job e79e5cde-75b4-4398-a7a2-55f9893b6771 completed in 2.25s
+[2026-08-02 00:14:29,471: INFO/MainProcess] Task jobs.tasks.process_job[857fc19f-cb4f-4e72-a717-b74883b6874a] received
+[2026-08-02 00:14:29,560: INFO/ForkPoolWorker-4] Processing job 290dd884-415b-4ed4-9f8a-67bacf58d573 | type=report_gen | attempt=1
+[2026-08-02 00:14:29,871: INFO/ForkPoolWorker-3] Job c489ae2b-b66b-4d3f-8283-47a995720c1c completed in 3.83s
+[2026-08-02 00:14:29,933: INFO/MainProcess] Task jobs.tasks.process_job[6e8f2e36-3c5e-4837-9885-1072c5270f14] received
+[2026-08-02 00:14:29,960: INFO/ForkPoolWorker-2] Job 090d0ae7-9c2b-4e98-b886-c45d804b79ed completed in 0.68s
+[2026-08-02 00:14:30,153: INFO/ForkPoolWorker-1] Job 0199bcc5-4825-4090-849b-4a160863c64d completed in 1.25s
+[2026-08-02 00:14:30,171: INFO/MainProcess] Task jobs.tasks.process_job[0e8753ec-c716-4b8b-aa37-dc044d4962e9] received
+[2026-08-02 00:14:30,173: INFO/ForkPoolWorker-3] Processing job 9b64e98e-ec9f-4760-8b21-a4cd4b8d5618 | type=report_gen | attempt=1
+[2026-08-02 00:14:30,246: INFO/MainProcess] Task jobs.tasks.process_job[dca4ecc8-eab0-461d-a8fd-b5fc671255a5] received
+[2026-08-02 00:14:30,304: INFO/ForkPoolWorker-2] Processing job 0c87ccb2-cb7d-46c5-97d1-0d3d0fef9b64 | type=image_resize | attempt=1
+[2026-08-02 00:14:30,404: INFO/ForkPoolWorker-1] Processing job 92dabb59-86d5-485e-8357-05778e0f322d | type=email_send | attempt=1
+[2026-08-02 00:14:31,286: INFO/ForkPoolWorker-2] Job 0c87ccb2-cb7d-46c5-97d1-0d3d0fef9b64 completed in 0.66s
+[2026-08-02 00:14:31,347: INFO/ForkPoolWorker-1] Job 92dabb59-86d5-485e-8357-05778e0f322d completed in 0.61s
+[2026-08-02 00:14:31,375: INFO/MainProcess] Task jobs.tasks.process_job[6cd2dd7a-0fbd-46dc-8f0c-23be2d7f22fa] received
+[2026-08-02 00:14:31,394: INFO/MainProcess] Task jobs.tasks.process_job[a952038d-0cdd-4c37-9b4f-4bc0578a8752] received
+[2026-08-02 00:14:31,551: INFO/ForkPoolWorker-2] Processing job b2e80fb2-01d5-433e-96a8-cccc6817aa0e | type=image_resize | attempt=1
+[2026-08-02 00:14:31,592: INFO/ForkPoolWorker-1] Processing job 0e28dfae-d914-4358-9eca-4d39618b7992 | type=data_process | attempt=1
+[2026-08-02 00:14:32,379: INFO/ForkPoolWorker-2] Job b2e80fb2-01d5-433e-96a8-cccc6817aa0e completed in 0.90s
+[2026-08-02 00:14:32,410: INFO/MainProcess] Task jobs.tasks.process_job[2ae9a6c1-0c4d-4c81-ae50-bd3962b7c755] received
+[2026-08-02 00:14:32,446: INFO/ForkPoolWorker-2] Processing job a89e7273-bb07-4905-9967-5ad418c2e3fa | type=report_gen | attempt=1
+[2026-08-02 00:14:32,846: INFO/ForkPoolWorker-4] Job 290dd884-415b-4ed4-9f8a-67bacf58d573 completed in 3.30s
+[2026-08-02 00:14:32,856: INFO/ForkPoolWorker-3] Job 9b64e98e-ec9f-4760-8b21-a4cd4b8d5618 completed in 2.81s
+[2026-08-02 00:14:32,878: INFO/MainProcess] Task jobs.tasks.process_job[413ee9cd-d872-47f3-88dc-dcfeba3f5102] received
+[2026-08-02 00:14:32,903: INFO/MainProcess] Task jobs.tasks.process_job[fc7e3fef-0caf-4eed-a77b-d165d355ba44] received
+[2026-08-02 00:14:32,979: INFO/ForkPoolWorker-3] Processing job 8f54b9b0-9819-4e20-8ad5-ddf1a44a9eba | type=image_resize | attempt=1
+[2026-08-02 00:14:32,989: INFO/ForkPoolWorker-4] Processing job 4bb1ab3a-571f-4374-8981-82a9d0ce9bbc | type=image_resize | attempt=1
+[2026-08-02 00:14:33,256: INFO/ForkPoolWorker-1] Job 0e28dfae-d914-4358-9eca-4d39618b7992 completed in 1.73s
+[2026-08-02 00:14:33,281: INFO/MainProcess] Task jobs.tasks.process_job[2edd3fff-31af-495e-b458-cc810e5f7da8] received
+[2026-08-02 00:14:33,311: INFO/ForkPoolWorker-1] Processing job bbe653aa-ba6d-4af3-9afa-5ca6634fbd43 | type=email_send | attempt=1
+[2026-08-02 00:14:33,666: INFO/ForkPoolWorker-4] Job 4bb1ab3a-571f-4374-8981-82a9d0ce9bbc completed in 0.70s
+[2026-08-02 00:14:33,719: INFO/MainProcess] Task jobs.tasks.process_job[d02dac80-0e2b-496d-8190-d8499241d345] received
+[2026-08-02 00:14:33,777: INFO/ForkPoolWorker-3] Job 8f54b9b0-9819-4e20-8ad5-ddf1a44a9eba completed in 0.76s
+[2026-08-02 00:14:33,806: INFO/MainProcess] Task jobs.tasks.process_job[c1f5c6fd-b6f4-4074-8038-bc5f0234a509] received
+[2026-08-02 00:14:33,811: INFO/ForkPoolWorker-4] Processing job 607a5053-d16d-4dee-912c-7db4727a8d29 | type=image_resize | attempt=1
+[2026-08-02 00:14:33,833: INFO/ForkPoolWorker-3] Processing job 02613f21-c850-4871-a004-28ed5495f2dc | type=data_process | attempt=1
+[2026-08-02 00:14:34,514: INFO/ForkPoolWorker-1] Job bbe653aa-ba6d-4af3-9afa-5ca6634fbd43 completed in 1.10s
+[2026-08-02 00:14:34,631: INFO/MainProcess] Task jobs.tasks.process_job[11d4f283-495c-4bd0-a73b-e0e65574ee0c] received
+[2026-08-02 00:14:34,643: INFO/ForkPoolWorker-4] Job 607a5053-d16d-4dee-912c-7db4727a8d29 completed in 0.80s
+[2026-08-02 00:14:34,709: INFO/ForkPoolWorker-1] Processing job 456cea29-f623-46b5-bd72-01f514de2c72 | type=report_gen | attempt=1
+[2026-08-02 00:14:34,718: INFO/MainProcess] Task jobs.tasks.process_job[5c36dd10-5ba3-441b-a1b3-3c5c8f17b60b] received
+[2026-08-02 00:14:34,788: INFO/ForkPoolWorker-4] Processing job fb104dad-7e69-44ef-ad9f-321379f0e0a1 | type=report_gen | attempt=1
+[2026-08-02 00:14:36,230: INFO/ForkPoolWorker-2] Job a89e7273-bb07-4905-9967-5ad418c2e3fa completed in 3.72s
+[2026-08-02 00:14:36,265: INFO/MainProcess] Task jobs.tasks.process_job[6ddddd47-fcf4-45f9-8844-575fc2dda331] received
+[2026-08-02 00:14:36,341: INFO/ForkPoolWorker-2] Processing job baff0e20-9049-4fcf-b9c8-8e00adbb9cf8 | type=image_resize | attempt=1
+[2026-08-02 00:14:36,696: INFO/ForkPoolWorker-3] Job 02613f21-c850-4871-a004-28ed5495f2dc completed in 2.85s
+[2026-08-02 00:14:36,715: INFO/MainProcess] Task jobs.tasks.process_job[61df1609-8312-4bb5-ab6d-0b814232c575] received
+[2026-08-02 00:14:36,740: INFO/ForkPoolWorker-3] Processing job c4dd96c7-ea54-477d-956f-3890b6be22a2 | type=email_send | attempt=1
+[2026-08-02 00:14:37,051: INFO/ForkPoolWorker-2] Job baff0e20-9049-4fcf-b9c8-8e00adbb9cf8 completed in 0.73s
+[2026-08-02 00:14:37,096: INFO/MainProcess] Task jobs.tasks.process_job[3b45fb2d-a474-4fba-ba20-ec2245f26a90] received
+[2026-08-02 00:14:37,119: INFO/ForkPoolWorker-2] Processing job 3061ea2b-b25c-4ea3-87fe-06717b66b566 | type=report_gen | attempt=1
+[2026-08-02 00:14:37,540: INFO/ForkPoolWorker-3] Job c4dd96c7-ea54-477d-956f-3890b6be22a2 completed in 0.79s
+[2026-08-02 00:14:37,581: INFO/MainProcess] Task jobs.tasks.process_job[db63b373-e8f6-40fe-8a34-4618c12d5b14] received
+[2026-08-02 00:14:37,617: INFO/ForkPoolWorker-3] Processing job 8144485d-aaf1-4b0b-8963-42b2d588e09c | type=report_gen | attempt=1
+[2026-08-02 00:14:38,161: INFO/ForkPoolWorker-1] Job 456cea29-f623-46b5-bd72-01f514de2c72 completed in 3.44s
+[2026-08-02 00:14:38,216: INFO/MainProcess] Task jobs.tasks.process_job[8d45d963-5e25-4f98-93fd-52bf42d5052d] received
+[2026-08-02 00:14:38,366: INFO/ForkPoolWorker-1] Processing job 9e53f7e8-92ff-4607-93bd-e2cc0a072393 | type=data_process | attempt=1
+[2026-08-02 00:14:38,467: INFO/ForkPoolWorker-4] Job fb104dad-7e69-44ef-ad9f-321379f0e0a1 completed in 3.62s
+[2026-08-02 00:14:38,512: INFO/MainProcess] Task jobs.tasks.process_job[e01dd65d-adfc-4702-9c85-415dbe401177] received
+[2026-08-02 00:14:38,682: INFO/ForkPoolWorker-4] Processing job f5d5982d-ef59-407a-b1e6-ada823d8d8ce | type=report_gen | attempt=1
+[2026-08-02 00:14:40,214: INFO/ForkPoolWorker-2] Job 3061ea2b-b25c-4ea3-87fe-06717b66b566 completed in 2.99s
+[2026-08-02 00:14:40,237: INFO/MainProcess] Task jobs.tasks.process_job[8e1b3c10-2f9b-4eb5-a167-30d3ee193d6c] received
+[2026-08-02 00:14:40,302: INFO/ForkPoolWorker-2] Processing job f4cda5a6-dfac-4a6a-aec2-816ceb2d549c | type=image_resize | attempt=1
+[2026-08-02 00:14:40,513: INFO/ForkPoolWorker-1] Job 9e53f7e8-92ff-4607-93bd-e2cc0a072393 completed in 2.20s
+[2026-08-02 00:14:40,533: INFO/MainProcess] Task jobs.tasks.process_job[e2e1f840-6d1d-4a40-bea2-c2f062ff3e40] received
+[2026-08-02 00:14:40,569: INFO/ForkPoolWorker-1] Processing job 73665560-4abf-44f4-9864-db74a3befa89 | type=email_send | attempt=1
+[2026-08-02 00:14:40,680: INFO/ForkPoolWorker-2] Job f4cda5a6-dfac-4a6a-aec2-816ceb2d549c completed in 0.37s
+[2026-08-02 00:14:40,795: INFO/MainProcess] Task jobs.tasks.process_job[c6286f8c-8cff-48b7-9fb6-5ab3266e8987] received
+[2026-08-02 00:14:40,857: INFO/ForkPoolWorker-2] Processing job fabb90de-45b4-4120-81fd-21c299c68f14 | type=email_send | attempt=1
+[2026-08-02 00:14:41,290: INFO/ForkPoolWorker-1] Job 73665560-4abf-44f4-9864-db74a3befa89 completed in 0.58s
+[2026-08-02 00:14:41,426: INFO/MainProcess] Task jobs.tasks.process_job[d289a35e-55b9-47fd-aab1-0a916beff443] received
+[2026-08-02 00:14:41,490: INFO/ForkPoolWorker-3] Job 8144485d-aaf1-4b0b-8963-42b2d588e09c completed in 3.70s
+[2026-08-02 00:14:41,574: INFO/MainProcess] Task jobs.tasks.process_job[833acb75-418a-41f4-a4dc-a1629742b2a9] received
+[2026-08-02 00:14:41,636: INFO/ForkPoolWorker-1] Processing job c4cdcceb-71a2-477e-a6e6-e3167dee7e0a | type=report_gen | attempt=1
+[2026-08-02 00:14:41,723: INFO/ForkPoolWorker-3] Processing job 68ce138b-2bd8-4240-aa8c-4fb8baf80521 | type=image_resize | attempt=1
+[2026-08-02 00:14:41,978: INFO/ForkPoolWorker-2] Job fabb90de-45b4-4120-81fd-21c299c68f14 completed in 1.15s
+[2026-08-02 00:14:41,995: INFO/MainProcess] Task jobs.tasks.process_job[008cf7cf-0546-47f4-a93f-2aac629c6d45] received
+[2026-08-02 00:14:42,035: INFO/ForkPoolWorker-2] Processing job 7a08138a-9262-4ce2-9f69-1730b05e545a | type=report_gen | attempt=1
+[2026-08-02 00:14:42,167: INFO/ForkPoolWorker-3] Job 68ce138b-2bd8-4240-aa8c-4fb8baf80521 completed in 0.48s
+[2026-08-02 00:14:42,184: INFO/MainProcess] Task jobs.tasks.process_job[a6a15130-8fd3-42d5-9ea8-c2df1b8675f7] received
+[2026-08-02 00:14:42,222: INFO/ForkPoolWorker-3] Processing job 782adf65-0f97-428e-9f7a-2eb65894129d | type=report_gen | attempt=1
+[2026-08-02 00:14:42,555: INFO/ForkPoolWorker-4] Job f5d5982d-ef59-407a-b1e6-ada823d8d8ce completed in 3.88s
+[2026-08-02 00:14:42,575: INFO/MainProcess] Task jobs.tasks.process_job[ef293389-264e-4c09-b8e1-d585e3f3dca6] received
+[2026-08-02 00:14:42,600: INFO/ForkPoolWorker-4] Processing job 2dcc54fb-4264-41d0-b4a4-74eab7b72db1 | type=email_send | attempt=1
+[2026-08-02 00:14:44,042: INFO/ForkPoolWorker-1] Job c4cdcceb-71a2-477e-a6e6-e3167dee7e0a completed in 2.50s
+[2026-08-02 00:14:44,077: INFO/ForkPoolWorker-4] Job 2dcc54fb-4264-41d0-b4a4-74eab7b72db1 completed in 1.46s
+[2026-08-02 00:14:44,115: INFO/MainProcess] Task jobs.tasks.process_job[66fbf861-4a70-4a03-81c6-7e5ac20c707d] received
+[2026-08-02 00:14:44,134: INFO/ForkPoolWorker-1] Processing job 385974bc-a442-4adc-a214-49e8a1ba562a | type=email_send | attempt=1
+[2026-08-02 00:14:44,198: INFO/ForkPoolWorker-4] Processing job e1b90443-1262-4e0e-bb6c-9a35e66ed77d | type=report_gen | attempt=1
+[2026-08-02 00:14:45,085: INFO/ForkPoolWorker-1] Job 385974bc-a442-4adc-a214-49e8a1ba562a completed in 0.96s
+[2026-08-02 00:14:45,114: INFO/MainProcess] Task jobs.tasks.process_job[0940ff0f-c62b-468c-8c88-7f51398edbef] received
+[2026-08-02 00:14:45,152: INFO/ForkPoolWorker-1] Processing job eea4dde2-0566-4acb-aae2-417c4c3019a7 | type=report_gen | attempt=1
+[2026-08-02 00:14:45,341: INFO/ForkPoolWorker-2] Job 7a08138a-9262-4ce2-9f69-1730b05e545a completed in 3.29s
+[2026-08-02 00:14:45,352: INFO/ForkPoolWorker-3] Job 782adf65-0f97-428e-9f7a-2eb65894129d completed in 3.13s
+[2026-08-02 00:14:45,370: INFO/MainProcess] Task jobs.tasks.process_job[06f29c0a-f5de-4530-bbe8-49e6b1ee084b] received
+[2026-08-02 00:14:45,527: INFO/MainProcess] Task jobs.tasks.process_job[a3708579-f20d-49d6-8ff3-ef68cdf9f0fe] received
+[2026-08-02 00:14:45,552: INFO/ForkPoolWorker-2] Processing job 2f7d6a46-3b24-4966-b9f3-a77ec1219699 | type=email_send | attempt=1
+[2026-08-02 00:14:45,562: INFO/ForkPoolWorker-3] Processing job 3e5e52a0-b0af-4ed9-92a2-4e77a699a50b | type=image_resize | attempt=1
+[2026-08-02 00:14:46,218: INFO/ForkPoolWorker-3] Job 3e5e52a0-b0af-4ed9-92a2-4e77a699a50b completed in 0.65s
+[2026-08-02 00:14:46,239: INFO/MainProcess] Task jobs.tasks.process_job[b0fb60dd-f42c-49bb-b998-f60e4f115db4] received
+[2026-08-02 00:14:46,263: INFO/ForkPoolWorker-3] Processing job bc3c8ac0-2e26-4713-8b28-4aff1ec06424 | type=email_send | attempt=1
+[2026-08-02 00:14:47,139: INFO/ForkPoolWorker-2] Job 2f7d6a46-3b24-4966-b9f3-a77ec1219699 completed in 1.48s
+[2026-08-02 00:14:47,160: INFO/MainProcess] Task jobs.tasks.process_job[c88c7800-cf46-4599-873d-836030405f23] received
+[2026-08-02 00:14:47,163: INFO/MainProcess] Task jobs.tasks.process_job[8ac26ed3-21b0-410d-b809-06b877202cb3] received
+[2026-08-02 00:14:47,183: INFO/ForkPoolWorker-1] Job eea4dde2-0566-4acb-aae2-417c4c3019a7 completed in 2.04s
+[2026-08-02 00:14:47,194: INFO/ForkPoolWorker-2] Processing job 1c9618b2-e632-4c30-b531-e8bfd614e91e | type=email_send | attempt=1
+[2026-08-02 00:14:47,213: INFO/MainProcess] Task jobs.tasks.process_job[3abf8450-2b77-459b-b786-8d388421c81b] received
+[2026-08-02 00:14:47,249: INFO/ForkPoolWorker-1] Processing job 2061cb88-513b-403e-82d5-0ece45f98e6e | type=email_send | attempt=1
+[2026-08-02 00:14:47,549: INFO/ForkPoolWorker-3] Job bc3c8ac0-2e26-4713-8b28-4aff1ec06424 completed in 1.27s
+[2026-08-02 00:14:47,597: INFO/MainProcess] Task jobs.tasks.process_job[02485b2d-3baf-462d-8218-87df71af7fe7] received
+[2026-08-02 00:14:47,690: WARNING/ForkPoolWorker-3] /home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/celery/app/trace.py:686: RuntimeWarning: Exception raised outside body: OperationalError('connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already\nconnection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already\n'):
+Traceback (most recent call last):
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already
+connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/celery/app/trace.py", line 467, in trace_task
+    task.backend.store_result(
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/celery/backends/base.py", line 526, in store_result
+    self._store_result(task_id, result, state, traceback,
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django_celery_results/backends/database.py", line 147, in _store_result
+    self.TaskModel._default_manager.store_result(**task_props)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django_celery_results/managers.py", line 42, in _inner
+    return fun(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django_celery_results/managers.py", line 164, in store_result
+    obj, created = self.using(using).get_or_create(task_id=task_id,
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/query.py", line 916, in get_or_create
+    return self.get(**kwargs), False
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/query.py", line 633, in get
+    num = len(clone)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/query.py", line 380, in __len__
+    self._fetch_all()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1560, in execute_sql
+    cursor = self.connection.cursor()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already
+connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already
+
+
+  warn(RuntimeWarning(
+
+[2026-08-02 00:14:47,839: INFO/ForkPoolWorker-2] Job 1c9618b2-e632-4c30-b531-e8bfd614e91e completed in 0.63s
+[2026-08-02 00:14:47,951: INFO/ForkPoolWorker-1] Job 2061cb88-513b-403e-82d5-0ece45f98e6e completed in 0.70s
+[2026-08-02 00:14:47,986: INFO/MainProcess] Task jobs.tasks.process_job[c28699c9-68a6-47a8-a36f-1b929d430183] received
+[2026-08-02 00:14:48,010: INFO/MainProcess] Task jobs.tasks.process_job[d5e8e5ce-6905-4a8f-a01b-275ca65177aa] received
+[2026-08-02 00:14:48,071: INFO/ForkPoolWorker-1] Processing job 9e9f65dd-99c8-49c1-ba55-59dc1aa6a0c1 | type=report_gen | attempt=1
+[2026-08-02 00:14:48,075: INFO/MainProcess] Task jobs.tasks.process_job[e3e59f63-9522-4607-a3d7-8f82a09b865b] received
+[2026-08-02 00:14:48,104: INFO/ForkPoolWorker-4] Job e1b90443-1262-4e0e-bb6c-9a35e66ed77d completed in 3.91s
+[2026-08-02 00:14:48,136: WARNING/ForkPoolWorker-2] /home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/celery/app/trace.py:686: RuntimeWarning: Exception raised outside body: OperationalError('connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already\nconnection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already\n'):
+Traceback (most recent call last):
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already
+connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/celery/app/trace.py", line 467, in trace_task
+    task.backend.store_result(
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/celery/backends/base.py", line 526, in store_result
+    self._store_result(task_id, result, state, traceback,
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django_celery_results/backends/database.py", line 147, in _store_result
+    self.TaskModel._default_manager.store_result(**task_props)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django_celery_results/managers.py", line 42, in _inner
+    return fun(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django_celery_results/managers.py", line 164, in store_result
+    obj, created = self.using(using).get_or_create(task_id=task_id,
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/query.py", line 916, in get_or_create
+    return self.get(**kwargs), False
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/query.py", line 633, in get
+    num = len(clone)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/query.py", line 380, in __len__
+    self._fetch_all()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1560, in execute_sql
+    cursor = self.connection.cursor()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already
+connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already
+
+
+  warn(RuntimeWarning(
+
+[2026-08-02 00:14:48,177: INFO/MainProcess] Task jobs.tasks.process_job[460bd929-4272-47a9-ac1d-e3b268318a0d] received
+[2026-08-02 00:14:48,307: INFO/ForkPoolWorker-4] Processing job cb7a7e8e-de33-42aa-8166-11b9d323dda1 | type=image_resize | attempt=1
+[2026-08-02 00:14:48,347: INFO/MainProcess] Task jobs.tasks.process_job[71731af9-7894-43d7-b91b-c8aaa4061a45] received
+[2026-08-02 00:14:48,464: INFO/MainProcess] Task jobs.tasks.process_job[00855eb0-f1ec-4eaf-b2c5-a182005fbaee] received
+[2026-08-02 00:14:48,665: INFO/MainProcess] Task jobs.tasks.process_job[bbd66529-86cc-401c-b87f-f278436a2bf4] received
+[2026-08-02 00:14:48,842: INFO/MainProcess] Task jobs.tasks.process_job[b5675a00-6b27-4992-ac6b-d5a3d066cc34] received
+[2026-08-02 00:14:49,056: INFO/MainProcess] Task jobs.tasks.process_job[81b8955c-1525-4a81-b86e-d03e2f082456] received
+[2026-08-02 00:14:49,182: INFO/MainProcess] Task jobs.tasks.process_job[bcfca7a8-bd0b-44ec-a3c4-72cefac6c7e0] received
+[2026-08-02 00:14:49,258: INFO/ForkPoolWorker-4] Job cb7a7e8e-de33-42aa-8166-11b9d323dda1 completed in 0.94s
+[2026-08-02 00:14:49,347: INFO/ForkPoolWorker-4] Processing job 6b1378da-e872-44ff-9ec5-20a3c492b6c8 | type=image_resize | attempt=1
+[2026-08-02 00:14:49,372: INFO/MainProcess] Task jobs.tasks.process_job[e2800766-bb66-42ce-821c-b53c89788758] received
+[2026-08-02 00:14:49,423: INFO/MainProcess] Task jobs.tasks.process_job[7bcedff8-cc51-4cc6-9dea-b5f8e9fd648d] received
+[2026-08-02 00:14:50,046: INFO/ForkPoolWorker-4] Job 6b1378da-e872-44ff-9ec5-20a3c492b6c8 completed in 0.46s
+[2026-08-02 00:14:50,129: INFO/MainProcess] Task jobs.tasks.process_job[0e9a6b42-2546-479e-b9d6-178b0d3ee9d2] received
+[2026-08-02 00:14:50,166: INFO/MainProcess] Task jobs.tasks.process_job[dae46749-fc25-4b4c-a557-7e859c6b601f] received
+[2026-08-02 00:14:50,201: INFO/MainProcess] Task jobs.tasks.process_job[3e3365a7-4265-4cd9-b805-3c6a7dd19b84] received
+[2026-08-02 00:14:50,215: INFO/ForkPoolWorker-4] Processing job d481d0aa-f997-4f13-9f83-8392e8c37968 | type=report_gen | attempt=1
+[2026-08-02 00:14:50,525: INFO/MainProcess] Task jobs.tasks.process_job[ee0571de-16e5-4d65-9050-2c3c22e18d40] received
+[2026-08-02 00:14:50,530: INFO/MainProcess] Task jobs.tasks.process_job[ed9d7f78-9350-4e0a-873c-263a96c39620] received
+[2026-08-02 00:14:50,534: INFO/ForkPoolWorker-2] Processing job 4811e8ae-693e-488a-8fc9-cb092b5aca11 | type=email_send | attempt=1
+[2026-08-02 00:14:50,717: INFO/MainProcess] Task jobs.tasks.process_job[ee9765e1-f651-4bab-8b51-0810e7a8b708] received
+[2026-08-02 00:14:50,906: INFO/MainProcess] Task jobs.tasks.process_job[b97b017b-0b1b-4d2e-8c51-f8bac6431b2e] received
+[2026-08-02 00:14:51,151: INFO/MainProcess] Task jobs.tasks.process_job[1703f88e-f1c8-49cc-abb5-b7e5545544c1] received
+[2026-08-02 00:14:51,422: INFO/ForkPoolWorker-1] Job 9e9f65dd-99c8-49c1-ba55-59dc1aa6a0c1 completed in 3.26s
+[2026-08-02 00:14:51,528: INFO/MainProcess] Task jobs.tasks.process_job[ba8f60d9-cde3-46dc-9c46-97d2ac6e9a48] received
+[2026-08-02 00:14:51,536: INFO/ForkPoolWorker-1] Processing job 8ac12c16-6019-43e2-9829-2749124b6f19 | type=image_resize | attempt=1
+[2026-08-02 00:14:51,558: INFO/MainProcess] Task jobs.tasks.process_job[02a7caaa-3691-4e30-a603-abd1990bf8c9] received
+[2026-08-02 00:14:51,752: INFO/MainProcess] Task jobs.tasks.process_job[933fed26-6b91-4e02-8a40-c964fe49af5c] received
+[2026-08-02 00:14:51,901: INFO/ForkPoolWorker-2] Job 4811e8ae-693e-488a-8fc9-cb092b5aca11 completed in 1.35s
+[2026-08-02 00:14:51,931: INFO/MainProcess] Task jobs.tasks.process_job[a9e0118b-2a7d-4b4c-b406-5a27fded8d28] received
+[2026-08-02 00:14:52,010: INFO/ForkPoolWorker-2] Processing job c7a138f7-82c6-4346-8219-57e44aa5bb0c | type=report_gen | attempt=1
+[2026-08-02 00:14:52,016: INFO/MainProcess] Task jobs.tasks.process_job[978381d4-f84c-424b-b546-5b9e2614b34d] received
+[2026-08-02 00:14:52,256: INFO/MainProcess] Task jobs.tasks.process_job[71a8ac68-744b-4035-90f5-b875105eca94] received
+[2026-08-02 00:14:52,269: INFO/MainProcess] Task jobs.tasks.process_job[911462e5-ebd5-4499-88c2-c59566387c3d] received
+[2026-08-02 00:14:52,376: INFO/ForkPoolWorker-1] Job 8ac12c16-6019-43e2-9829-2749124b6f19 completed in 0.83s
+[2026-08-02 00:14:52,420: INFO/MainProcess] Task jobs.tasks.process_job[284f02e8-2cf2-4e7b-ac98-d6815597e2bb] received
+[2026-08-02 00:14:52,443: INFO/ForkPoolWorker-3] Processing job 81e77c3f-1211-4c78-8cfd-043dcca6dc2e | type=email_send | attempt=1
+[2026-08-02 00:14:52,465: INFO/MainProcess] Task jobs.tasks.process_job[c6924c16-3493-41e2-8f02-1f68bafebe8f] received
+[2026-08-02 00:14:52,498: INFO/ForkPoolWorker-1] Processing job e291054e-8a16-476d-9473-3ea75c35894a | type=email_send | attempt=1
+[2026-08-02 00:14:53,753: INFO/ForkPoolWorker-3] Job 81e77c3f-1211-4c78-8cfd-043dcca6dc2e completed in 1.31s
+[2026-08-02 00:14:53,764: INFO/ForkPoolWorker-1] Job e291054e-8a16-476d-9473-3ea75c35894a completed in 1.26s
+[2026-08-02 00:14:53,790: INFO/MainProcess] Task jobs.tasks.process_job[0d8f70f7-81d8-4cbc-988e-0f3f452d88e4] received
+[2026-08-02 00:14:53,808: INFO/ForkPoolWorker-3] Processing job 4de904c4-9aa2-4763-914d-03167c1eda2e | type=report_gen | attempt=1
+[2026-08-02 00:14:53,834: INFO/MainProcess] Task jobs.tasks.process_job[cc532929-c5ad-411e-bcd6-dd6dbf37bb51] received
+[2026-08-02 00:14:53,863: INFO/ForkPoolWorker-1] Processing job 00e49bcf-5635-4990-b4fa-50e9717adf63 | type=image_resize | attempt=1
+[2026-08-02 00:14:53,886: INFO/ForkPoolWorker-4] Job d481d0aa-f997-4f13-9f83-8392e8c37968 completed in 3.67s
+[2026-08-02 00:14:53,923: INFO/MainProcess] Task jobs.tasks.process_job[6ad41c31-af79-4e6f-90df-3b78e2ffb21f] received
+[2026-08-02 00:14:53,952: INFO/ForkPoolWorker-4] Processing job 89a99dae-34e9-481b-908c-ad6e0f57833b | type=image_resize | attempt=1
+[2026-08-02 00:14:54,696: INFO/ForkPoolWorker-4] Job 89a99dae-34e9-481b-908c-ad6e0f57833b completed in 0.73s
+[2026-08-02 00:14:54,746: INFO/MainProcess] Task jobs.tasks.process_job[2f05675c-86c4-4e60-ac5e-a946c2404748] received
+[2026-08-02 00:14:54,807: INFO/ForkPoolWorker-4] Processing job f933c8bc-5612-433d-a9a4-7c21889c991d | type=image_resize | attempt=1
+[2026-08-02 00:14:54,852: INFO/ForkPoolWorker-1] Job 00e49bcf-5635-4990-b4fa-50e9717adf63 completed in 1.00s
+[2026-08-02 00:14:54,880: INFO/MainProcess] Task jobs.tasks.process_job[9f1108fa-befc-4bf6-9b9c-2f5cdf377608] received
+[2026-08-02 00:14:54,918: INFO/ForkPoolWorker-1] Processing job 84a63a98-3aac-4519-b9b0-fbbd8f6fafe9 | type=image_resize | attempt=1
+[2026-08-02 00:14:55,175: INFO/ForkPoolWorker-2] Job c7a138f7-82c6-4346-8219-57e44aa5bb0c completed in 3.17s
+[2026-08-02 00:14:55,251: INFO/MainProcess] Task jobs.tasks.process_job[41a91eae-443f-4eb1-a7c2-c660ba76f472] received
+[2026-08-02 00:14:55,296: INFO/ForkPoolWorker-2] Processing job 67acf2d5-60e8-4fcd-8927-0e9887a7ce18 | type=image_resize | attempt=1
+[2026-08-02 00:14:55,341: INFO/ForkPoolWorker-4] Job f933c8bc-5612-433d-a9a4-7c21889c991d completed in 0.53s
+[2026-08-02 00:14:55,382: INFO/MainProcess] Task jobs.tasks.process_job[a4e69b17-6b87-45ea-a5e5-65e7cec731d5] received
+[2026-08-02 00:14:55,429: INFO/ForkPoolWorker-4] Processing job be4a0eaa-f9b2-4096-a3a1-4208c5527e77 | type=data_process | attempt=1
+[2026-08-02 00:14:55,796: INFO/ForkPoolWorker-1] Job 84a63a98-3aac-4519-b9b0-fbbd8f6fafe9 completed in 0.86s
+[2026-08-02 00:14:55,814: INFO/MainProcess] Task jobs.tasks.process_job[9b805918-eaa7-4dbf-8de6-d7cad18f0112] received
+[2026-08-02 00:14:55,907: INFO/ForkPoolWorker-1] Processing job cf9ee24d-94c2-43c4-bdb6-26159a76e8b0 | type=report_gen | attempt=1
+[2026-08-02 00:14:56,096: INFO/ForkPoolWorker-2] Job 67acf2d5-60e8-4fcd-8927-0e9887a7ce18 completed in 0.79s
+[2026-08-02 00:14:56,126: INFO/MainProcess] Task jobs.tasks.process_job[bd286a3f-de01-46de-9098-19a56e290b53] received
+[2026-08-02 00:14:56,194: INFO/ForkPoolWorker-2] Processing job 33ccacac-e7eb-403f-bde2-090f070f6808 | type=data_process | attempt=1
+[2026-08-02 00:14:57,295: INFO/ForkPoolWorker-4] Job be4a0eaa-f9b2-4096-a3a1-4208c5527e77 completed in 1.59s
+[2026-08-02 00:14:57,561: INFO/MainProcess] Task jobs.tasks.process_job[2856e484-ea31-47a5-8086-fa58f6fb0665] received
+[2026-08-02 00:14:57,750: INFO/ForkPoolWorker-3] Job 4de904c4-9aa2-4763-914d-03167c1eda2e completed in 3.81s
+[2026-08-02 00:14:58,037: INFO/MainProcess] Task jobs.tasks.process_job[6dd78818-4d17-4d2f-b885-7ed2d974721e] received
+[2026-08-02 00:14:58,275: INFO/ForkPoolWorker-4] Processing job 60d01bae-7c22-41e9-ad26-c07d38d71ed1 | type=email_send | attempt=1
+[2026-08-02 00:14:58,304: INFO/ForkPoolWorker-3] Processing job 853efa43-6cab-4d46-9261-4e97d4e3af31 | type=report_gen | attempt=1
+[2026-08-02 00:14:58,893: WARNING/ForkPoolWorker-2] Job 33ccacac-e7eb-403f-bde2-090f070f6808 failed on attempt 1: Simulated data processing error
+[2026-08-02 00:14:58,893: INFO/ForkPoolWorker-2] Retrying job 33ccacac-e7eb-403f-bde2-090f070f6808 in 60s
+[2026-08-02 00:14:58,996: INFO/MainProcess] Task jobs.tasks.process_job[2f896b9c-97c9-4fde-85fb-9852b3f70cb7] received
+[2026-08-02 00:14:59,126: INFO/ForkPoolWorker-2] Processing job 5a961d77-5a61-45d7-89b7-28b2b3ae77cf | type=image_resize | attempt=1
+[2026-08-02 00:14:59,758: INFO/ForkPoolWorker-4] Job 60d01bae-7c22-41e9-ad26-c07d38d71ed1 completed in 1.83s
+[2026-08-02 00:14:59,777: INFO/MainProcess] Task jobs.tasks.process_job[303a2c09-0a47-450f-acb1-c3c294142068] received
+[2026-08-02 00:14:59,782: INFO/ForkPoolWorker-2] Job 5a961d77-5a61-45d7-89b7-28b2b3ae77cf completed in 0.71s
+[2026-08-02 00:14:59,791: INFO/ForkPoolWorker-1] Job cf9ee24d-94c2-43c4-bdb6-26159a76e8b0 completed in 3.91s
+[2026-08-02 00:14:59,824: INFO/MainProcess] Task jobs.tasks.process_job[8c56f179-9e4d-42cc-9b3a-67549bb5f8d6] received
+[2026-08-02 00:14:59,841: INFO/ForkPoolWorker-4] Processing job 04b01f3f-9a0f-4a4b-be7a-25f85e154f2a | type=report_gen | attempt=1
+[2026-08-02 00:14:59,847: INFO/MainProcess] Task jobs.tasks.process_job[2c2b19ab-ceba-4f51-9708-7dd8ea45bd1d] received
+[2026-08-02 00:14:59,925: INFO/ForkPoolWorker-1] Processing job 70095760-f839-42ac-afa3-ee3a85a46cef | type=image_resize | attempt=1
+[2026-08-02 00:14:59,937: INFO/ForkPoolWorker-2] Processing job 551d3c9d-7d7c-4af2-910a-9140022cc9d5 | type=report_gen | attempt=1
+[2026-08-02 00:15:00,624: INFO/ForkPoolWorker-3] Job 853efa43-6cab-4d46-9261-4e97d4e3af31 completed in 2.30s
+[2026-08-02 00:15:00,674: INFO/MainProcess] Task jobs.tasks.process_job[470530e4-f99f-408d-bf20-ab39286e359a] received
+[2026-08-02 00:15:00,735: INFO/ForkPoolWorker-3] Processing job 04b06322-6425-4a85-8645-305c855623ac | type=report_gen | attempt=1
+[2026-08-02 00:15:00,846: INFO/ForkPoolWorker-1] Job 70095760-f839-42ac-afa3-ee3a85a46cef completed in 0.89s
+[2026-08-02 00:15:00,864: INFO/MainProcess] Task jobs.tasks.process_job[3d239fe3-4e1d-4415-b634-ef537372887b] received
+[2026-08-02 00:15:00,923: INFO/ForkPoolWorker-1] Processing job ab3efdda-bf5e-4c54-bbe1-8c3ff152393d | type=data_process | attempt=1
+[2026-08-02 00:15:02,921: INFO/ForkPoolWorker-3] Job 04b06322-6425-4a85-8645-305c855623ac completed in 2.17s
+[2026-08-02 00:15:02,949: INFO/MainProcess] Task jobs.tasks.process_job[d948455b-fbd8-4153-811e-fdc1695c4bbf] received
+[2026-08-02 00:15:03,021: INFO/ForkPoolWorker-3] Processing job f86a7f61-b599-42ea-976c-cd525c446533 | type=email_send | attempt=1
+[2026-08-02 00:15:03,154: INFO/ForkPoolWorker-4] Job 04b01f3f-9a0f-4a4b-be7a-25f85e154f2a completed in 3.30s
+[2026-08-02 00:15:03,193: INFO/MainProcess] Task jobs.tasks.process_job[752d9d74-0bbc-43d6-a730-0f72cc6a046d] received
+[2026-08-02 00:15:03,243: INFO/ForkPoolWorker-4] Processing job c28ce909-dc22-4282-99ed-0abb1d793ab5 | type=report_gen | attempt=1
+[2026-08-02 00:15:03,254: INFO/ForkPoolWorker-1] Job ab3efdda-bf5e-4c54-bbe1-8c3ff152393d completed in 2.32s
+[2026-08-02 00:15:03,274: INFO/MainProcess] Task jobs.tasks.process_job[21933aa0-a781-4869-bbd5-16f4bf8ba76d] received
+[2026-08-02 00:15:03,310: INFO/ForkPoolWorker-1] Processing job 4b824afb-b0aa-4b49-9c7a-41a092fdf185 | type=report_gen | attempt=1
+[2026-08-02 00:15:03,410: INFO/ForkPoolWorker-2] Job 551d3c9d-7d7c-4af2-910a-9140022cc9d5 completed in 3.46s
+[2026-08-02 00:15:03,444: INFO/MainProcess] Task jobs.tasks.process_job[5a169486-24d4-49e3-aa03-960b5402cad1] received
+[2026-08-02 00:15:03,498: INFO/ForkPoolWorker-2] Processing job 42dc26d1-3c1b-4add-8b02-816ed21f290f | type=email_send | attempt=1
+[2026-08-02 00:15:04,153: INFO/ForkPoolWorker-2] Job 42dc26d1-3c1b-4add-8b02-816ed21f290f completed in 0.64s
+[2026-08-02 00:15:04,173: INFO/MainProcess] Task jobs.tasks.process_job[d65da231-319e-4893-80e6-3d21edf2a6cf] received
+[2026-08-02 00:15:04,220: INFO/ForkPoolWorker-2] Processing job 5b15bbef-1bdf-4602-852d-9c5b6a7891f0 | type=image_resize | attempt=1
+[2026-08-02 00:15:04,375: INFO/ForkPoolWorker-3] Job f86a7f61-b599-42ea-976c-cd525c446533 completed in 1.36s
+[2026-08-02 00:15:04,411: INFO/MainProcess] Task jobs.tasks.process_job[ae451ab4-19b2-4ba6-93c0-81ffde1065b2] received
+[2026-08-02 00:15:04,431: INFO/ForkPoolWorker-3] Processing job 73421e22-a146-4a5a-bb92-0cfd4e3f0486 | type=image_resize | attempt=1
+[2026-08-02 00:15:04,797: INFO/ForkPoolWorker-2] Job 5b15bbef-1bdf-4602-852d-9c5b6a7891f0 completed in 0.56s
+[2026-08-02 00:15:04,835: INFO/MainProcess] Task jobs.tasks.process_job[e4fc6846-a322-48df-93d2-0d4884fa5ac9] received
+[2026-08-02 00:15:04,863: INFO/ForkPoolWorker-2] Processing job 79f660f2-f4ce-4639-803d-d21d799f9141 | type=report_gen | attempt=1
+[2026-08-02 00:15:05,130: INFO/ForkPoolWorker-3] Job 73421e22-a146-4a5a-bb92-0cfd4e3f0486 completed in 0.68s
+[2026-08-02 00:15:05,184: INFO/MainProcess] Task jobs.tasks.process_job[548f6431-e45c-4b35-b4cb-21035be5d438] received
+[2026-08-02 00:15:05,243: INFO/ForkPoolWorker-3] Processing job 150764ba-1c60-49c9-98f2-111c41cfe225 | type=report_gen | attempt=1
+[2026-08-02 00:15:05,418: INFO/ForkPoolWorker-1] Job 4b824afb-b0aa-4b49-9c7a-41a092fdf185 completed in 2.10s
+[2026-08-02 00:15:05,442: INFO/MainProcess] Task jobs.tasks.process_job[48dd51f7-6f18-4d1a-9805-cde3b75ab782] received
+[2026-08-02 00:15:05,464: INFO/ForkPoolWorker-1] Processing job 37479fa6-44ce-4535-bc45-c6c770e91f95 | type=data_process | attempt=1
+[2026-08-02 00:15:06,506: INFO/ForkPoolWorker-4] Job c28ce909-dc22-4282-99ed-0abb1d793ab5 completed in 3.26s
+[2026-08-02 00:15:06,555: INFO/MainProcess] Task jobs.tasks.process_job[b464d468-6ca4-4b6b-8a07-06eed2d7e7c4] received
+[2026-08-02 00:15:06,583: INFO/ForkPoolWorker-4] Processing job 7610702a-e155-447a-ae73-a9487a22c0fe | type=image_resize | attempt=1
+[2026-08-02 00:15:07,050: INFO/ForkPoolWorker-1] Job 37479fa6-44ce-4535-bc45-c6c770e91f95 completed in 1.52s
+[2026-08-02 00:15:07,080: INFO/MainProcess] Task jobs.tasks.process_job[bb9c8355-5752-4fdd-8fd7-e985aeba1916] received
+[2026-08-02 00:15:07,105: INFO/ForkPoolWorker-1] Processing job 2ae75b44-3bc6-4fd3-b664-375d6b484981 | type=report_gen | attempt=1
+[2026-08-02 00:15:07,449: INFO/ForkPoolWorker-4] Job 7610702a-e155-447a-ae73-a9487a22c0fe completed in 0.85s
+[2026-08-02 00:15:07,472: INFO/MainProcess] Task jobs.tasks.process_job[141a797f-fe25-4f37-b716-81d8486d7f6b] received
+[2026-08-02 00:15:07,481: INFO/MainProcess] Task jobs.tasks.process_job[2fb439ee-279e-4ec0-8edc-de7ea9825375] received
+[2026-08-02 00:15:07,549: INFO/ForkPoolWorker-4] Processing job c7e0f475-7b26-4b4a-92a1-b1d004a74a10 | type=report_gen | attempt=1
+[2026-08-02 00:15:07,903: INFO/ForkPoolWorker-2] Job 79f660f2-f4ce-4639-803d-d21d799f9141 completed in 2.91s
+[2026-08-02 00:15:07,915: INFO/ForkPoolWorker-3] Job 150764ba-1c60-49c9-98f2-111c41cfe225 completed in 2.57s
+[2026-08-02 00:15:07,940: INFO/MainProcess] Task jobs.tasks.process_job[85fb15b2-7d51-4928-9c2f-c3cc0cf80c38] received
+[2026-08-02 00:15:07,967: INFO/MainProcess] Task jobs.tasks.process_job[52806249-27de-4b2d-b49f-6dbc4c3f368a] received
+[2026-08-02 00:15:07,974: INFO/ForkPoolWorker-2] Processing job 3361b744-f60b-4130-b2d5-eb75ad7afa61 | type=email_send | attempt=1
+[2026-08-02 00:15:07,982: INFO/ForkPoolWorker-3] Processing job 0b025288-770c-469c-9064-2cc66473778f | type=image_resize | attempt=1
+[2026-08-02 00:15:08,370: INFO/ForkPoolWorker-3] Job 0b025288-770c-469c-9064-2cc66473778f completed in 0.39s
+[2026-08-02 00:15:08,470: INFO/ForkPoolWorker-3] Processing job 19594b35-2dd2-4e9b-9ab4-01893d34b802 | type=image_resize | attempt=1
+[2026-08-02 00:15:09,214: INFO/ForkPoolWorker-2] Job 3361b744-f60b-4130-b2d5-eb75ad7afa61 completed in 1.25s
+[2026-08-02 00:15:09,246: INFO/MainProcess] Task jobs.tasks.process_job[7d43f274-39f7-44e2-9dcb-359c99f2e669] received
+[2026-08-02 00:15:09,292: INFO/ForkPoolWorker-2] Processing job 83869c54-27af-4004-a31d-9ad44ddb4e2a | type=email_send | attempt=1
+[2026-08-02 00:15:09,303: INFO/ForkPoolWorker-3] Job 19594b35-2dd2-4e9b-9ab4-01893d34b802 completed in 0.88s
+[2026-08-02 00:15:09,335: INFO/MainProcess] Task jobs.tasks.process_job[e92deaf0-6744-44f7-adc5-5234ec154024] received
+[2026-08-02 00:15:09,491: INFO/ForkPoolWorker-3] Processing job 03c00feb-eb09-408e-adc9-136ef933bb83 | type=image_resize | attempt=1
+[2026-08-02 00:15:09,973: INFO/ForkPoolWorker-2] Job 83869c54-27af-4004-a31d-9ad44ddb4e2a completed in 0.59s
+[2026-08-02 00:15:10,074: INFO/MainProcess] Task jobs.tasks.process_job[f97a4f3f-61ef-4207-8adc-bd6dd6870ddf] received
+[2026-08-02 00:15:10,124: INFO/ForkPoolWorker-2] Processing job 8888768b-46ac-4442-9a4b-41fcd4e76eb6 | type=email_send | attempt=1
+[2026-08-02 00:15:10,235: INFO/ForkPoolWorker-3] Job 03c00feb-eb09-408e-adc9-136ef933bb83 completed in 0.85s
+[2026-08-02 00:15:10,252: INFO/MainProcess] Task jobs.tasks.process_job[d70764dc-4585-49e8-82a6-b6625a58d9d1] received
+[2026-08-02 00:15:10,279: INFO/ForkPoolWorker-3] Processing job 88dad1c2-8f94-4f80-9534-574cfd55a2f1 | type=data_process | attempt=1
+[2026-08-02 00:15:10,912: INFO/ForkPoolWorker-2] Job 8888768b-46ac-4442-9a4b-41fcd4e76eb6 completed in 0.78s
+[2026-08-02 00:15:11,123: INFO/ForkPoolWorker-1] Job 2ae75b44-3bc6-4fd3-b664-375d6b484981 completed in 3.85s
+[2026-08-02 00:15:11,129: INFO/ForkPoolWorker-4] Job c7e0f475-7b26-4b4a-92a1-b1d004a74a10 completed in 3.53s
+[2026-08-02 00:15:11,156: INFO/ForkPoolWorker-2] Processing job e55921be-b960-4802-afbf-a12186ac98fd | type=report_gen | attempt=1
+[2026-08-02 00:15:11,176: INFO/MainProcess] Task jobs.tasks.process_job[e2d390d6-dc0e-4c18-839f-9561bb0b60b8] received
+[2026-08-02 00:15:11,210: INFO/MainProcess] Task jobs.tasks.process_job[f302c642-03c4-48c3-b1ef-722a51584766] received
+[2026-08-02 00:15:11,209: INFO/ForkPoolWorker-1] Processing job bd17b5b4-6d5a-454c-aec6-1a7dfa85bf6a | type=data_process | attempt=1
+[2026-08-02 00:15:11,234: INFO/ForkPoolWorker-4] Processing job 27e9f4a5-ad06-47f8-ba74-9ffc3555a781 | type=email_send | attempt=1
+[2026-08-02 00:15:11,700: INFO/ForkPoolWorker-3] Job 88dad1c2-8f94-4f80-9534-574cfd55a2f1 completed in 1.41s
+[2026-08-02 00:15:11,721: INFO/MainProcess] Task jobs.tasks.process_job[e81ea49f-44a4-4e30-be67-abd24c9b3f09] received
+[2026-08-02 00:15:11,766: INFO/ForkPoolWorker-3] Processing job d7c63893-9ae6-401a-804a-22b48bf3a199 | type=image_resize | attempt=1
+[2026-08-02 00:15:12,488: INFO/ForkPoolWorker-3] Job d7c63893-9ae6-401a-804a-22b48bf3a199 completed in 0.72s
+[2026-08-02 00:15:12,527: INFO/ForkPoolWorker-4] Job 27e9f4a5-ad06-47f8-ba74-9ffc3555a781 completed in 1.28s
+[2026-08-02 00:15:12,577: INFO/MainProcess] Task jobs.tasks.process_job[b9f31c50-40d6-4ddd-a88d-7bb67e44f70f] received
+[2026-08-02 00:15:12,610: INFO/ForkPoolWorker-3] Processing job 672e3949-e031-4c3b-b935-7e805fee93bf | type=image_resize | attempt=1
+[2026-08-02 00:15:12,632: INFO/ForkPoolWorker-4] Processing job 83755e70-eba6-4291-8187-0f33d94ffc33 | type=image_resize | attempt=1
+[2026-08-02 00:15:13,075: INFO/ForkPoolWorker-4] Job 83755e70-eba6-4291-8187-0f33d94ffc33 completed in 0.39s
+[2026-08-02 00:15:13,161: INFO/MainProcess] Task jobs.tasks.process_job[55a4cf06-7695-40c5-b7d8-5c64bea07452] received
+[2026-08-02 00:15:13,195: INFO/ForkPoolWorker-3] Job 672e3949-e031-4c3b-b935-7e805fee93bf completed in 0.51s
+[2026-08-02 00:15:13,243: INFO/ForkPoolWorker-1] Job bd17b5b4-6d5a-454c-aec6-1a7dfa85bf6a completed in 1.97s
+[2026-08-02 00:15:13,266: INFO/MainProcess] Task jobs.tasks.process_job[c3ce3cfc-b81f-40bb-a226-2ad6dff9234b] received
+[2026-08-02 00:15:13,299: INFO/ForkPoolWorker-3] Processing job 0fb766ad-814e-40af-9738-759fea4815d8 | type=data_process | attempt=1
+[2026-08-02 00:15:13,299: INFO/ForkPoolWorker-4] Processing job b0a2cf74-1537-4eb2-9186-2d8b93947214 | type=email_send | attempt=1
+[2026-08-02 00:15:13,307: INFO/MainProcess] Task jobs.tasks.process_job[dce2d37b-01c7-46a6-ad48-daf25d71aee8] received
+[2026-08-02 00:15:13,320: INFO/ForkPoolWorker-1] Processing job 495ecb3c-765a-4e9b-897e-acecae977e89 | type=image_resize | attempt=1
+[2026-08-02 00:15:14,030: INFO/ForkPoolWorker-2] Job e55921be-b960-4802-afbf-a12186ac98fd completed in 2.88s
+[2026-08-02 00:15:14,059: INFO/MainProcess] Task jobs.tasks.process_job[cc60c674-b1a9-440a-a213-ea1706b4f42d] received
+[2026-08-02 00:15:14,075: INFO/ForkPoolWorker-2] Processing job 91916953-357a-41f2-8ae9-18cb7fb08c5c | type=data_process | attempt=1
+[2026-08-02 00:15:14,153: INFO/ForkPoolWorker-1] Job 495ecb3c-765a-4e9b-897e-acecae977e89 completed in 0.84s
+[2026-08-02 00:15:14,206: INFO/MainProcess] Task jobs.tasks.process_job[a8b7c89f-d914-421d-8382-4238c5317d02] received
+[2026-08-02 00:15:14,244: INFO/ForkPoolWorker-1] Processing job 211c7870-d557-4395-87a5-31fc72f8781f | type=image_resize | attempt=1
+[2026-08-02 00:15:14,696: INFO/ForkPoolWorker-4] Job b0a2cf74-1537-4eb2-9186-2d8b93947214 completed in 1.42s
+[2026-08-02 00:15:14,724: INFO/MainProcess] Task jobs.tasks.process_job[509a8d2f-df44-48b6-b192-dba40a3a4a39] received
+[2026-08-02 00:15:14,841: INFO/ForkPoolWorker-4] Processing job 53473ad6-41c8-4d12-98d9-b7a07d0c24c9 | type=data_process | attempt=2
+[2026-08-02 00:15:14,963: INFO/ForkPoolWorker-1] Job 211c7870-d557-4395-87a5-31fc72f8781f completed in 0.70s
+[2026-08-02 00:15:15,059: INFO/MainProcess] Task jobs.tasks.process_job[edc40732-bdad-4578-bcbe-88da5e53b346] received
+[2026-08-02 00:15:15,107: INFO/ForkPoolWorker-1] Processing job cfb912d4-44d8-419f-a94a-03e79840031e | type=report_gen | attempt=1
+[2026-08-02 00:15:15,218: INFO/ForkPoolWorker-3] Job 0fb766ad-814e-40af-9738-759fea4815d8 completed in 1.91s
+[2026-08-02 00:15:15,247: INFO/MainProcess] Task jobs.tasks.process_job[c8621af0-2127-4e79-864b-3e1e8b9490b1] received
+[2026-08-02 00:15:15,274: INFO/ForkPoolWorker-3] Processing job 7523457a-7f9c-49fa-8290-006d54b9dff4 | type=report_gen | attempt=1
+[2026-08-02 00:15:15,318: WARNING/ForkPoolWorker-2] Job 91916953-357a-41f2-8ae9-18cb7fb08c5c failed on attempt 1: Simulated data processing error
+[2026-08-02 00:15:15,318: INFO/ForkPoolWorker-2] Retrying job 91916953-357a-41f2-8ae9-18cb7fb08c5c in 60s
+[2026-08-02 00:15:15,361: INFO/MainProcess] Task jobs.tasks.process_job[c7985dbc-7c8d-4410-ab6f-a899ea3f5a53] received
+[2026-08-02 00:15:15,409: INFO/ForkPoolWorker-2] Processing job d79e177a-f772-4d3e-9c5f-2e35c9374aed | type=image_resize | attempt=1
+[2026-08-02 00:15:16,406: INFO/ForkPoolWorker-2] Job d79e177a-f772-4d3e-9c5f-2e35c9374aed completed in 0.99s
+[2026-08-02 00:15:16,431: INFO/MainProcess] Task jobs.tasks.process_job[dd471077-0d08-4c7b-b9a5-46c8d088070f] received
+[2026-08-02 00:15:16,450: INFO/ForkPoolWorker-2] Processing job e9a0c089-b8b4-4d0e-b00c-1e7282dcd914 | type=email_send | attempt=1
+[2026-08-02 00:15:16,716: INFO/ForkPoolWorker-4] Job 53473ad6-41c8-4d12-98d9-b7a07d0c24c9 completed in 1.88s
+[2026-08-02 00:15:16,744: INFO/MainProcess] Task jobs.tasks.process_job[973e08ab-1f93-42bd-9d35-d6780f163492] received
+[2026-08-02 00:15:16,772: INFO/ForkPoolWorker-4] Processing job c9239622-efb9-4738-93a7-b2f6b4263981 | type=data_process | attempt=2
+[2026-08-02 00:15:17,915: INFO/ForkPoolWorker-2] Job e9a0c089-b8b4-4d0e-b00c-1e7282dcd914 completed in 1.42s
+[2026-08-02 00:15:17,942: INFO/MainProcess] Task jobs.tasks.process_job[fb049596-d657-4146-be56-395285cb7781] received
+[2026-08-02 00:15:17,970: INFO/ForkPoolWorker-2] Processing job afc85e78-eba5-4114-a641-5f3896ecd180 | type=report_gen | attempt=1
+[2026-08-02 00:15:18,703: INFO/ForkPoolWorker-4] Job c9239622-efb9-4738-93a7-b2f6b4263981 completed in 1.91s
+[2026-08-02 00:15:18,737: INFO/MainProcess] Task jobs.tasks.process_job[b281711d-0de3-43b7-b68a-63aec16f270b] received
+[2026-08-02 00:15:18,758: INFO/ForkPoolWorker-4] Processing job 60fc53f6-88e2-439b-8f9a-2e23aaa7a2c0 | type=email_send | attempt=1
+[2026-08-02 00:15:18,803: INFO/ForkPoolWorker-3] Job 7523457a-7f9c-49fa-8290-006d54b9dff4 completed in 3.53s
+[2026-08-02 00:15:18,830: INFO/MainProcess] Task jobs.tasks.process_job[deba0f88-4925-4458-8d20-4f63ca793358] received
+[2026-08-02 00:15:18,891: INFO/ForkPoolWorker-3] Processing job 1df6c310-c793-48ad-8626-a718d3fa833e | type=email_send | attempt=1
+[2026-08-02 00:15:18,969: INFO/ForkPoolWorker-1] Job cfb912d4-44d8-419f-a94a-03e79840031e completed in 3.87s
+[2026-08-02 00:15:19,009: INFO/MainProcess] Task jobs.tasks.process_job[d2c4f013-eb91-43f6-9f12-671ab9e43c8b] received
+[2026-08-02 00:15:19,036: INFO/ForkPoolWorker-1] Processing job 0ad39c73-7fa8-4219-baa1-a3ab8aa4897d | type=data_process | attempt=2
+[2026-08-02 00:15:19,624: INFO/ForkPoolWorker-4] Job 60fc53f6-88e2-439b-8f9a-2e23aaa7a2c0 completed in 0.85s
+[2026-08-02 00:15:19,688: INFO/MainProcess] Task jobs.tasks.process_job[86eb03ff-eb42-4a37-866a-2d1d5bb63216] received
+[2026-08-02 00:15:19,757: INFO/ForkPoolWorker-4] Processing job f37c5b04-89cf-4fec-8da4-e2f3527d18d8 | type=data_process | attempt=1
+[2026-08-02 00:15:20,401: INFO/ForkPoolWorker-3] Job 1df6c310-c793-48ad-8626-a718d3fa833e completed in 1.53s
+[2026-08-02 00:15:20,421: INFO/MainProcess] Task jobs.tasks.process_job[89cea7af-1470-4ea8-a2e1-70b51f1782b5] received
+[2026-08-02 00:15:20,501: INFO/ForkPoolWorker-3] Processing job d7e52d93-6f95-4923-ae2f-0315f59402b0 | type=image_resize | attempt=1
+[2026-08-02 00:15:21,056: INFO/ForkPoolWorker-2] Job afc85e78-eba5-4114-a641-5f3896ecd180 completed in 3.08s
+[2026-08-02 00:15:21,084: INFO/MainProcess] Task jobs.tasks.process_job[1bd1716b-5b44-4122-bd1f-2a43e818500f] received
+[2026-08-02 00:15:21,111: INFO/ForkPoolWorker-2] Processing job eb65db15-1014-4689-838e-81222ebc2f35 | type=email_send | attempt=1
+[2026-08-02 00:15:21,222: INFO/ForkPoolWorker-3] Job d7e52d93-6f95-4923-ae2f-0315f59402b0 completed in 0.72s
+[2026-08-02 00:15:21,244: INFO/MainProcess] Task jobs.tasks.process_job[40f9b0b1-4ad0-4253-9fba-5cad9d32bea6] received
+[2026-08-02 00:15:21,269: INFO/ForkPoolWorker-3] Processing job 61410266-84fb-4788-b952-cc648095f4bf | type=report_gen | attempt=1
+[2026-08-02 00:15:21,344: WARNING/ForkPoolWorker-4] Job f37c5b04-89cf-4fec-8da4-e2f3527d18d8 failed on attempt 1: Simulated data processing error
+[2026-08-02 00:15:21,345: INFO/ForkPoolWorker-4] Retrying job f37c5b04-89cf-4fec-8da4-e2f3527d18d8 in 60s
+[2026-08-02 00:15:21,357: INFO/ForkPoolWorker-1] Job 0ad39c73-7fa8-4219-baa1-a3ab8aa4897d completed in 2.32s
+[2026-08-02 00:15:21,393: INFO/MainProcess] Task jobs.tasks.process_job[35adf756-25b7-403f-b58e-c784e2b41ecc] received
+[2026-08-02 00:15:21,429: INFO/MainProcess] Task jobs.tasks.process_job[f3abac9b-968b-4718-bd06-3de526911ab1] received
+[2026-08-02 00:15:21,436: INFO/ForkPoolWorker-1] Processing job 8cbf06f6-c1a0-4d75-864c-c513a22691b7 | type=image_resize | attempt=1
+[2026-08-02 00:15:21,456: INFO/ForkPoolWorker-4] Processing job c2a11f5e-5ee0-4014-bf07-1c963960ed64 | type=email_send | attempt=1
+[2026-08-02 00:15:21,966: INFO/ForkPoolWorker-1] Job 8cbf06f6-c1a0-4d75-864c-c513a22691b7 completed in 0.52s
+[2026-08-02 00:15:21,997: INFO/MainProcess] Task jobs.tasks.process_job[82ea0519-665a-4fcb-948f-8a8d852a3eef] received
+[2026-08-02 00:15:22,043: INFO/ForkPoolWorker-1] Processing job 168bb239-932e-47ac-a344-3231c74baecd | type=report_gen | attempt=1
+[2026-08-02 00:15:22,332: INFO/ForkPoolWorker-4] Job c2a11f5e-5ee0-4014-bf07-1c963960ed64 completed in 0.87s
+[2026-08-02 00:15:22,373: INFO/MainProcess] Task jobs.tasks.process_job[4a05ad7a-5afd-414f-8179-532b63b83b78] received
+[2026-08-02 00:15:22,424: INFO/ForkPoolWorker-4] Processing job 81b44a6d-7d59-4e40-bd34-8491ecbf7e62 | type=report_gen | attempt=1
+[2026-08-02 00:15:22,432: INFO/ForkPoolWorker-2] Job eb65db15-1014-4689-838e-81222ebc2f35 completed in 1.32s
+[2026-08-02 00:15:22,471: INFO/MainProcess] Task jobs.tasks.process_job[67d3fbb4-48f1-41da-a3a6-f6a92a5dea43] received
+[2026-08-02 00:15:22,520: INFO/ForkPoolWorker-2] Processing job f793f9ea-e93f-4059-accc-7db53954b12f | type=image_resize | attempt=1
+[2026-08-02 00:15:23,231: INFO/ForkPoolWorker-2] Job f793f9ea-e93f-4059-accc-7db53954b12f completed in 0.71s
+[2026-08-02 00:15:23,260: INFO/MainProcess] Task jobs.tasks.process_job[5888004c-2920-4633-b64a-2b0076649edf] received
+[2026-08-02 00:15:23,308: INFO/ForkPoolWorker-2] Processing job 86a81b9e-50bb-49dc-ab4d-f28f190cafda | type=image_resize | attempt=1
+[2026-08-02 00:15:23,986: INFO/ForkPoolWorker-2] Job 86a81b9e-50bb-49dc-ab4d-f28f190cafda completed in 0.59s
+[2026-08-02 00:15:24,009: INFO/MainProcess] Task jobs.tasks.process_job[15622025-fe80-462f-9805-aa8337efff61] received
+[2026-08-02 00:15:24,052: INFO/ForkPoolWorker-2] Processing job 6d8add83-dc2a-4d44-87d6-a62cd317db03 | type=report_gen | attempt=1
+[2026-08-02 00:15:24,630: INFO/ForkPoolWorker-3] Job 61410266-84fb-4788-b952-cc648095f4bf completed in 3.31s
+[2026-08-02 00:15:24,672: INFO/MainProcess] Task jobs.tasks.process_job[3000cc59-8460-4ae4-aa39-897f28581e4f] received
+[2026-08-02 00:15:24,695: INFO/ForkPoolWorker-3] Processing job 776d22a7-eccc-4001-959c-9f2ab0a17bd6 | type=image_resize | attempt=1
+[2026-08-02 00:15:24,718: INFO/ForkPoolWorker-4] Job 81b44a6d-7d59-4e40-bd34-8491ecbf7e62 completed in 2.30s
+[2026-08-02 00:15:24,745: INFO/MainProcess] Task jobs.tasks.process_job[579d37ee-e122-49e0-9a5a-81e5a3f63f02] received
+[2026-08-02 00:15:24,784: INFO/ForkPoolWorker-4] Processing job c74dacf7-220c-44ac-a425-39f8086a0557 | type=email_send | attempt=1
+[2026-08-02 00:15:25,483: INFO/ForkPoolWorker-4] Job c74dacf7-220c-44ac-a425-39f8086a0557 completed in 0.68s
+[2026-08-02 00:15:25,533: INFO/MainProcess] Task jobs.tasks.process_job[b21f3bc5-fd98-4250-ba50-1cfb83b5f711] received
+[2026-08-02 00:15:25,574: INFO/ForkPoolWorker-4] Processing job 69eb24a3-1691-4e07-8c9a-57fc5c125704 | type=report_gen | attempt=1
+[2026-08-02 00:15:25,672: INFO/ForkPoolWorker-3] Job 776d22a7-eccc-4001-959c-9f2ab0a17bd6 completed in 0.97s
+[2026-08-02 00:15:25,701: INFO/MainProcess] Task jobs.tasks.process_job[56ee9f48-7c99-4dc3-9800-fdf2fb115961] received
+[2026-08-02 00:15:25,739: INFO/ForkPoolWorker-3] Processing job 4243addd-15ce-4ad6-8866-db77d88399d7 | type=report_gen | attempt=1
+[2026-08-02 00:15:25,829: INFO/ForkPoolWorker-1] Job 168bb239-932e-47ac-a344-3231c74baecd completed in 3.78s
+[2026-08-02 00:15:25,855: INFO/MainProcess] Task jobs.tasks.process_job[57453a74-3048-48e2-ad77-31a1c99e0530] received
+[2026-08-02 00:15:25,894: INFO/ForkPoolWorker-1] Processing job da8dd81c-666e-4bc9-ad37-cae933dd15ab | type=data_process | attempt=1
+[2026-08-02 00:15:26,726: INFO/ForkPoolWorker-2] Job 6d8add83-dc2a-4d44-87d6-a62cd317db03 completed in 2.67s
+[2026-08-02 00:15:26,760: INFO/MainProcess] Task jobs.tasks.process_job[904dd608-1f00-4814-a757-f6e67fbeb2a5] received
+[2026-08-02 00:15:26,794: INFO/ForkPoolWorker-2] Processing job 214d0add-9245-455d-8155-09cd744a795e | type=report_gen | attempt=1
+[2026-08-02 00:15:27,902: INFO/ForkPoolWorker-1] Job da8dd81c-666e-4bc9-ad37-cae933dd15ab completed in 2.00s
+[2026-08-02 00:15:27,930: INFO/MainProcess] Task jobs.tasks.process_job[2458f263-ebfc-4604-8824-c618c6b8e8e1] received
+[2026-08-02 00:15:27,969: INFO/ForkPoolWorker-1] Processing job 67c04b9b-438e-451a-aa93-3fa3b6bedd2e | type=email_send | attempt=1
+[2026-08-02 00:15:28,602: INFO/ForkPoolWorker-4] Job 69eb24a3-1691-4e07-8c9a-57fc5c125704 completed in 2.98s
+[2026-08-02 00:15:28,627: INFO/MainProcess] Task jobs.tasks.process_job[b234c19e-0e76-4858-a992-5ebbbe23139f] received
+[2026-08-02 00:15:28,679: INFO/ForkPoolWorker-4] Processing job 6a075120-3d0a-4826-ae54-05bf89d3fe18 | type=image_resize | attempt=1
+[2026-08-02 00:15:29,023: INFO/ForkPoolWorker-3] Job 4243addd-15ce-4ad6-8866-db77d88399d7 completed in 3.28s
+[2026-08-02 00:15:29,045: INFO/MainProcess] Task jobs.tasks.process_job[5f024a0e-9863-4bbc-b54e-a4533f8c903d] received
+[2026-08-02 00:15:29,080: INFO/ForkPoolWorker-1] Job 67c04b9b-438e-451a-aa93-3fa3b6bedd2e completed in 1.10s
+[2026-08-02 00:15:29,090: INFO/ForkPoolWorker-3] Processing job 3d1dddc3-6833-4cf4-ae89-09f74aaf72d1 | type=image_resize | attempt=1
+[2026-08-02 00:15:29,106: INFO/MainProcess] Task jobs.tasks.process_job[cce923c5-fe3e-4edd-99bb-62ba90b14d74] received
+[2026-08-02 00:15:29,134: INFO/ForkPoolWorker-1] Processing job 2b6c8c4f-ce14-4348-9254-d37954a2bbca | type=report_gen | attempt=1
+[2026-08-02 00:15:29,501: INFO/ForkPoolWorker-4] Job 6a075120-3d0a-4826-ae54-05bf89d3fe18 completed in 0.81s
+[2026-08-02 00:15:29,533: INFO/MainProcess] Task jobs.tasks.process_job[b0447288-9c2d-4a5b-82ff-eb8bde2afe69] received
+[2026-08-02 00:15:29,579: INFO/ForkPoolWorker-4] Processing job 7b0c2a3c-8f12-4c04-9064-6389aadd1eb3 | type=email_send | attempt=1
+[2026-08-02 00:15:29,678: INFO/ForkPoolWorker-3] Job 3d1dddc3-6833-4cf4-ae89-09f74aaf72d1 completed in 0.59s
+[2026-08-02 00:15:29,689: INFO/ForkPoolWorker-2] Job 214d0add-9245-455d-8155-09cd744a795e completed in 2.89s
+[2026-08-02 00:15:29,720: INFO/MainProcess] Task jobs.tasks.process_job[76d4a143-41b3-4b45-8117-a9e80f6630c3] received
+[2026-08-02 00:15:29,753: INFO/MainProcess] Task jobs.tasks.process_job[ba8f60d9-cde3-46dc-9c46-97d2ac6e9a48] received
+[2026-08-02 00:15:29,772: INFO/MainProcess] Task jobs.tasks.process_job[aaba2e30-e15f-4537-8c49-667a50fe930e] received
+[2026-08-02 00:15:29,789: INFO/ForkPoolWorker-3] Processing job d25f66db-c371-41d6-b3fa-6968256e5212 | type=data_process | attempt=1
+[2026-08-02 00:15:29,800: INFO/ForkPoolWorker-2] Processing job a8d4e3af-2777-4e01-8271-5cda0d2a471e | type=data_process | attempt=1
+[2026-08-02 00:15:31,021: INFO/ForkPoolWorker-4] Job 7b0c2a3c-8f12-4c04-9064-6389aadd1eb3 completed in 1.44s
+[2026-08-02 00:15:31,067: INFO/MainProcess] Task jobs.tasks.process_job[33d6007f-8a83-4986-9a32-94ba395fd615] received
+[2026-08-02 00:15:31,087: INFO/ForkPoolWorker-4] Processing job fe77e8fa-46dd-40a9-b3df-87e60d431e0d | type=image_resize | attempt=1
+[2026-08-02 00:15:31,098: WARNING/ForkPoolWorker-3] Job d25f66db-c371-41d6-b3fa-6968256e5212 failed on attempt 1: Simulated data processing error
+[2026-08-02 00:15:31,099: INFO/ForkPoolWorker-3] Retrying job d25f66db-c371-41d6-b3fa-6968256e5212 in 60s
+[2026-08-02 00:15:31,128: INFO/MainProcess] Task jobs.tasks.process_job[324cd654-163f-4b58-83e1-0b3f9c017040] received
+[2026-08-02 00:15:31,165: INFO/ForkPoolWorker-3] Processing job 5d2a42ae-62e8-496b-9107-a873f7d811ee | type=email_send | attempt=1
+[2026-08-02 00:15:31,376: INFO/ForkPoolWorker-1] Job 2b6c8c4f-ce14-4348-9254-d37954a2bbca completed in 2.22s
+[2026-08-02 00:15:31,403: INFO/MainProcess] Task jobs.tasks.process_job[80412be0-3df3-4852-accd-4991468014d0] received
+[2026-08-02 00:15:31,414: INFO/ForkPoolWorker-4] Job fe77e8fa-46dd-40a9-b3df-87e60d431e0d completed in 0.32s
+[2026-08-02 00:15:31,456: INFO/MainProcess] Task jobs.tasks.process_job[848c5cf1-5c35-4368-aa0f-4915e41cfe17] received
+[2026-08-02 00:15:31,520: INFO/ForkPoolWorker-4] Processing job 7fd6aedc-0c4f-44a7-b267-127b37a81e22 | type=image_resize | attempt=1
+[2026-08-02 00:15:31,532: WARNING/ForkPoolWorker-1] /home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/celery/app/trace.py:686: RuntimeWarning: Exception raised outside body: OperationalError('connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already\nconnection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already\n'):
+Traceback (most recent call last):
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already
+connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/celery/app/trace.py", line 467, in trace_task
+    task.backend.store_result(
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/celery/backends/base.py", line 526, in store_result
+    self._store_result(task_id, result, state, traceback,
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django_celery_results/backends/database.py", line 147, in _store_result
+    self.TaskModel._default_manager.store_result(**task_props)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django_celery_results/managers.py", line 42, in _inner
+    return fun(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django_celery_results/managers.py", line 164, in store_result
+    obj, created = self.using(using).get_or_create(task_id=task_id,
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/query.py", line 916, in get_or_create
+    return self.get(**kwargs), False
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/query.py", line 633, in get
+    num = len(clone)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/query.py", line 380, in __len__
+    self._fetch_all()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1560, in execute_sql
+    cursor = self.connection.cursor()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "/home/sathish/Documents/JobQueue/jobvenv/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already
+connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  sorry, too many clients already
+
+
+  warn(RuntimeWarning(
+
+[2026-08-02 00:15:31,686: INFO/ForkPoolWorker-2] Job a8d4e3af-2777-4e01-8271-5cda0d2a471e completed in 1.87s
+[2026-08-02 00:15:31,696: INFO/MainProcess] Task jobs.tasks.process_job[49874c8d-56e7-4acb-ab8e-81c57ab1e815] received
+[2026-08-02 00:15:31,742: INFO/MainProcess] Task jobs.tasks.process_job[c4914ce6-76cc-4c80-8679-fcb1e5f6ca0f] received
+[2026-08-02 00:15:31,777: INFO/ForkPoolWorker-3] Job 5d2a42ae-62e8-496b-9107-a873f7d811ee completed in 0.60s
+[2026-08-02 00:15:31,787: INFO/ForkPoolWorker-2] Processing job a731b175-0a1c-4586-84df-ddce11c15d20 | type=report_gen | attempt=1
+[2026-08-02 00:15:31,861: INFO/MainProcess] Task jobs.tasks.process_job[0254ad04-e6fb-417c-8533-64f469c7cc62] received
+[2026-08-02 00:15:31,875: INFO/ForkPoolWorker-3] Processing job c5f2377d-c0ad-4442-9ee7-7d1b37890da6 | type=image_resize | attempt=1
+[2026-08-02 00:15:31,954: INFO/MainProcess] Task jobs.tasks.process_job[40ef2d98-54ad-4b1b-b98f-84c605cc51b0] received
+[2026-08-02 00:15:32,042: INFO/ForkPoolWorker-4] Job 7fd6aedc-0c4f-44a7-b267-127b37a81e22 completed in 0.51s
+[2026-08-02 00:15:32,105: INFO/MainProcess] Task jobs.tasks.process_job[9cf89740-74ac-4900-831e-6d68d37ad1df] received
+[2026-08-02 00:15:32,158: INFO/ForkPoolWorker-4] Processing job 97f4abee-32dd-4f36-853f-02939b6b15af | type=data_process | attempt=1
+[2026-08-02 00:15:32,165: INFO/MainProcess] Task jobs.tasks.process_job[1fabb467-4222-4850-9410-25da36f6f148] received
+[2026-08-02 00:15:32,241: INFO/ForkPoolWorker-3] Job c5f2377d-c0ad-4442-9ee7-7d1b37890da6 completed in 0.36s
+[2026-08-02 00:15:32,269: INFO/MainProcess] Task jobs.tasks.process_job[a58b36dc-e604-40f8-bda0-3b0b8de9a08b] received
+[2026-08-02 00:15:32,319: INFO/ForkPoolWorker-3] Processing job fbc54603-0215-494c-8e9d-8e5f9578f5c2 | type=image_resize | attempt=1
+[2026-08-02 00:15:32,501: INFO/MainProcess] Task jobs.tasks.process_job[f96a1f49-bc1d-48b2-a9e9-c86c795d9a1f] received
+[2026-08-02 00:15:32,720: INFO/MainProcess] Task jobs.tasks.process_job[3b4e4b09-3bac-4ed3-82c0-f61f8117eeff] received
+[2026-08-02 00:15:32,797: INFO/ForkPoolWorker-1] Processing job 86bc60e7-779b-4a0c-9493-bded2e516e22 | type=image_resize | attempt=1
+[2026-08-02 00:15:32,819: INFO/ForkPoolWorker-3] Job fbc54603-0215-494c-8e9d-8e5f9578f5c2 completed in 0.50s
+[2026-08-02 00:15:32,837: INFO/MainProcess] Task jobs.tasks.process_job[13c3e12b-073d-4102-8035-eb2063c24cf8] received
+[2026-08-02 00:15:32,874: INFO/ForkPoolWorker-3] Processing job af130d1b-ac4a-4caa-bffd-03c4681d84cb | type=data_process | attempt=1
+[2026-08-02 00:15:33,362: INFO/ForkPoolWorker-1] Job 86bc60e7-779b-4a0c-9493-bded2e516e22 completed in 0.54s
+[2026-08-02 00:15:33,384: INFO/MainProcess] Task jobs.tasks.process_job[5dcbda39-ba4e-4793-aed9-782390c2a1fd] received
+[2026-08-02 00:15:33,462: INFO/ForkPoolWorker-1] Processing job 578c70d6-76da-4279-b52c-28ec7fafb1a4 | type=email_send | attempt=1
+[2026-08-02 00:15:34,639: INFO/ForkPoolWorker-1] Job 578c70d6-76da-4279-b52c-28ec7fafb1a4 completed in 1.14s
+[2026-08-02 00:15:34,697: INFO/MainProcess] Task jobs.tasks.process_job[bf59a2bd-3a8c-434c-8ea0-8ed338af4f32] received
+[2026-08-02 00:15:34,794: INFO/ForkPoolWorker-1] Processing job 83c23d44-3d5a-4df9-ac8c-0357dbaef01e | type=report_gen | attempt=1
+[2026-08-02 00:15:35,060: INFO/ForkPoolWorker-4] Job 97f4abee-32dd-4f36-853f-02939b6b15af completed in 2.90s
+[2026-08-02 00:15:35,082: INFO/MainProcess] Task jobs.tasks.process_job[53185e51-79cd-4f05-909d-8e3ab050dc65] received
+[2026-08-02 00:15:35,105: INFO/ForkPoolWorker-4] Processing job 7c42d221-6a93-48c5-913c-321a7f80e69c | type=report_gen | attempt=1
+[2026-08-02 00:15:35,293: INFO/ForkPoolWorker-2] Job a731b175-0a1c-4586-84df-ddce11c15d20 completed in 3.50s
+[2026-08-02 00:15:35,329: INFO/MainProcess] Task jobs.tasks.process_job[7b239554-2498-4e70-b245-e86d31f06e14] received
+[2026-08-02 00:15:35,371: INFO/ForkPoolWorker-2] Processing job 4d50077c-988b-42c8-88c3-8c72148e1648 | type=report_gen | attempt=1
+[2026-08-02 00:15:35,504: INFO/ForkPoolWorker-3] Job af130d1b-ac4a-4caa-bffd-03c4681d84cb completed in 2.61s
+[2026-08-02 00:15:35,526: INFO/MainProcess] Task jobs.tasks.process_job[3890ba66-ff6d-435d-a2f3-fb88f70dc83d] received
+[2026-08-02 00:15:35,605: INFO/ForkPoolWorker-3] Processing job 60b35070-7b75-44ca-971d-d6140c55a1b1 | type=data_process | attempt=2
+[2026-08-02 00:15:37,080: INFO/ForkPoolWorker-1] Job 83c23d44-3d5a-4df9-ac8c-0357dbaef01e completed in 2.24s
+[2026-08-02 00:15:37,104: INFO/MainProcess] Task jobs.tasks.process_job[ca1bcdf5-cfb4-40ef-87c4-01d68c042c79] received
+[2026-08-02 00:15:37,135: INFO/ForkPoolWorker-1] Processing job 1f484980-c340-41af-81a7-8c7046ffa263 | type=data_process | attempt=1
+[2026-08-02 00:15:37,335: INFO/ForkPoolWorker-3] Job 60b35070-7b75-44ca-971d-d6140c55a1b1 completed in 1.76s
+[2026-08-02 00:15:37,363: INFO/MainProcess] Task jobs.tasks.process_job[91f5294f-976e-4f6a-a2c4-5ef4dd393636] received
+[2026-08-02 00:15:37,402: INFO/ForkPoolWorker-3] Processing job e224a039-fd2e-4807-a96a-302360690713 | type=report_gen | attempt=1
+[2026-08-02 00:15:37,835: INFO/ForkPoolWorker-2] Job 4d50077c-988b-42c8-88c3-8c72148e1648 completed in 2.43s
+[2026-08-02 00:15:37,874: INFO/MainProcess] Task jobs.tasks.process_job[aa5ae448-b2bc-4ea1-9062-0652faf10fe8] received
+[2026-08-02 00:15:37,902: INFO/ForkPoolWorker-2] Processing job a73d1c45-24c4-4241-b813-00b5cf820593 | type=data_process | attempt=1
+[2026-08-02 00:15:38,456: INFO/ForkPoolWorker-4] Job 7c42d221-6a93-48c5-913c-321a7f80e69c completed in 3.30s
+[2026-08-02 00:15:38,471: INFO/ForkPoolWorker-1] Job 1f484980-c340-41af-81a7-8c7046ffa263 completed in 1.33s
+[2026-08-02 00:15:38,484: INFO/MainProcess] Task jobs.tasks.process_job[9eb0d934-fe1f-4656-8884-09d03c02a20b] received
+[2026-08-02 00:15:38,494: INFO/MainProcess] Task jobs.tasks.process_job[e491a5d4-01e0-4e34-9d5d-b309c3e73edb] received
+[2026-08-02 00:15:38,522: INFO/ForkPoolWorker-4] Processing job d84872eb-2127-41e1-a576-0bc015351322 | type=data_process | attempt=1
+[2026-08-02 00:15:38,533: INFO/ForkPoolWorker-1] Processing job 3552b498-0882-435a-8295-eb7690be581b | type=data_process | attempt=1
+[2026-08-02 00:15:39,821: INFO/ForkPoolWorker-1] Job 3552b498-0882-435a-8295-eb7690be581b completed in 1.26s
+[2026-08-02 00:15:39,837: INFO/MainProcess] Task jobs.tasks.process_job[d894ffe4-5cd2-4763-9215-b7f8048e4520] received
+[2026-08-02 00:15:39,865: INFO/ForkPoolWorker-1] Processing job b56ee58f-4356-453c-83aa-51790be2cc90 | type=email_send | attempt=1
+[2026-08-02 00:15:40,020: INFO/ForkPoolWorker-2] Job a73d1c45-24c4-4241-b813-00b5cf820593 completed in 2.04s
+[2026-08-02 00:15:40,048: INFO/MainProcess] Task jobs.tasks.process_job[7199a32a-9cee-4a72-9090-2c9e7eb0a9c9] received
+[2026-08-02 00:15:40,079: INFO/ForkPoolWorker-2] Processing job fae618b3-754b-4d3d-8a33-72a40e92c242 | type=report_gen | attempt=1
+[2026-08-02 00:15:40,986: INFO/ForkPoolWorker-3] Job e224a039-fd2e-4807-a96a-302360690713 completed in 3.55s
+[2026-08-02 00:15:41,009: INFO/MainProcess] Task jobs.tasks.process_job[3c09d917-b956-47ba-8eb1-69c07313fa38] received
+[2026-08-02 00:15:41,030: INFO/ForkPoolWorker-3] Processing job 40673181-cc5e-4a35-a9cc-8a17b8af4cfc | type=data_process | attempt=1
+[2026-08-02 00:15:41,341: INFO/ForkPoolWorker-1] Job b56ee58f-4356-453c-83aa-51790be2cc90 completed in 1.46s
+[2026-08-02 00:15:41,374: INFO/MainProcess] Task jobs.tasks.process_job[77cbb65d-041d-4602-856c-c959a62da8be] received
+[2026-08-02 00:15:41,396: INFO/ForkPoolWorker-1] Processing job 889f5e13-f224-41af-8de3-34bb085d6f63 | type=report_gen | attempt=1
+[2026-08-02 00:15:41,552: INFO/ForkPoolWorker-4] Job d84872eb-2127-41e1-a576-0bc015351322 completed in 2.95s
+[2026-08-02 00:15:41,573: INFO/MainProcess] Task jobs.tasks.process_job[992f6da3-c424-468d-8034-b3631784f01c] received
+[2026-08-02 00:15:41,607: INFO/ForkPoolWorker-4] Processing job 70ab00f3-8204-456f-8979-7e4a8bb2b8c2 | type=data_process | attempt=1
+[2026-08-02 00:15:43,550: INFO/ForkPoolWorker-4] Job 70ab00f3-8204-456f-8979-7e4a8bb2b8c2 completed in 1.90s
+[2026-08-02 00:15:43,575: INFO/MainProcess] Task jobs.tasks.process_job[4c23be1c-0ee4-4cf8-860e-a0de6ad543d0] received
+[2026-08-02 00:15:43,594: INFO/ForkPoolWorker-4] Processing job 1891baa2-5a80-430a-bb85-a4c5f7500425 | type=image_resize | attempt=1
+[2026-08-02 00:15:43,705: INFO/ForkPoolWorker-2] Job fae618b3-754b-4d3d-8a33-72a40e92c242 completed in 3.62s
+[2026-08-02 00:15:43,725: INFO/MainProcess] Task jobs.tasks.process_job[7b5e1dba-7cd0-4ff5-84a8-154a5cdbeba2] received
+[2026-08-02 00:15:43,749: WARNING/ForkPoolWorker-3] Job 40673181-cc5e-4a35-a9cc-8a17b8af4cfc failed on attempt 1: Simulated data processing error
+[2026-08-02 00:15:43,749: INFO/ForkPoolWorker-3] Retrying job 40673181-cc5e-4a35-a9cc-8a17b8af4cfc in 60s
+[2026-08-02 00:15:43,760: INFO/ForkPoolWorker-2] Processing job 920f7c48-b975-4d72-bd79-235b2bc62592 | type=email_send | attempt=1
+[2026-08-02 00:15:43,776: INFO/MainProcess] Task jobs.tasks.process_job[c7e80bb7-78bf-4d52-87d3-63358dfc598a] received
+[2026-08-02 00:15:43,815: INFO/ForkPoolWorker-3] Processing job 92efa23e-1adf-4b35-916d-40ee7d98a208 | type=data_process | attempt=1
+[2026-08-02 00:15:44,193: INFO/ForkPoolWorker-4] Job 1891baa2-5a80-430a-bb85-a4c5f7500425 completed in 0.58s
+[2026-08-02 00:15:44,232: INFO/MainProcess] Task jobs.tasks.process_job[a34dcf76-d20d-46c3-a97b-7e9196293c11] received
+[2026-08-02 00:15:44,259: INFO/ForkPoolWorker-4] Processing job 199ed214-009d-4cfb-8917-fcc16c660922 | type=report_gen | attempt=1
+[2026-08-02 00:15:44,981: INFO/ForkPoolWorker-2] Job 920f7c48-b975-4d72-bd79-235b2bc62592 completed in 1.19s
+[2026-08-02 00:15:45,004: INFO/MainProcess] Task jobs.tasks.process_job[d8fb514a-a952-47a9-9eb5-16380477b115] received
+[2026-08-02 00:15:45,025: INFO/ForkPoolWorker-2] Processing job c4d91ed6-c398-4252-8e4e-6cdccf04ef67 | type=email_send | attempt=1
+[2026-08-02 00:15:45,258: INFO/ForkPoolWorker-1] Job 889f5e13-f224-41af-8de3-34bb085d6f63 completed in 3.85s
+[2026-08-02 00:15:45,278: INFO/MainProcess] Task jobs.tasks.process_job[370202ba-b24e-4b4b-af62-ca2cdd651c83] received
+[2026-08-02 00:15:45,302: INFO/ForkPoolWorker-1] Processing job b4fb21b8-8198-4179-8d58-9a047f072a93 | type=report_gen | attempt=1
+[2026-08-02 00:15:45,547: INFO/ForkPoolWorker-3] Job 92efa23e-1adf-4b35-916d-40ee7d98a208 completed in 1.72s
+[2026-08-02 00:15:45,572: INFO/MainProcess] Task jobs.tasks.process_job[17e3fcd3-478a-4c8e-a6cc-34d2a06c879b] received
+[2026-08-02 00:15:45,591: INFO/ForkPoolWorker-3] Processing job 02f47d0d-50dc-413b-b367-2447102bbe18 | type=data_process | attempt=1
+[2026-08-02 00:15:45,846: INFO/ForkPoolWorker-2] Job c4d91ed6-c398-4252-8e4e-6cdccf04ef67 completed in 0.80s
+[2026-08-02 00:15:45,872: INFO/MainProcess] Task jobs.tasks.process_job[69432995-22bf-4ca7-a701-b0a16cb5e53b] received
+[2026-08-02 00:15:45,891: INFO/ForkPoolWorker-2] Processing job 3f672cfe-8b42-46e3-835d-2a0fb24f1fb2 | type=report_gen | attempt=1
+[2026-08-02 00:15:47,229: INFO/ForkPoolWorker-3] Job 02f47d0d-50dc-413b-b367-2447102bbe18 completed in 1.62s
+[2026-08-02 00:15:47,257: INFO/MainProcess] Task jobs.tasks.process_job[60f18285-2e3a-4fe4-aea8-cf1970b49855] received
+[2026-08-02 00:15:47,273: INFO/ForkPoolWorker-3] Processing job 6b665596-96c1-43b3-a681-ff2be92ff8a0 | type=email_send | attempt=1
+[2026-08-02 00:15:47,484: INFO/ForkPoolWorker-4] Job 199ed214-009d-4cfb-8917-fcc16c660922 completed in 3.21s
+[2026-08-02 00:15:47,508: INFO/MainProcess] Task jobs.tasks.process_job[4aa9f20f-12fb-48d3-90c8-b335606ce0a5] received
+[2026-08-02 00:15:47,528: INFO/ForkPoolWorker-4] Processing job ba7772d0-b5d9-46b7-99cd-7eac5c2e5634 | type=email_send | attempt=1
+[2026-08-02 00:15:47,728: INFO/ForkPoolWorker-1] Job b4fb21b8-8198-4179-8d58-9a047f072a93 completed in 2.41s
+[2026-08-02 00:15:47,753: INFO/MainProcess] Task jobs.tasks.process_job[ba5b6696-b526-4f89-b7bb-9266feaed46d] received
+[2026-08-02 00:15:47,784: INFO/ForkPoolWorker-1] Processing job c201ee87-40a0-421e-b73b-b655c129c436 | type=email_send | attempt=1
+[2026-08-02 00:15:47,939: INFO/ForkPoolWorker-3] Job 6b665596-96c1-43b3-a681-ff2be92ff8a0 completed in 0.63s
+[2026-08-02 00:15:47,957: INFO/MainProcess] Task jobs.tasks.process_job[f5f20d63-605c-476d-8d06-9c315f838f0e] received
+[2026-08-02 00:15:47,983: INFO/ForkPoolWorker-3] Processing job acdcbc67-46da-41d0-bbd8-081fcaf2141f | type=report_gen | attempt=1
+[2026-08-02 00:15:48,017: INFO/ForkPoolWorker-2] Job 3f672cfe-8b42-46e3-835d-2a0fb24f1fb2 completed in 2.12s
+[2026-08-02 00:15:48,035: INFO/MainProcess] Task jobs.tasks.process_job[e335b3a9-29b5-4124-97b7-50cd0f44315a] received
+[2026-08-02 00:15:48,061: INFO/ForkPoolWorker-2] Processing job c428cccd-4a24-4c79-9537-fc6f07a74167 | type=report_gen | attempt=1
+[2026-08-02 00:15:48,450: INFO/ForkPoolWorker-1] Job c201ee87-40a0-421e-b73b-b655c129c436 completed in 0.65s
+[2026-08-02 00:15:48,470: INFO/MainProcess] Task jobs.tasks.process_job[45b792b8-47b3-4afc-a1e9-9a20b3a8726b] received
+[2026-08-02 00:15:48,494: INFO/ForkPoolWorker-1] Processing job 2d241a2b-6e9c-474e-ae3d-9f2ee5751bf0 | type=report_gen | attempt=1
+[2026-08-02 00:15:48,838: INFO/ForkPoolWorker-4] Job ba7772d0-b5d9-46b7-99cd-7eac5c2e5634 completed in 1.30s
+[2026-08-02 00:15:48,867: INFO/MainProcess] Task jobs.tasks.process_job[85fb15b2-7d51-4928-9c2f-c3cc0cf80c38] received
+[2026-08-02 00:15:48,870: INFO/MainProcess] Task jobs.tasks.process_job[d12cfd34-7aa0-44cd-882d-07ef75acb43d] received
+[2026-08-02 00:15:48,904: INFO/ForkPoolWorker-4] Processing job a80d2cdb-d2a9-48ce-a59d-8619ae070b66 | type=email_send | attempt=1
+[2026-08-02 00:15:50,015: INFO/ForkPoolWorker-4] Job a80d2cdb-d2a9-48ce-a59d-8619ae070b66 completed in 1.07s
+[2026-08-02 00:15:50,045: INFO/MainProcess] Task jobs.tasks.process_job[cea3315d-cba1-4f97-ae03-9fc593489a6a] received
+[2026-08-02 00:15:50,070: INFO/ForkPoolWorker-4] Processing job 7f3432f5-8869-428d-83f7-129ea4f160da | type=data_process | attempt=1
+[2026-08-02 00:15:50,802: INFO/ForkPoolWorker-3] Job acdcbc67-46da-41d0-bbd8-081fcaf2141f completed in 2.77s
+[2026-08-02 00:15:50,833: INFO/MainProcess] Task jobs.tasks.process_job[d24dfcf8-55a7-469c-81ea-0403885302e7] received
+[2026-08-02 00:15:50,858: INFO/ForkPoolWorker-3] Processing job 03bd4fff-7520-447e-84a7-ebcc9b1f844d | type=data_process | attempt=1
+[2026-08-02 00:15:51,434: INFO/ForkPoolWorker-1] Job 2d241a2b-6e9c-474e-ae3d-9f2ee5751bf0 completed in 2.91s
+[2026-08-02 00:15:51,469: INFO/MainProcess] Task jobs.tasks.log_queue_stats[c1a103a2-138d-4d45-bd12-8e364c0bfb78] received
+[2026-08-02 00:15:51,490: INFO/ForkPoolWorker-1] Processing job 4c0f45fd-a440-4ac1-9056-ee2df3a5c8b7 | type=image_resize | attempt=1
+[2026-08-02 00:15:51,601: INFO/ForkPoolWorker-2] Job c428cccd-4a24-4c79-9537-fc6f07a74167 completed in 3.54s
+[2026-08-02 00:15:51,638: INFO/ForkPoolWorker-4] Job 7f3432f5-8869-428d-83f7-129ea4f160da completed in 1.57s
+[2026-08-02 00:15:51,648: INFO/MainProcess] Task jobs.tasks.process_job[99345f35-19ba-48ed-bbaa-0d00a38a3c5e] received
+[2026-08-02 00:15:51,678: INFO/MainProcess] Task jobs.tasks.process_job[2ab0f73a-cf68-49b3-94a7-721e71f7734f] received
+[2026-08-02 00:15:51,712: INFO/ForkPoolWorker-4] Processing job ff9536f0-2577-4ca1-913c-12ad33a687eb | type=email_send | attempt=1
+[2026-08-02 00:15:51,723: INFO/ForkPoolWorker-2] Processing job d3527262-21b6-4019-844e-7fe9ea26011c | type=report_gen | attempt=1
+[2026-08-02 00:15:51,878: INFO/ForkPoolWorker-1] Job 4c0f45fd-a440-4ac1-9056-ee2df3a5c8b7 completed in 0.35s
+[2026-08-02 00:15:51,901: INFO/MainProcess] Task jobs.tasks.process_job[442c8766-b435-4991-bf32-a4856bcebd02] received
+[2026-08-02 00:15:51,923: INFO/ForkPoolWorker-1] Processing job 47f23afa-8c57-401a-b5f6-cc2c54a4aceb | type=email_send | attempt=1
+[2026-08-02 00:15:52,589: INFO/ForkPoolWorker-3] Job 03bd4fff-7520-447e-84a7-ebcc9b1f844d completed in 1.69s
+[2026-08-02 00:15:52,614: INFO/MainProcess] Task jobs.tasks.process_job[6f24da4b-ee9f-4570-abec-a05f51d7d61b] received
+[2026-08-02 00:15:52,656: INFO/ForkPoolWorker-4] Job ff9536f0-2577-4ca1-913c-12ad33a687eb completed in 0.94s
+[2026-08-02 00:15:52,667: INFO/ForkPoolWorker-3] Processing job 05240054-6eb0-48ed-bb46-a1386d1bb643 | type=report_gen | attempt=1
+[2026-08-02 00:15:52,684: INFO/MainProcess] Task jobs.tasks.process_job[c3c48651-331b-4825-8cf0-35b30fbe3190] received
+[2026-08-02 00:15:52,711: INFO/ForkPoolWorker-1] Job 47f23afa-8c57-401a-b5f6-cc2c54a4aceb completed in 0.78s
+[2026-08-02 00:15:52,722: INFO/ForkPoolWorker-4] Processing job 77621c3f-6304-40be-aba5-497f24759dc1 | type=image_resize | attempt=1
+[2026-08-02 00:15:52,740: INFO/MainProcess] Task jobs.tasks.process_job[f23c5df7-6da2-40e5-9c64-b2e9f4cbafd5] received
+[2026-08-02 00:15:52,766: INFO/ForkPoolWorker-1] Processing job c772bc49-6253-46dd-a720-7c1ee46c5d96 | type=email_send | attempt=1
+[2026-08-02 00:15:53,077: INFO/ForkPoolWorker-4] Job 77621c3f-6304-40be-aba5-497f24759dc1 completed in 0.35s
+[2026-08-02 00:15:53,131: INFO/MainProcess] Task jobs.tasks.process_job[aef4e622-7756-426d-a46f-a54a4a6e75e8] received
+[2026-08-02 00:15:53,155: INFO/ForkPoolWorker-4] Processing job 7d567cc8-dd6b-4223-8fad-da45f7badd30 | type=email_send | attempt=1
+[2026-08-02 00:15:53,310: INFO/ForkPoolWorker-1] Job c772bc49-6253-46dd-a720-7c1ee46c5d96 completed in 0.54s
+[2026-08-02 00:15:53,337: INFO/MainProcess] Task jobs.tasks.process_job[6cc3ef68-7e8c-497c-9adf-6d287cea1d72] received
+[2026-08-02 00:15:53,366: INFO/ForkPoolWorker-1] Processing job d3ca105c-2730-4e46-bf5d-88cc4327dfab | type=data_process | attempt=1
+[2026-08-02 00:15:54,165: INFO/ForkPoolWorker-4] Job 7d567cc8-dd6b-4223-8fad-da45f7badd30 completed in 0.97s
+[2026-08-02 00:15:54,194: INFO/MainProcess] Task jobs.tasks.process_job[c1829d0b-8760-431b-b77b-d2c74e76d337] received
+[2026-08-02 00:15:54,220: INFO/ForkPoolWorker-4] Processing job 08ca6751-1c14-407a-8df6-2198ceee235f | type=email_send | attempt=1
+[2026-08-02 00:15:55,164: INFO/ForkPoolWorker-1] Job d3ca105c-2730-4e46-bf5d-88cc4327dfab completed in 1.76s
+[2026-08-02 00:15:55,164: INFO/ForkPoolWorker-2] Job d3527262-21b6-4019-844e-7fe9ea26011c completed in 3.41s
+[2026-08-02 00:15:55,180: INFO/MainProcess] Task jobs.tasks.process_job[8a8d6dd6-89b2-4bcf-8d61-569ce13475da] received
+[2026-08-02 00:15:55,207: INFO/MainProcess] Task jobs.tasks.process_job[b9f31c50-40d6-4ddd-a88d-7bb67e44f70f] received
+[2026-08-02 00:15:55,213: INFO/MainProcess] Task jobs.tasks.process_job[e698cd2c-b86a-44a6-8ee2-6d44a3e98581] received
+[2026-08-02 00:15:55,220: INFO/ForkPoolWorker-1] Processing job 5339d584-7776-4fd3-8cd7-8571d5212424 | type=image_resize | attempt=1
+[2026-08-02 00:15:55,241: INFO/ForkPoolWorker-2] Processing job acc65a1b-0262-40d9-b4e5-44630ce057bd | type=email_send | attempt=1
+[2026-08-02 00:15:55,519: INFO/ForkPoolWorker-4] Job 08ca6751-1c14-407a-8df6-2198ceee235f completed in 1.28s
+[2026-08-02 00:15:55,543: INFO/MainProcess] Task jobs.tasks.process_job[ae74a019-2c98-4774-9dd2-529ba862df21] received
+[2026-08-02 00:15:55,563: INFO/ForkPoolWorker-4] Processing job 11f7e355-9af2-4d7f-8b5a-280ca8a28cc0 | type=report_gen | attempt=1
+[2026-08-02 00:15:55,607: INFO/ForkPoolWorker-1] Job 5339d584-7776-4fd3-8cd7-8571d5212424 completed in 0.39s
+[2026-08-02 00:15:55,626: INFO/MainProcess] Task jobs.tasks.process_job[0e06da2d-65c4-401c-a0af-8bfc64591d05] received
+[2026-08-02 00:15:55,651: INFO/ForkPoolWorker-1] Processing job f3b5b5c0-dd8a-4fe3-85dd-c37d70a6e418 | type=report_gen | attempt=1
+[2026-08-02 00:15:56,062: INFO/ForkPoolWorker-2] Job acc65a1b-0262-40d9-b4e5-44630ce057bd completed in 0.80s
+[2026-08-02 00:15:56,087: INFO/MainProcess] Task jobs.tasks.process_job[782182d1-6473-45d4-9c32-aacccab11c56] received
+[2026-08-02 00:15:56,117: INFO/ForkPoolWorker-2] Processing job 52529bb5-b6da-4f5d-90fd-7d5cf87d9202 | type=report_gen | attempt=1
+[2026-08-02 00:15:56,406: INFO/ForkPoolWorker-3] Job 05240054-6eb0-48ed-bb46-a1386d1bb643 completed in 3.74s
+[2026-08-02 00:15:56,426: INFO/MainProcess] Task jobs.tasks.process_job[ba495f5c-7641-4c0b-90cf-13c5f5fad626] received
+[2026-08-02 00:15:56,462: INFO/ForkPoolWorker-3] Processing job 0ba0bfc8-e84c-449e-a859-438ae83b7825 | type=report_gen | attempt=1
+[2026-08-02 00:15:57,738: INFO/ForkPoolWorker-4] Job 11f7e355-9af2-4d7f-8b5a-280ca8a28cc0 completed in 2.13s
+[2026-08-02 00:15:57,766: INFO/MainProcess] Task jobs.tasks.process_job[6192d02f-87a0-49e3-8a2b-e40ac79edfae] received
+[2026-08-02 00:15:57,777: INFO/ForkPoolWorker-4] Queue stats: {'pending': 59, 'processing': 9, 'failed': 0}
+[2026-08-02 00:15:57,801: INFO/MainProcess] Task jobs.tasks.process_job[a779905b-60a4-4473-bf28-dce9d2cef0e7] received
+[2026-08-02 00:15:57,837: INFO/ForkPoolWorker-4] Processing job 11d59f2a-a315-4cb8-a251-61993fbf744e | type=image_resize | attempt=1
+[2026-08-02 00:15:58,537: INFO/ForkPoolWorker-4] Job 11d59f2a-a315-4cb8-a251-61993fbf744e completed in 0.69s
+[2026-08-02 00:15:58,557: INFO/MainProcess] Task jobs.tasks.process_job[50e99a9f-0b99-4218-a84f-02f711b53da2] received
+[2026-08-02 00:15:58,603: INFO/ForkPoolWorker-4] Processing job 2ab3a0f5-5d18-4988-b175-130ebca9607a | type=report_gen | attempt=1
+[2026-08-02 00:15:59,169: INFO/ForkPoolWorker-2] Job 52529bb5-b6da-4f5d-90fd-7d5cf87d9202 completed in 3.03s
+[2026-08-02 00:15:59,214: INFO/ForkPoolWorker-2] Processing job 240f9ce8-ef4a-4170-8e63-3b649a2af850 | type=report_gen | attempt=1
+[2026-08-02 00:15:59,624: INFO/ForkPoolWorker-1] Job f3b5b5c0-dd8a-4fe3-85dd-c37d70a6e418 completed in 3.96s
+[2026-08-02 00:15:59,641: INFO/MainProcess] Task jobs.tasks.process_job[5a973813-d119-4729-be83-a9b5fbd5f806] received
+[2026-08-02 00:15:59,668: INFO/ForkPoolWorker-1] Processing job 5f634bbc-b849-455a-99c9-87a7dfc49fd2 | type=image_resize | attempt=1
+[2026-08-02 00:16:00,423: INFO/ForkPoolWorker-3] Job 0ba0bfc8-e84c-449e-a859-438ae83b7825 completed in 3.93s
+[2026-08-02 00:16:00,448: INFO/MainProcess] Task jobs.tasks.process_job[a1d4d2d1-8ca8-4243-9016-6acdcdbdbb6e] received
+[2026-08-02 00:16:00,467: INFO/ForkPoolWorker-3] Processing job ea588707-5766-45b1-8143-8fe91154a410 | type=image_resize | attempt=1
+[2026-08-02 00:16:00,612: INFO/ForkPoolWorker-1] Job 5f634bbc-b849-455a-99c9-87a7dfc49fd2 completed in 0.91s
+[2026-08-02 00:16:00,651: INFO/MainProcess] Task jobs.tasks.process_job[ff161796-754d-48a8-84bd-4f1294402de9] received
+[2026-08-02 00:16:00,734: INFO/ForkPoolWorker-1] Processing job ea45ed11-e4a9-4248-b132-817e05dffbb0 | type=report_gen | attempt=1
+[2026-08-02 00:16:00,967: INFO/ForkPoolWorker-3] Job ea588707-5766-45b1-8143-8fe91154a410 completed in 0.49s
+[2026-08-02 00:16:00,988: INFO/MainProcess] Task jobs.tasks.process_job[a58b36dc-e604-40f8-bda0-3b0b8de9a08b] received
+[2026-08-02 00:16:00,995: INFO/MainProcess] Task jobs.tasks.process_job[cffbcb7f-d995-45c2-bd6a-95763eb99445] received
+[2026-08-02 00:16:01,022: INFO/ForkPoolWorker-3] Processing job 44ba2cbb-e5f4-4a00-bf3d-8c64ea0c6599 | type=data_process | attempt=1
+[2026-08-02 00:16:01,744: INFO/ForkPoolWorker-4] Job 2ab3a0f5-5d18-4988-b175-130ebca9607a completed in 3.12s
+[2026-08-02 00:16:01,760: INFO/MainProcess] Task jobs.tasks.process_job[5e94fc2b-1653-4fcf-a435-5d8826d27826] received
+[2026-08-02 00:16:01,788: INFO/ForkPoolWorker-4] Processing job 1f3f6433-9f76-436b-a553-244b55032508 | type=data_process | attempt=1
+[2026-08-02 00:16:02,387: INFO/ForkPoolWorker-2] Job 240f9ce8-ef4a-4170-8e63-3b649a2af850 completed in 3.13s
+[2026-08-02 00:16:02,407: INFO/MainProcess] Task jobs.tasks.process_job[9a7c59dd-0f32-41f7-baa7-dd5b65c63880] received
+[2026-08-02 00:16:02,432: INFO/ForkPoolWorker-2] Processing job 3faaded2-df98-4dbd-963a-bd4f2298e300 | type=data_process | attempt=1
+[2026-08-02 00:16:03,818: INFO/ForkPoolWorker-1] Job ea45ed11-e4a9-4248-b132-817e05dffbb0 completed in 3.10s
+[2026-08-02 00:16:03,841: WARNING/ForkPoolWorker-3] Job 44ba2cbb-e5f4-4a00-bf3d-8c64ea0c6599 failed on attempt 1: Simulated data processing error
+[2026-08-02 00:16:03,841: INFO/ForkPoolWorker-3] Retrying job 44ba2cbb-e5f4-4a00-bf3d-8c64ea0c6599 in 60s
+[2026-08-02 00:16:03,855: INFO/MainProcess] Task jobs.tasks.process_job[aef4e622-7756-426d-a46f-a54a4a6e75e8] received
+[2026-08-02 00:16:03,864: INFO/MainProcess] Task jobs.tasks.process_job[856ad934-af3e-4c0a-938c-4352dbd73d60] received
+[2026-08-02 00:16:03,885: INFO/ForkPoolWorker-1] Processing job 4df9b9eb-df97-4a81-9022-f68e2ec5da0b | type=report_gen | attempt=1
+[2026-08-02 00:16:03,890: INFO/MainProcess] Task jobs.tasks.process_job[6e20b420-c01e-41c3-8e52-b54b0d3315e6] received
+[2026-08-02 00:16:03,908: INFO/ForkPoolWorker-3] Processing job d0ef74c6-9e77-4e45-80b2-ed9e85363243 | type=email_send | attempt=1
+[2026-08-02 00:16:03,929: INFO/ForkPoolWorker-4] Job 1f3f6433-9f76-436b-a553-244b55032508 completed in 2.13s
+[2026-08-02 00:16:03,974: INFO/MainProcess] Task jobs.tasks.process_job[8cdba700-54be-4bd3-9ff1-2ae7bb3fba4d] received
+[2026-08-02 00:16:04,009: INFO/ForkPoolWorker-4] Processing job 4e37cd1b-1033-4596-bb6c-710d3893b7da | type=report_gen | attempt=1
+[2026-08-02 00:16:04,107: INFO/ForkPoolWorker-2] Job 3faaded2-df98-4dbd-963a-bd4f2298e300 completed in 1.65s
+[2026-08-02 00:16:04,159: INFO/MainProcess] Task jobs.tasks.process_job[25cdcbaa-4d89-4b72-a401-ae9976c7a90d] received
+[2026-08-02 00:16:04,274: INFO/ForkPoolWorker-2] Processing job 84e11649-32f6-4675-b119-1d660b756a84 | type=image_resize | attempt=1
+[2026-08-02 00:16:04,940: INFO/ForkPoolWorker-2] Job 84e11649-32f6-4675-b119-1d660b756a84 completed in 0.72s
+[2026-08-02 00:16:04,963: INFO/MainProcess] Task jobs.tasks.process_job[414c04ef-7746-4970-97c5-4673b31e0dbc] received
+[2026-08-02 00:16:04,984: INFO/ForkPoolWorker-2] Processing job 6d2649aa-b157-4fc1-b4bb-8030e2f6e4d3 | type=data_process | attempt=1
+[2026-08-02 00:16:05,203: INFO/ForkPoolWorker-3] Job d0ef74c6-9e77-4e45-80b2-ed9e85363243 completed in 1.20s
+[2026-08-02 00:16:05,240: INFO/MainProcess] Task jobs.tasks.process_job[3740c41d-393a-4152-ac1d-a10e0890779b] received
+[2026-08-02 00:16:05,261: INFO/ForkPoolWorker-3] Processing job 65989d9a-9b49-49b5-8f65-f631ec9f99f4 | type=email_send | attempt=1
+[2026-08-02 00:16:06,192: INFO/ForkPoolWorker-2] Job 6d2649aa-b157-4fc1-b4bb-8030e2f6e4d3 completed in 1.06s
+[2026-08-02 00:16:06,323: INFO/MainProcess] Task jobs.tasks.process_job[2e3f2d92-0a1c-4330-ada5-ed04d3c59101] received
+[2026-08-02 00:16:06,404: INFO/ForkPoolWorker-2] Processing job a9c656fa-3360-4d97-aedc-1b6b60abc3c1 | type=report_gen | attempt=1
+[2026-08-02 00:16:06,737: INFO/ForkPoolWorker-4] Job 4e37cd1b-1033-4596-bb6c-710d3893b7da completed in 2.72s
+[2026-08-02 00:16:06,755: INFO/MainProcess] Task jobs.tasks.process_job[f3745593-c71f-43ab-b9e8-1114a281861a] received
+[2026-08-02 00:16:06,762: INFO/ForkPoolWorker-3] Job 65989d9a-9b49-49b5-8f65-f631ec9f99f4 completed in 1.49s
+[2026-08-02 00:16:06,792: INFO/ForkPoolWorker-4] Processing job 8f2468d8-e567-429c-abe7-1c6d16889ea9 | type=report_gen | attempt=1
+[2026-08-02 00:16:06,796: INFO/MainProcess] Task jobs.tasks.process_job[e5c53e2f-7c45-472c-9429-2c8581cdb30b] received
+[2026-08-02 00:16:06,815: INFO/ForkPoolWorker-3] Processing job cb04a21a-c8bb-464a-b866-3309ab07ff14 | type=data_process | attempt=1
+[2026-08-02 00:16:07,591: INFO/ForkPoolWorker-1] Job 4df9b9eb-df97-4a81-9022-f68e2ec5da0b completed in 3.70s
+[2026-08-02 00:16:07,620: INFO/MainProcess] Task jobs.tasks.process_job[c5ed7cf0-47b7-40b2-93e1-20f4e2a79351] received
+[2026-08-02 00:16:07,636: INFO/ForkPoolWorker-1] Processing job 33ccacac-e7eb-403f-bde2-090f070f6808 | type=data_process | attempt=2
+[2026-08-02 00:16:08,747: INFO/ForkPoolWorker-3] Job cb04a21a-c8bb-464a-b866-3309ab07ff14 completed in 1.79s
+[2026-08-02 00:16:08,777: INFO/MainProcess] Task jobs.tasks.process_job[b7c4d71e-68a9-4e61-ba88-ff4ea1dfe87c] received
+[2026-08-02 00:16:08,801: INFO/ForkPoolWorker-3] Processing job 622422c8-4769-4a29-8dda-a45b780f6a68 | type=report_gen | attempt=1
+[2026-08-02 00:16:09,444: INFO/ForkPoolWorker-4] Job 8f2468d8-e567-429c-abe7-1c6d16889ea9 completed in 2.65s
+[2026-08-02 00:16:09,468: INFO/MainProcess] Task jobs.tasks.process_job[82ea0519-665a-4fcb-948f-8a8d852a3eef] received
+[2026-08-02 00:16:09,489: INFO/ForkPoolWorker-4] Processing job 0e893529-bc25-4cbf-83ee-a38ab9dfeee0 | type=email_send | attempt=1
+[2026-08-02 00:16:09,622: WARNING/ForkPoolWorker-1] Job 33ccacac-e7eb-403f-bde2-090f070f6808 failed on attempt 2: Simulated data processing error
+[2026-08-02 00:16:09,623: INFO/ForkPoolWorker-1] Retrying job 33ccacac-e7eb-403f-bde2-090f070f6808 in 120s
+[2026-08-02 00:16:09,645: INFO/MainProcess] Task jobs.tasks.process_job[ba8f60d9-cde3-46dc-9c46-97d2ac6e9a48] received
+[2026-08-02 00:16:09,701: INFO/ForkPoolWorker-1] Processing job 2f84956b-d1fa-4291-8bb4-43648e13287c | type=image_resize | attempt=1
+[2026-08-02 00:16:09,744: INFO/ForkPoolWorker-2] Job a9c656fa-3360-4d97-aedc-1b6b60abc3c1 completed in 3.38s
+[2026-08-02 00:16:09,789: INFO/ForkPoolWorker-2] Processing job 9de73661-3669-4037-b1f5-e204fe6d485e | type=report_gen | attempt=1
+[2026-08-02 00:16:10,565: INFO/ForkPoolWorker-1] Job 2f84956b-d1fa-4291-8bb4-43648e13287c completed in 0.83s
+[2026-08-02 00:16:10,588: INFO/ForkPoolWorker-4] Job 0e893529-bc25-4cbf-83ee-a38ab9dfeee0 completed in 1.05s
+[2026-08-02 00:16:10,643: INFO/ForkPoolWorker-1] Processing job 106f6d6d-eed6-449c-bff0-1c2a441ea205 | type=email_send | attempt=1
+[2026-08-02 00:16:10,658: INFO/ForkPoolWorker-4] Processing job 915803fc-50ed-40d2-a6a9-00a0f464f546 | type=image_resize | attempt=1
+[2026-08-02 00:16:11,665: INFO/ForkPoolWorker-4] Job 915803fc-50ed-40d2-a6a9-00a0f464f546 completed in 1.00s
+[2026-08-02 00:16:11,765: INFO/ForkPoolWorker-4] Processing job 93f69a3c-c967-4e3c-951e-dd6399c1144c | type=email_send | attempt=1
+[2026-08-02 00:16:11,808: INFO/ForkPoolWorker-1] Job 106f6d6d-eed6-449c-bff0-1c2a441ea205 completed in 1.17s
+[2026-08-02 00:16:11,852: INFO/ForkPoolWorker-1] Processing job 83ed7a1a-dfd5-456a-b0a3-d2dcd2751e40 | type=email_send | attempt=1
+[2026-08-02 00:16:12,430: INFO/ForkPoolWorker-2] Job 9de73661-3669-4037-b1f5-e204fe6d485e completed in 2.60s
+[2026-08-02 00:16:12,444: INFO/ForkPoolWorker-3] Job 622422c8-4769-4a29-8dda-a45b780f6a68 completed in 3.62s
+[2026-08-02 00:16:12,530: INFO/ForkPoolWorker-2] Processing job eb67a498-cc7d-4a56-a5fe-1fc1f4e43e02 | type=data_process | attempt=1
+[2026-08-02 00:16:12,585: INFO/ForkPoolWorker-3] Processing job 8f612256-58e8-4f92-9d0b-424d77332833 | type=data_process | attempt=1
+[2026-08-02 00:16:13,173: INFO/ForkPoolWorker-1] Job 83ed7a1a-dfd5-456a-b0a3-d2dcd2751e40 completed in 1.23s
+[2026-08-02 00:16:13,185: INFO/ForkPoolWorker-4] Job 93f69a3c-c967-4e3c-951e-dd6399c1144c completed in 1.35s
+[2026-08-02 00:16:13,262: INFO/ForkPoolWorker-4] Processing job 74129bb6-f1f6-4b82-bf85-b374d7ed647e | type=image_resize | attempt=1
+[2026-08-02 00:16:13,275: INFO/ForkPoolWorker-1] Processing job 691df707-9f52-4114-ac0d-a3cb7b309e1b | type=report_gen | attempt=1
+[2026-08-02 00:16:13,562: WARNING/ForkPoolWorker-2] Job eb67a498-cc7d-4a56-a5fe-1fc1f4e43e02 failed on attempt 1: Simulated data processing error
+[2026-08-02 00:16:13,562: INFO/ForkPoolWorker-2] Retrying job eb67a498-cc7d-4a56-a5fe-1fc1f4e43e02 in 60s
+[2026-08-02 00:16:13,573: INFO/MainProcess] Task jobs.tasks.process_job[8cdba700-54be-4bd3-9ff1-2ae7bb3fba4d] received
+[2026-08-02 00:16:13,805: INFO/ForkPoolWorker-2] Processing job 11cb85d6-d5b2-43ae-9445-4b5e26f79f79 | type=image_resize | attempt=1
+[2026-08-02 00:16:13,861: INFO/ForkPoolWorker-4] Job 74129bb6-f1f6-4b82-bf85-b374d7ed647e completed in 0.60s
+[2026-08-02 00:16:14,017: INFO/ForkPoolWorker-4] Processing job a4b588b4-3eed-4d96-af43-2ec1c9bf76b8 | type=image_resize | attempt=1
+[2026-08-02 00:16:14,327: INFO/ForkPoolWorker-2] Job 11cb85d6-d5b2-43ae-9445-4b5e26f79f79 completed in 0.53s
+[2026-08-02 00:16:14,627: INFO/ForkPoolWorker-2] Processing job be86da39-3dd2-4bc3-8876-e519bce66412 | type=report_gen | attempt=1
+[2026-08-02 00:16:14,671: INFO/ForkPoolWorker-3] Job 8f612256-58e8-4f92-9d0b-424d77332833 completed in 2.10s
+[2026-08-02 00:16:14,871: INFO/ForkPoolWorker-4] Job a4b588b4-3eed-4d96-af43-2ec1c9bf76b8 completed in 0.80s
+[2026-08-02 00:16:14,927: INFO/ForkPoolWorker-3] Processing job 1c20e5f0-e745-41c8-9aed-22795dd37920 | type=report_gen | attempt=1
+[2026-08-02 00:16:15,082: INFO/ForkPoolWorker-4] Processing job 77fee3ae-4909-4177-87db-ba9212b974bd | type=email_send | attempt=1
+[2026-08-02 00:16:15,603: INFO/ForkPoolWorker-1] Job 691df707-9f52-4114-ac0d-a3cb7b309e1b completed in 2.32s
+[2026-08-02 00:16:15,814: INFO/ForkPoolWorker-1] Processing job 91916953-357a-41f2-8ae9-18cb7fb08c5c | type=data_process | attempt=2
+[2026-08-02 00:16:16,003: INFO/ForkPoolWorker-4] Job 77fee3ae-4909-4177-87db-ba9212b974bd completed in 0.92s
+[2026-08-02 00:16:17,379: INFO/ForkPoolWorker-2] Job be86da39-3dd2-4bc3-8876-e519bce66412 completed in 2.81s
+[2026-08-02 00:16:18,422: WARNING/ForkPoolWorker-1] Job 91916953-357a-41f2-8ae9-18cb7fb08c5c failed on attempt 2: Simulated data processing error
+[2026-08-02 00:16:18,422: INFO/ForkPoolWorker-1] Retrying job 91916953-357a-41f2-8ae9-18cb7fb08c5c in 120s
+[2026-08-02 00:16:18,426: INFO/MainProcess] Task jobs.tasks.process_job[85fb15b2-7d51-4928-9c2f-c3cc0cf80c38] received
+[2026-08-02 00:16:18,744: INFO/ForkPoolWorker-3] Job 1c20e5f0-e745-41c8-9aed-22795dd37920 completed in 3.92s
+[2026-08-02 00:16:21,384: INFO/ForkPoolWorker-4] Processing job f37c5b04-89cf-4fec-8da4-e2f3527d18d8 | type=data_process | attempt=2
+[2026-08-02 00:16:24,070: INFO/ForkPoolWorker-4] Job f37c5b04-89cf-4fec-8da4-e2f3527d18d8 completed in 2.66s
+[2026-08-02 00:16:31,137: INFO/ForkPoolWorker-4] Processing job d25f66db-c371-41d6-b3fa-6968256e5212 | type=data_process | attempt=2
+[2026-08-02 00:16:32,769: INFO/ForkPoolWorker-4] Job d25f66db-c371-41d6-b3fa-6968256e5212 completed in 1.59s
+[2026-08-02 00:16:43,809: INFO/ForkPoolWorker-4] Processing job 40673181-cc5e-4a35-a9cc-8a17b8af4cfc | type=data_process | attempt=2
+[2026-08-02 00:16:46,617: INFO/ForkPoolWorker-4] Job 40673181-cc5e-4a35-a9cc-8a17b8af4cfc completed in 2.78s
+[2026-08-02 00:17:03,959: INFO/ForkPoolWorker-4] Processing job 44ba2cbb-e5f4-4a00-bf3d-8c64ea0c6599 | type=data_process | attempt=2
+[2026-08-02 00:17:05,557: INFO/ForkPoolWorker-4] Job 44ba2cbb-e5f4-4a00-bf3d-8c64ea0c6599 completed in 1.58s
+[2026-08-02 00:17:13,634: INFO/ForkPoolWorker-4] Processing job eb67a498-cc7d-4a56-a5fe-1fc1f4e43e02 | type=data_process | attempt=2
+[2026-08-02 00:17:15,288: INFO/ForkPoolWorker-4] Job eb67a498-cc7d-4a56-a5fe-1fc1f4e43e02 completed in 1.61s
+[2026-08-02 00:17:50,559: INFO/MainProcess] Task jobs.tasks.log_queue_stats[19a356b9-4674-4ff0-87d9-d189cead1122] received
+[2026-08-02 00:17:50,634: INFO/ForkPoolWorker-4] Queue stats: {'pending': 24, 'processing': 3, 'failed': 0}
+[2026-08-02 00:18:09,762: INFO/ForkPoolWorker-4] Processing job 33ccacac-e7eb-403f-bde2-090f070f6808 | type=data_process | attempt=3
+[2026-08-02 00:18:12,235: INFO/ForkPoolWorker-4] Job 33ccacac-e7eb-403f-bde2-090f070f6808 completed in 2.50s
+[2026-08-02 00:18:18,468: INFO/ForkPoolWorker-4] Processing job 91916953-357a-41f2-8ae9-18cb7fb08c5c | type=data_process | attempt=3
+[2026-08-02 00:18:20,941: INFO/ForkPoolWorker-4] Job 91916953-357a-41f2-8ae9-18cb7fb08c5c completed in 2.43s
+^C
+worker: Hitting Ctrl+C again will terminate all running tasks!
+
+worker: Warm shutdown (MainProcess)
+(jobvenv) sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue$ ^C
+(jobvenv) sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue$ 
+
