@@ -1,0 +1,13 @@
+sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue$ source /home/sathish/Documents/VS_code/JobQueue/JobQueue/jobvenv/bin/activate
+(jobvenv) sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue$ celery -A config beat --loglevel=info
+celery beat v5.3.6 (emerald-rush) is starting.
+__    -    ... __   -        _
+LocalTime -> 2026-08-21 12:23:15
+Configuration ->
+    . broker -> redis://localhost:6379/0
+    . loader -> celery.loaders.app.AppLoader
+    . scheduler -> celery.beat.PersistentScheduler
+    . db -> celerybeat-schedule
+    . logfile -> [stderr]@%INFO
+    . maxinterval -> 5.00 minutes (300s)
+^C(jobvenv) sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue$ 

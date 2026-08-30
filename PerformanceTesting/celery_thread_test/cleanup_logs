@@ -1,0 +1,30 @@
+
+(jobvenv) sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue$ bash cleanup.sh
+=========================================
+BEFORE CLEANUP
+Timestamp: 2026-08-21 14:21:59 IST
+=========================================
+
+Database:
+{'pending': 72, 'processing': 4, 'failed': 0}
+
+Redis keys:
+(integer) 1
+
+Flushing Redis...
+OK
+
+Deleting Jobs...
+Deleted 259 jobs
+
+=========================================
+AFTER CLEANUP
+Timestamp: 2026-08-21 14:22:09 IST
+=========================================
+
+Database:
+{'pending': 0, 'processing': 0, 'failed': 0}
+
+Redis keys:
+(integer) 0
+(jobvenv) sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue$ 

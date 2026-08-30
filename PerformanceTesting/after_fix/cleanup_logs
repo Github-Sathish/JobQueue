@@ -1,0 +1,36 @@
+
+(jobvenv) sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue$ bash cleanup.sh
+=========================================
+BEFORE CLEANUP
+=========================================
+
+Database:
+{'pending': 26, 'processing': 0, 'failed': 0}
+
+Redis keys:
+(integer) 1
+
+Flushing Redis...
+OK
+
+Deleting Jobs...
+Deleted 295 jobs
+
+=========================================
+AFTER CLEANUP
+=========================================
+
+Database:
+{'pending': 0, 'processing': 0, 'failed': 0}
+
+Redis keys:
+(integer) 0
+(jobvenv) sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue$ sudo -u postgres psql -d jobqueue_db -c "SELECT count(*) FROM pg_stat_activity;"
+[sudo] password for sathish: 
+ count 
+-------
+     6
+(1 row)
+
+(jobvenv) sathish@sathish-Lenovo-E41-25:~/Documents/VS_code/JobQueue/JobQueue$ redis-cli DBSIZE
+(integer) 0
