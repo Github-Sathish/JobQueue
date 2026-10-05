@@ -1,0 +1,14 @@
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE     CONTAINERS   IMAGES                                                      SELECTOR
+deployment.apps/postgres   1/1     1            1           6h37m   postgres     postgres:12                                                 app=postgres
+deployment.apps/redis      1/1     1            1           6h37m   redis        redis:7                                                     app=redis
+deployment.apps/web        1/1     1            1           4h51m   web          <ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1   app=web
+deployment.apps/worker     1/1     1            1           4h51m   worker       <ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1   app=worker
+
+NAME                           READY   STATUS      RESTARTS   AGE     IP               NODE                                            NOMINATED NODE   READINESS GATES
+pod/jobqueue-migrate-fxbxt     0/1     Completed   0          4h58m   192.168.46.226   ip-192-168-33-205.eu-north-1.compute.internal   <none>           <none>
+pod/locust-users100-zlk42      1/1     Running     0          2m16s   192.168.61.199   ip-192-168-33-205.eu-north-1.compute.internal   <none>           <none>
+pod/monitor                    1/1     Running     0          71m     192.168.46.226   ip-192-168-33-205.eu-north-1.compute.internal   <none>           <none>
+pod/postgres-cf9fdbc59-tfwlk   1/1     Running     0          6h37m   192.168.85.124   ip-192-168-86-95.eu-north-1.compute.internal    <none>           <none>
+pod/redis-74f4fb978c-2sb5t     1/1     Running     0          6h37m   192.168.3.209    ip-192-168-9-242.eu-north-1.compute.internal    <none>           <none>
+pod/web-748fdd5fb9-46kpp       1/1     Running     0          4h51m   192.168.3.147    ip-192-168-9-242.eu-north-1.compute.internal    <none>           <none>
+pod/worker-b4bf677dd-5hzfd     1/1     Running     0          75m     192.168.92.92    ip-192-168-86-95.eu-north-1.compute.internal    <none>           <none>

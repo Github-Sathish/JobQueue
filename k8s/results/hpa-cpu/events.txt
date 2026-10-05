@@ -1,0 +1,65 @@
+LAST SEEN   TYPE     REASON              OBJECT                        MESSAGE
+36m         Normal   Scheduled           pod/worker-b4bf677dd-8dwwj    Successfully assigned jobqueue/worker-b4bf677dd-8dwwj to ip-192-168-9-242.eu-north-1.compute.internal
+36m         Normal   Scheduled           pod/worker-b4bf677dd-rfs6s    Successfully assigned jobqueue/worker-b4bf677dd-rfs6s to ip-192-168-86-95.eu-north-1.compute.internal
+36m         Normal   Scheduled           pod/worker-b4bf677dd-rdsfz    Successfully assigned jobqueue/worker-b4bf677dd-rdsfz to ip-192-168-33-205.eu-north-1.compute.internal
+36m         Normal   Scheduled           pod/worker-b4bf677dd-qts4d    Successfully assigned jobqueue/worker-b4bf677dd-qts4d to ip-192-168-33-205.eu-north-1.compute.internal
+14m         Normal   Scheduled           pod/locust-hpa-cpu-cxpfg      Successfully assigned jobqueue/locust-hpa-cpu-cxpfg to ip-192-168-33-205.eu-north-1.compute.internal
+36m         Normal   Scheduled           pod/worker-b4bf677dd-p2s6t    Successfully assigned jobqueue/worker-b4bf677dd-p2s6t to ip-192-168-9-242.eu-north-1.compute.internal
+32m         Normal   Scheduled           pod/locust-workers8-b9pf4     Successfully assigned jobqueue/locust-workers8-b9pf4 to ip-192-168-9-242.eu-north-1.compute.internal
+36m         Normal   Scheduled           pod/worker-b4bf677dd-l4b7s    Successfully assigned jobqueue/worker-b4bf677dd-l4b7s to ip-192-168-33-205.eu-north-1.compute.internal
+36m         Normal   Scheduled           pod/worker-b4bf677dd-djmjs    Successfully assigned jobqueue/worker-b4bf677dd-djmjs to ip-192-168-86-95.eu-north-1.compute.internal
+36m         Normal   Created             pod/worker-b4bf677dd-p2s6t    Created container: worker
+36m         Normal   Pulled              pod/worker-b4bf677dd-p2s6t    Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+36m         Normal   ScalingReplicaSet   deployment/worker             Scaled up replica set worker-b4bf677dd from 1 to 8
+36m         Normal   SuccessfulCreate    replicaset/worker-b4bf677dd   Created pod: worker-b4bf677dd-rfs6s
+36m         Normal   SuccessfulCreate    replicaset/worker-b4bf677dd   Created pod: worker-b4bf677dd-p2s6t
+36m         Normal   SuccessfulCreate    replicaset/worker-b4bf677dd   Created pod: worker-b4bf677dd-qts4d
+36m         Normal   Pulled              pod/worker-b4bf677dd-8dwwj    Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+36m         Normal   Created             pod/worker-b4bf677dd-8dwwj    Created container: worker
+36m         Normal   SuccessfulCreate    replicaset/worker-b4bf677dd   Created pod: worker-b4bf677dd-djmjs
+36m         Normal   SuccessfulCreate    replicaset/worker-b4bf677dd   Created pod: worker-b4bf677dd-l4b7s
+36m         Normal   SuccessfulCreate    replicaset/worker-b4bf677dd   Created pod: worker-b4bf677dd-8dwwj
+36m         Normal   Pulled              pod/worker-b4bf677dd-djmjs    Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+36m         Normal   SuccessfulCreate    replicaset/worker-b4bf677dd   Created pod: worker-b4bf677dd-rdsfz
+36m         Normal   Pulled              pod/worker-b4bf677dd-rfs6s    Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+36m         Normal   Created             pod/worker-b4bf677dd-rdsfz    Created container: worker
+36m         Normal   Pulled              pod/worker-b4bf677dd-rdsfz    Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+36m         Normal   Pulled              pod/worker-b4bf677dd-l4b7s    Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+36m         Normal   Created             pod/worker-b4bf677dd-l4b7s    Created container: worker
+36m         Normal   Started             pod/worker-b4bf677dd-qts4d    Started container worker
+36m         Normal   Created             pod/worker-b4bf677dd-djmjs    Created container: worker
+36m         Normal   Created             pod/worker-b4bf677dd-rfs6s    Created container: worker
+36m         Normal   Started             pod/worker-b4bf677dd-l4b7s    Started container worker
+36m         Normal   Started             pod/worker-b4bf677dd-rfs6s    Started container worker
+36m         Normal   Started             pod/worker-b4bf677dd-p2s6t    Started container worker
+36m         Normal   Started             pod/worker-b4bf677dd-rdsfz    Started container worker
+36m         Normal   Pulled              pod/worker-b4bf677dd-qts4d    Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+36m         Normal   Created             pod/worker-b4bf677dd-qts4d    Created container: worker
+36m         Normal   Started             pod/worker-b4bf677dd-djmjs    Started container worker
+36m         Normal   Started             pod/worker-b4bf677dd-8dwwj    Started container worker
+32m         Normal   Pulling             pod/locust-workers8-b9pf4     Pulling image "locustio/locust:2.32.0"
+32m         Normal   SuccessfulCreate    job/locust-workers8           Created pod: locust-workers8-b9pf4
+32m         Normal   Pulled              pod/locust-workers8-b9pf4     Successfully pulled image "locustio/locust:2.32.0" in 5.61s (5.61s including waiting). Image size: 100389997 bytes.
+32m         Normal   Started             pod/locust-workers8-b9pf4     Started container locust
+32m         Normal   Created             pod/locust-workers8-b9pf4     Created container: locust
+27m         Normal   Killing             pod/locust-workers8-b9pf4     Stopping container locust
+17m         Normal   Killing             pod/worker-b4bf677dd-qts4d    Stopping container worker
+17m         Normal   SuccessfulDelete    replicaset/worker-b4bf677dd   Deleted pod: worker-b4bf677dd-5hzfd
+17m         Normal   Killing             pod/worker-b4bf677dd-rdsfz    Stopping container worker
+17m         Normal   Killing             pod/worker-b4bf677dd-rfs6s    Stopping container worker
+17m         Normal   Killing             pod/worker-b4bf677dd-djmjs    Stopping container worker
+17m         Normal   ScalingReplicaSet   deployment/worker             Scaled down replica set worker-b4bf677dd from 8 to 1
+17m         Normal   Killing             pod/worker-b4bf677dd-8dwwj    Stopping container worker
+17m         Normal   Killing             pod/worker-b4bf677dd-l4b7s    Stopping container worker
+17m         Normal   SuccessfulDelete    replicaset/worker-b4bf677dd   Deleted pod: worker-b4bf677dd-l4b7s
+17m         Normal   Killing             pod/worker-b4bf677dd-5hzfd    Stopping container worker
+17m         Normal   SuccessfulDelete    replicaset/worker-b4bf677dd   Deleted pod: worker-b4bf677dd-rfs6s
+17m         Normal   SuccessfulDelete    replicaset/worker-b4bf677dd   Deleted pod: worker-b4bf677dd-rdsfz
+17m         Normal   SuccessfulDelete    replicaset/worker-b4bf677dd   Deleted pod: worker-b4bf677dd-8dwwj
+17m         Normal   SuccessfulDelete    replicaset/worker-b4bf677dd   Deleted pod: worker-b4bf677dd-djmjs
+17m         Normal   SuccessfulDelete    replicaset/worker-b4bf677dd   Deleted pod: worker-b4bf677dd-qts4d
+14m         Normal   SuccessfulCreate    job/locust-hpa-cpu            Created pod: locust-hpa-cpu-cxpfg
+14m         Normal   Pulled              pod/locust-hpa-cpu-cxpfg      Container image "locustio/locust:2.32.0" already present on machine
+14m         Normal   Started             pod/locust-hpa-cpu-cxpfg      Started container locust
+14m         Normal   Created             pod/locust-hpa-cpu-cxpfg      Created container: locust
+2m35s       Normal   Completed           job/locust-hpa-cpu            Job completed

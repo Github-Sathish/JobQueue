@@ -1,0 +1,49 @@
+LAST SEEN   TYPE     REASON              OBJECT                         MESSAGE
+11m         Normal   Scheduled           pod/worker-b4bf677dd-8hjmd     Successfully assigned jobqueue/worker-b4bf677dd-8hjmd to ip-192-168-33-205.eu-north-1.compute.internal
+5m16s       Normal   Scheduled           pod/locust-kill-worker-5cbvw   Successfully assigned jobqueue/locust-kill-worker-5cbvw to ip-192-168-9-242.eu-north-1.compute.internal
+11m         Normal   Scheduled           pod/worker-b4bf677dd-gm4vt     Successfully assigned jobqueue/worker-b4bf677dd-gm4vt to ip-192-168-33-205.eu-north-1.compute.internal
+11m         Normal   Scheduled           pod/worker-b4bf677dd-8wtzn     Successfully assigned jobqueue/worker-b4bf677dd-8wtzn to ip-192-168-86-95.eu-north-1.compute.internal
+11m         Normal   Scheduled           pod/worker-b4bf677dd-8qs6w     Successfully assigned jobqueue/worker-b4bf677dd-8qs6w to ip-192-168-86-95.eu-north-1.compute.internal
+11m         Normal   Scheduled           pod/worker-b4bf677dd-24mgz     Successfully assigned jobqueue/worker-b4bf677dd-24mgz to ip-192-168-86-95.eu-north-1.compute.internal
+11m         Normal   Scheduled           pod/worker-b4bf677dd-gvmz7     Successfully assigned jobqueue/worker-b4bf677dd-gvmz7 to ip-192-168-33-205.eu-north-1.compute.internal
+11m         Normal   Scheduled           pod/worker-b4bf677dd-rlcwq     Successfully assigned jobqueue/worker-b4bf677dd-rlcwq to ip-192-168-9-242.eu-north-1.compute.internal
+2m35s       Normal   Scheduled           pod/worker-b4bf677dd-w79tq     Successfully assigned jobqueue/worker-b4bf677dd-w79tq to ip-192-168-86-95.eu-north-1.compute.internal
+55m         Normal   Completed           job/locust-hpa-cpu             Job completed
+11m         Normal   SuccessfulCreate    replicaset/worker-b4bf677dd    Created pod: worker-b4bf677dd-gvmz7
+11m         Normal   SuccessfulCreate    replicaset/worker-b4bf677dd    Created pod: worker-b4bf677dd-gm4vt
+11m         Normal   SuccessfulCreate    replicaset/worker-b4bf677dd    Created pod: worker-b4bf677dd-8hjmd
+11m         Normal   SuccessfulCreate    replicaset/worker-b4bf677dd    Created pod: worker-b4bf677dd-24mgz
+11m         Normal   SuccessfulCreate    replicaset/worker-b4bf677dd    Created pod: worker-b4bf677dd-8qs6w
+11m         Normal   SuccessfulCreate    replicaset/worker-b4bf677dd    Created pod: worker-b4bf677dd-rlcwq
+11m         Normal   SuccessfulCreate    replicaset/worker-b4bf677dd    Created pod: worker-b4bf677dd-8wtzn
+11m         Normal   ScalingReplicaSet   deployment/worker              Scaled up replica set worker-b4bf677dd from 1 to 8
+11m         Normal   Pulled              pod/worker-b4bf677dd-gm4vt     Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+11m         Normal   Created             pod/worker-b4bf677dd-rlcwq     Created container: worker
+11m         Normal   Pulled              pod/worker-b4bf677dd-8wtzn     Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+11m         Normal   Created             pod/worker-b4bf677dd-8wtzn     Created container: worker
+11m         Normal   Started             pod/worker-b4bf677dd-8wtzn     Started container worker
+11m         Normal   Created             pod/worker-b4bf677dd-8qs6w     Created container: worker
+11m         Normal   Pulled              pod/worker-b4bf677dd-8qs6w     Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+11m         Normal   Created             pod/worker-b4bf677dd-gm4vt     Created container: worker
+11m         Normal   Started             pod/worker-b4bf677dd-gm4vt     Started container worker
+11m         Normal   Started             pod/worker-b4bf677dd-8hjmd     Started container worker
+11m         Normal   Pulled              pod/worker-b4bf677dd-gvmz7     Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+11m         Normal   Created             pod/worker-b4bf677dd-gvmz7     Created container: worker
+11m         Normal   Started             pod/worker-b4bf677dd-gvmz7     Started container worker
+11m         Normal   Created             pod/worker-b4bf677dd-8hjmd     Created container: worker
+11m         Normal   Pulled              pod/worker-b4bf677dd-rlcwq     Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+11m         Normal   Started             pod/worker-b4bf677dd-8qs6w     Started container worker
+11m         Normal   Started             pod/worker-b4bf677dd-rlcwq     Started container worker
+11m         Normal   Pulled              pod/worker-b4bf677dd-8hjmd     Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+11m         Normal   Pulled              pod/worker-b4bf677dd-24mgz     Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+11m         Normal   Created             pod/worker-b4bf677dd-24mgz     Created container: worker
+11m         Normal   Started             pod/worker-b4bf677dd-24mgz     Started container worker
+5m17s       Normal   SuccessfulCreate    job/locust-kill-worker         Created pod: locust-kill-worker-5cbvw
+5m17s       Normal   Started             pod/locust-kill-worker-5cbvw   Started container locust
+5m17s       Normal   Created             pod/locust-kill-worker-5cbvw   Created container: locust
+5m17s       Normal   Pulled              pod/locust-kill-worker-5cbvw   Container image "locustio/locust:2.32.0" already present on machine
+2m36s       Normal   Killing             pod/worker-b4bf677dd-24mgz     Stopping container worker
+2m36s       Normal   Pulled              pod/worker-b4bf677dd-w79tq     Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+2m36s       Normal   SuccessfulCreate    replicaset/worker-b4bf677dd    Created pod: worker-b4bf677dd-w79tq
+2m35s       Normal   Started             pod/worker-b4bf677dd-w79tq     Started container worker
+2m35s       Normal   Created             pod/worker-b4bf677dd-w79tq     Created container: worker

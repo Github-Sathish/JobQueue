@@ -1,0 +1,84 @@
+== 2026-10-04T22:57:29+05:30
+   job_type   |   status   | retry_count | created_ist | started_ist 
+--------------+------------+-------------+-------------+-------------
+ data_process | processing |           1 | 22:33:28    | 22:33:28
+ data_process | processing |           1 | 22:33:36    | 22:33:37
+ data_process | processing |           1 | 22:33:39    | 22:33:39
+ data_process | processing |           1 | 22:33:42    | 22:33:42
+ data_process | processing |           1 | 22:33:57    | 22:33:57
+ data_process | processing |           1 | 22:34:04    | 22:34:04
+ report_gen   | pending    |           0 | 22:34:05    | 
+(7 rows)
+
+6
+6
+== 2026-10-04T23:27:24+05:30
+   job_type   |   status   | retry_count | created_ist | completed_ist 
+--------------+------------+-------------+-------------+---------------
+ data_process | processing |           1 | 22:33:28    | 
+ data_process | processing |           1 | 22:33:36    | 
+ data_process | processing |           1 | 22:33:39    | 
+ data_process | processing |           1 | 22:33:42    | 
+ data_process | processing |           1 | 22:33:57    | 
+ data_process | processing |           1 | 22:34:04    | 
+ report_gen   | pending    |           0 | 22:34:05    | 
+(7 rows)
+
+6
+6
+== 2026-10-04T23:35:29+05:30
+   job_type   |   status   | retry_count | created_ist | completed_ist 
+--------------+------------+-------------+-------------+---------------
+ data_process | processing |           2 | 22:33:28    | 
+ data_process | completed  |           1 | 22:33:36    | 23:33:59
+ data_process | processing |           2 | 22:33:39    | 
+ data_process | completed  |           1 | 22:33:42    | 23:33:58
+ data_process | completed  |           1 | 22:33:57    | 23:34:01
+ data_process | processing |           1 | 22:34:04    | 
+ report_gen   | completed  |           0 | 22:34:05    | 23:35:06
+(7 rows)
+
+2
+2
+== 2026-10-04T23:39:22+05:30
+   job_type   |   status   | retry_count | created_ist | completed_ist 
+--------------+------------+-------------+-------------+---------------
+ data_process | completed  |           2 | 22:33:28    | 23:36:02
+ data_process | completed  |           1 | 22:33:36    | 23:33:59
+ data_process | completed  |           2 | 22:33:39    | 23:36:02
+ data_process | completed  |           1 | 22:33:42    | 23:33:58
+ data_process | completed  |           1 | 22:33:57    | 23:34:01
+ data_process | processing |           1 | 22:34:04    | 
+ report_gen   | completed  |           0 | 22:34:05    | 23:35:06
+(7 rows)
+
+0
+0
+== 2026-10-04T23:43:30+05:30
+   job_type   |   status   | retry_count | created_ist | completed_ist 
+--------------+------------+-------------+-------------+---------------
+ data_process | completed  |           2 | 22:33:28    | 23:36:02
+ data_process | completed  |           1 | 22:33:36    | 23:33:59
+ data_process | completed  |           2 | 22:33:39    | 23:36:02
+ data_process | completed  |           1 | 22:33:42    | 23:33:58
+ data_process | completed  |           1 | 22:33:57    | 23:34:01
+ data_process | processing |           1 | 22:34:04    | 
+ report_gen   | completed  |           0 | 22:34:05    | 23:35:06
+(7 rows)
+
+0
+0
+== 2026-10-04T23:51:31+05:30
+   job_type   |   status   | retry_count | created_ist | completed_ist 
+--------------+------------+-------------+-------------+---------------
+ data_process | completed  |           2 | 22:33:28    | 23:36:02
+ data_process | completed  |           1 | 22:33:36    | 23:33:59
+ data_process | completed  |           2 | 22:33:39    | 23:36:02
+ data_process | completed  |           1 | 22:33:42    | 23:33:58
+ data_process | completed  |           1 | 22:33:57    | 23:34:01
+ data_process | processing |           1 | 22:34:04    | 
+ report_gen   | completed  |           0 | 22:34:05    | 23:35:06
+(7 rows)
+
+0
+0

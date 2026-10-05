@@ -1,0 +1,49 @@
+LAST SEEN   TYPE     REASON              OBJECT                        MESSAGE
+9m4s        Normal   Scheduled           pod/worker-b4bf677dd-p2s6t    Successfully assigned jobqueue/worker-b4bf677dd-p2s6t to ip-192-168-9-242.eu-north-1.compute.internal
+9m4s        Normal   Scheduled           pod/worker-b4bf677dd-qts4d    Successfully assigned jobqueue/worker-b4bf677dd-qts4d to ip-192-168-33-205.eu-north-1.compute.internal
+9m4s        Normal   Scheduled           pod/worker-b4bf677dd-l4b7s    Successfully assigned jobqueue/worker-b4bf677dd-l4b7s to ip-192-168-33-205.eu-north-1.compute.internal
+9m4s        Normal   Scheduled           pod/worker-b4bf677dd-8dwwj    Successfully assigned jobqueue/worker-b4bf677dd-8dwwj to ip-192-168-9-242.eu-north-1.compute.internal
+9m4s        Normal   Scheduled           pod/worker-b4bf677dd-djmjs    Successfully assigned jobqueue/worker-b4bf677dd-djmjs to ip-192-168-86-95.eu-north-1.compute.internal
+46m         Normal   Scheduled           pod/locust-users100-zlk42     Successfully assigned jobqueue/locust-users100-zlk42 to ip-192-168-33-205.eu-north-1.compute.internal
+4m53s       Normal   Scheduled           pod/locust-workers8-b9pf4     Successfully assigned jobqueue/locust-workers8-b9pf4 to ip-192-168-9-242.eu-north-1.compute.internal
+9m4s        Normal   Scheduled           pod/worker-b4bf677dd-rfs6s    Successfully assigned jobqueue/worker-b4bf677dd-rfs6s to ip-192-168-86-95.eu-north-1.compute.internal
+9m4s        Normal   Scheduled           pod/worker-b4bf677dd-rdsfz    Successfully assigned jobqueue/worker-b4bf677dd-rdsfz to ip-192-168-33-205.eu-north-1.compute.internal
+46m         Normal   SuccessfulCreate    job/locust-users100           Created pod: locust-users100-zlk42
+46m         Normal   Pulled              pod/locust-users100-zlk42     Container image "locustio/locust:2.32.0" already present on machine
+46m         Normal   Started             pod/locust-users100-zlk42     Started container locust
+46m         Normal   Created             pod/locust-users100-zlk42     Created container: locust
+40m         Normal   Killing             pod/locust-users100-zlk42     Stopping container locust
+9m5s        Normal   Created             pod/worker-b4bf677dd-rdsfz    Created container: worker
+9m5s        Normal   SuccessfulCreate    replicaset/worker-b4bf677dd   Created pod: worker-b4bf677dd-qts4d
+9m5s        Normal   Created             pod/worker-b4bf677dd-8dwwj    Created container: worker
+9m5s        Normal   Pulled              pod/worker-b4bf677dd-djmjs    Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+9m5s        Normal   ScalingReplicaSet   deployment/worker             Scaled up replica set worker-b4bf677dd from 1 to 8
+9m5s        Normal   SuccessfulCreate    replicaset/worker-b4bf677dd   Created pod: worker-b4bf677dd-rfs6s
+9m5s        Normal   Pulled              pod/worker-b4bf677dd-8dwwj    Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+9m5s        Normal   Pulled              pod/worker-b4bf677dd-l4b7s    Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+9m5s        Normal   SuccessfulCreate    replicaset/worker-b4bf677dd   Created pod: worker-b4bf677dd-p2s6t
+9m5s        Normal   Pulled              pod/worker-b4bf677dd-rdsfz    Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+9m5s        Normal   SuccessfulCreate    replicaset/worker-b4bf677dd   Created pod: worker-b4bf677dd-djmjs
+9m5s        Normal   Pulled              pod/worker-b4bf677dd-p2s6t    Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+9m5s        Normal   Created             pod/worker-b4bf677dd-p2s6t    Created container: worker
+9m5s        Normal   SuccessfulCreate    replicaset/worker-b4bf677dd   Created pod: worker-b4bf677dd-l4b7s
+9m5s        Normal   SuccessfulCreate    replicaset/worker-b4bf677dd   Created pod: worker-b4bf677dd-8dwwj
+9m5s        Normal   SuccessfulCreate    replicaset/worker-b4bf677dd   Created pod: worker-b4bf677dd-rdsfz
+9m5s        Normal   Pulled              pod/worker-b4bf677dd-rfs6s    Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+9m5s        Normal   Created             pod/worker-b4bf677dd-l4b7s    Created container: worker
+9m4s        Normal   Started             pod/worker-b4bf677dd-rfs6s    Started container worker
+9m4s        Normal   Started             pod/worker-b4bf677dd-p2s6t    Started container worker
+9m4s        Normal   Started             pod/worker-b4bf677dd-qts4d    Started container worker
+9m4s        Normal   Started             pod/worker-b4bf677dd-rdsfz    Started container worker
+9m4s        Normal   Created             pod/worker-b4bf677dd-djmjs    Created container: worker
+9m4s        Normal   Created             pod/worker-b4bf677dd-qts4d    Created container: worker
+9m4s        Normal   Created             pod/worker-b4bf677dd-rfs6s    Created container: worker
+9m4s        Normal   Started             pod/worker-b4bf677dd-8dwwj    Started container worker
+9m4s        Normal   Pulled              pod/worker-b4bf677dd-qts4d    Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+9m4s        Normal   Started             pod/worker-b4bf677dd-l4b7s    Started container worker
+9m4s        Normal   Started             pod/worker-b4bf677dd-djmjs    Started container worker
+4m54s       Normal   SuccessfulCreate    job/locust-workers8           Created pod: locust-workers8-b9pf4
+4m54s       Normal   Pulling             pod/locust-workers8-b9pf4     Pulling image "locustio/locust:2.32.0"
+4m48s       Normal   Created             pod/locust-workers8-b9pf4     Created container: locust
+4m48s       Normal   Started             pod/locust-workers8-b9pf4     Started container locust
+4m48s       Normal   Pulled              pod/locust-workers8-b9pf4     Successfully pulled image "locustio/locust:2.32.0" in 5.61s (5.61s including waiting). Image size: 100389997 bytes.

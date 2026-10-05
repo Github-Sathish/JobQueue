@@ -1,0 +1,6 @@
+LAST SEEN   TYPE     REASON             OBJECT                      MESSAGE
+2m15s       Normal   Scheduled          pod/locust-users100-zlk42   Successfully assigned jobqueue/locust-users100-zlk42 to ip-192-168-33-205.eu-north-1.compute.internal
+2m16s       Normal   SuccessfulCreate   job/locust-users100         Created pod: locust-users100-zlk42
+2m15s       Normal   Pulled             pod/locust-users100-zlk42   Container image "locustio/locust:2.32.0" already present on machine
+2m15s       Normal   Created            pod/locust-users100-zlk42   Created container: locust
+2m15s       Normal   Started            pod/locust-users100-zlk42   Started container locust

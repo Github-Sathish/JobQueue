@@ -1,0 +1,38 @@
+  status   | count 
+-----------+-------
+ completed |  1734
+ failed    |     3
+(2 rows)
+
+ dead_letter_total 
+-------------------
+                13
+(1 row)
+
+   job_type   | priority | jobs | avg_queue_s | p95_queue_s | avg_proc_s 
+--------------+----------+------+-------------+-------------+------------
+ data_process | default  |  117 |        0.28 |        1.14 |       2.04
+ data_process | high     |  116 |        0.25 |        1.08 |       1.98
+ data_process | low      |  124 |        0.26 |        1.21 |       2.01
+ email_send   | default  |  171 |        0.24 |        1.21 |       1.00
+ email_send   | high     |  157 |        0.19 |        1.01 |       1.03
+ email_send   | low      |  135 |        0.28 |        1.42 |       0.98
+ image_resize | default  |  142 |        0.25 |        1.13 |       0.63
+ image_resize | high     |  139 |        0.19 |        0.96 |       0.65
+ image_resize | low      |  138 |        0.27 |        1.30 |       0.66
+ report_gen   | default  |  130 |        0.23 |        1.15 |       2.97
+ report_gen   | high     |  141 |        0.23 |        1.03 |       2.96
+ report_gen   | low      |  156 |        0.26 |        1.24 |       2.96
+(12 rows)
+
+   job_type   | retry_count | jobs 
+--------------+-------------+------
+ data_process |           0 |  357
+ data_process |           1 |   55
+ data_process |           2 |   13
+ data_process |           3 |    3
+ email_send   |           0 |  463
+ image_resize |           0 |  419
+ report_gen   |           0 |  427
+(7 rows)
+

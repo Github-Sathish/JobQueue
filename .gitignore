@@ -284,3 +284,11 @@ test_output.log
 # Docker
 .dockerignore
 docker-compose.override.yml
+docker.env
+K8s_artificats/*.tgz*
+K8s_artificats/
+
+# keep the EKS test result data
+!k8s/results/*.csv
+!k8s/results/**/*.csv
+!k8s/results/*.log

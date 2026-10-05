@@ -1,0 +1,21 @@
+LAST SEEN   TYPE     REASON              OBJECT                         MESSAGE
+6m35s       Normal   Scheduled           pod/monitor                    Successfully assigned jobqueue/monitor to ip-192-168-33-205.eu-north-1.compute.internal
+2m20s       Normal   Scheduled           pod/locust-smoke-284fz         Successfully assigned jobqueue/locust-smoke-284fz to ip-192-168-33-205.eu-north-1.compute.internal
+10m         Normal   Scheduled           pod/worker-b4bf677dd-5hzfd     Successfully assigned jobqueue/worker-b4bf677dd-5hzfd to ip-192-168-86-95.eu-north-1.compute.internal
+10m         Normal   ScalingReplicaSet   deployment/worker              Scaled up replica set worker-b4bf677dd from 0 to 1
+10m         Normal   SuccessfulCreate    replicaset/worker-b4bf677dd    Created pod: worker-b4bf677dd-5hzfd
+10m         Normal   Pulling             pod/worker-b4bf677dd-5hzfd     Pulling image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1"
+10m         Normal   Created             pod/worker-b4bf677dd-5hzfd     Created container: worker
+10m         Normal   Started             pod/worker-b4bf677dd-5hzfd     Started container worker
+10m         Normal   ScalingReplicaSet   deployment/worker              Scaled down replica set worker-78b678b59b from 1 to 0
+10m         Normal   Pulled              pod/worker-b4bf677dd-5hzfd     Successfully pulled image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" in 4.368s (4.368s including waiting). Image size: 64339557 bytes.
+10m         Normal   Killing             pod/worker-78b678b59b-rtqk5    Stopping container worker
+10m         Normal   SuccessfulDelete    replicaset/worker-78b678b59b   Deleted pod: worker-78b678b59b-rtqk5
+6m34s       Normal   Started             pod/monitor                    Started container monitor
+6m34s       Normal   Pulled              pod/monitor                    Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+6m34s       Normal   Created             pod/monitor                    Created container: monitor
+2m20s       Normal   SuccessfulCreate    job/locust-smoke               Created pod: locust-smoke-284fz
+2m19s       Normal   Pulling             pod/locust-smoke-284fz         Pulling image "locustio/locust:2.32.0"
+2m14s       Normal   Started             pod/locust-smoke-284fz         Started container locust
+2m14s       Normal   Created             pod/locust-smoke-284fz         Created container: locust
+2m14s       Normal   Pulled              pod/locust-smoke-284fz         Successfully pulled image "locustio/locust:2.32.0" in 5.367s (5.367s including waiting). Image size: 100389997 bytes.

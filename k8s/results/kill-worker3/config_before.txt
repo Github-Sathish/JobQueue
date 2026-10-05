@@ -1,0 +1,20 @@
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                                                      SELECTOR
+deployment.apps/postgres   1/1     1            1           10h   postgres     postgres:12                                                 app=postgres
+deployment.apps/redis      1/1     1            1           10h   redis        redis:7                                                     app=redis
+deployment.apps/web        1/1     1            1           8h    web          <ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1   app=web
+deployment.apps/worker     8/8     8            8           8h    worker       <ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1   app=worker
+
+NAME                           READY   STATUS      RESTARTS   AGE     IP               NODE                                            NOMINATED NODE   READINESS GATES
+pod/jobqueue-migrate-fxbxt     0/1     Completed   0          8h      192.168.46.226   ip-192-168-33-205.eu-north-1.compute.internal   <none>           <none>
+pod/monitor                    1/1     Running     0          5h3m    192.168.46.226   ip-192-168-33-205.eu-north-1.compute.internal   <none>           <none>
+pod/postgres-cf9fdbc59-tfwlk   1/1     Running     0          10h     192.168.85.124   ip-192-168-86-95.eu-north-1.compute.internal    <none>           <none>
+pod/redis-74f4fb978c-2sb5t     1/1     Running     0          10h     192.168.3.209    ip-192-168-9-242.eu-north-1.compute.internal    <none>           <none>
+pod/web-748fdd5fb9-46kpp       1/1     Running     0          8h      192.168.3.147    ip-192-168-9-242.eu-north-1.compute.internal    <none>           <none>
+pod/worker-b4bf677dd-8qs6w     1/1     Running     0          117m    192.168.92.92    ip-192-168-86-95.eu-north-1.compute.internal    <none>           <none>
+pod/worker-b4bf677dd-8wtzn     1/1     Running     0          117m    192.168.71.116   ip-192-168-86-95.eu-north-1.compute.internal    <none>           <none>
+pod/worker-b4bf677dd-gm4vt     1/1     Running     0          117m    192.168.44.68    ip-192-168-33-205.eu-north-1.compute.internal   <none>           <none>
+pod/worker-b4bf677dd-gvmz7     1/1     Running     0          117m    192.168.44.190   ip-192-168-33-205.eu-north-1.compute.internal   <none>           <none>
+pod/worker-b4bf677dd-nbtzr     1/1     Running     0          93m     192.168.45.10    ip-192-168-33-205.eu-north-1.compute.internal   <none>           <none>
+pod/worker-b4bf677dd-p2s6t     1/1     Running     0          3h16m   192.168.29.216   ip-192-168-9-242.eu-north-1.compute.internal    <none>           <none>
+pod/worker-b4bf677dd-rlcwq     1/1     Running     0          117m    192.168.31.171   ip-192-168-9-242.eu-north-1.compute.internal    <none>           <none>
+pod/worker-b4bf677dd-w79tq     1/1     Running     0          108m    192.168.89.131   ip-192-168-86-95.eu-north-1.compute.internal    <none>           <none>
