@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: monitor
+spec:
+  containers:
+  - name: monitor
+    image: <ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1
+    command: ["sh", "-c", "cp /mnt/monitors/*.py /tmp/ && mkdir -p /tmp/reports && sleep infinity"]
+    envFrom:
+    - configMapRef:
+        name: jobqueue-config
+    - secretRef:
+        name: jobqueue-secret
+    resources:
+      requests:
+        cpu: 50m
+        memory: 128Mi
+    volumeMounts:
+    - name: monitors
+      mountPath: /mnt/monitors
+  volumes:
+  - name: monitors
+    configMap:
+      name: monitors

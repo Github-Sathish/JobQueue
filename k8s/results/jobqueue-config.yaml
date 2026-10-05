@@ -1,0 +1,16 @@
+apiVersion: v1
+data:
+  ALLOWED_HOSTS: '*'
+  DB_HOST: postgres
+  DB_NAME: jobqueue_db
+  DB_PORT: "5432"
+  DB_USER: postgres
+  DEBUG: "False"
+  REDIS_URL: redis://redis:6379/0
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2026-10-04T06:06:44Z"
+  name: jobqueue-config
+  namespace: jobqueue
+  resourceVersion: "3768"
+  uid: 6376cb93-d79e-4bc7-a80b-95a9b9f9dfd4

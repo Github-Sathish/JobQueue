@@ -1,0 +1,12 @@
+LAST SEEN   TYPE     REASON             OBJECT                          MESSAGE
+20m         Normal   Scheduled          pod/locust-kill-worker3-jttzc   Successfully assigned jobqueue/locust-kill-worker3-jttzc to ip-192-168-9-242.eu-north-1.compute.internal
+19m         Normal   Scheduled          pod/worker-b4bf677dd-pkhg5      Successfully assigned jobqueue/worker-b4bf677dd-pkhg5 to ip-192-168-86-95.eu-north-1.compute.internal
+20m         Normal   SuccessfulCreate   job/locust-kill-worker3         Created pod: locust-kill-worker3-jttzc
+20m         Normal   Pulled             pod/locust-kill-worker3-jttzc   Container image "locustio/locust:2.32.0" already present on machine
+20m         Normal   Created            pod/locust-kill-worker3-jttzc   Created container: locust
+20m         Normal   Started            pod/locust-kill-worker3-jttzc   Started container locust
+19m         Normal   Killing            pod/worker-b4bf677dd-8qs6w      Stopping container worker
+19m         Normal   Pulled             pod/worker-b4bf677dd-pkhg5      Container image "<ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/jobqueue:v1" already present on machine
+19m         Normal   Created            pod/worker-b4bf677dd-pkhg5      Created container: worker
+19m         Normal   SuccessfulCreate   replicaset/worker-b4bf677dd     Created pod: worker-b4bf677dd-pkhg5
+19m         Normal   Started            pod/worker-b4bf677dd-pkhg5      Started container worker

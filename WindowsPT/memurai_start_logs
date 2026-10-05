@@ -1,0 +1,37 @@
+
+PS C:\Users\sa.a> memurai.exe
+[21656] 19 Aug 13:34:06.490 # --- Memurai is starting ---
+[21656] 19 Aug 13:34:06.492 # License file: C:\Program Files\Memurai\memurai-license-dev.txt
+[21656] 19 Aug 13:34:06.505 # Memurai licensed to Memurai DEV Team with license ID 74652472-17e8-4c9d-8706-dc246aa85af2
+[21656] 19 Aug 13:34:06.507 # Memurai Developer version=4.2.3, API=7.4.9, instance-name=, pid=21656, just started
+[21656] 19 Aug 13:34:06.510 # Production use is NOT allowed under this license.
+[21656] 19 Aug 13:34:06.513 # This Memurai license enforces automatic shutdown after 10 days. For more details see: https://www.memurai.com/faq
+[21656] 19 Aug 13:34:06.515 # Warning: no config file specified, using the default config. In order to specify a config file use C:\Program Files\Memurai\memurai.exe /path/to/redis.conf
+[21656] 19 Aug 13:34:06.517 * monotonic clock: Windows QueryPerformanceCounter
+
+     Memurai 4.2.3 64 bit
+
+     Running in standalone mode
+     Port: 6379
+     PID: 21656
+
+     https://www.memurai.com
+
+
+[21656] 19 Aug 13:34:06.520 # Memurai license key:
+143,94,109,70,144,71,152,224,24,80,105,124,156,58,158,81,110,184,178,229,81,100,146,73,59,140,175,141,186,212,220,255,251,244,123,69,69,174,56,232,83,71,194,45,247,183,136,160,200,178,62,144,221,35,226,143,159,252,80,45,15,30,153,63,210,94,121,252,93,248,62,139,238,101,59,108,57,154,70,223,236,195,212,5,67,237,68,93,167,0,233,83,30,220,118,176,49,48,68,126,108,208,39,202,68,168,108,155,133,227,160,93,161,237,109,60,34,177,246,66,113,100,134,236,150,77,44,41,23,174,4,94,144,123,130,228,239,190,84,132,133,226,78,42,8,206,168,169,205,206,247,183,7,183,194,147,186,252,212,115,69,118,255,38,28,177,149,160,143,7,128,150,139,44,151,220,229,69,197,77,235,68,5,146,22,179,115,52,40,52,120,179,102,61,71,169,133,239,89,103,129,141,60,211,98,78,209,218,234,37,85,126,22,39,92,59,89,2,228,194,197,65,163,21,98,105,145,239,191,202,37,150,226,63,86,160,138,77,185,173,74,168,112,35,83,17,92,226,37,121,91,238,73,228,96,49,228,88,164,18,133,83,154,0,92,195,161,43,26,127,23[...]
+[21656] 19 Aug 13:34:06.569 # Memurai QID = 30071DFD067046F2;DBCE44E6A9343531;17DC806FFADC6D22;DBCE41E6A9343018
+[21656] 19 Aug 13:34:06.586 * Server initialized
+[21656] 19 Aug 13:34:06.603 * Ready to accept connections tcp
+[21656] 19 Aug 14:15:20.323 * 100 changes in 300 seconds. Saving...
+[21656] 19 Aug 14:15:20.360 * Background saving started by pid 28432
+[28432] 19 Aug 14:15:20.544 * DB saved on disk
+[21656] 19 Aug 14:15:20.572 * Background saving terminated with success
+[21656] 19 Aug 14:20:21.027 * 100 changes in 300 seconds. Saving...
+[21656] 19 Aug 14:20:21.059 * Background saving started by pid 23772
+[23772] 19 Aug 14:20:21.190 * DB saved on disk
+[21656] 19 Aug 14:20:21.276 * Background saving terminated with success
+[21656] 19 Aug 14:25:22.057 * 100 changes in 300 seconds. Saving...
+[21656] 19 Aug 14:25:22.089 * Background saving started by pid 8948
+[8948] 19 Aug 14:25:22.191 * DB saved on disk
+[21656] 19 Aug 14:25:22.306 * Background saving terminated with success

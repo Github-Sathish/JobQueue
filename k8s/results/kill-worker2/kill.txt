@@ -1,0 +1,3 @@
+2026-10-04T20:59:05+05:30 killing pod/worker-b4bf677dd-8hjmd
+Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+pod "worker-b4bf677dd-8hjmd" force deleted from jobqueue namespace

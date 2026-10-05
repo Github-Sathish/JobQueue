@@ -1,0 +1,1 @@
+too_many_clients_FATAL: 0

@@ -1,0 +1,8 @@
+run,start_utc,users,spawn_rate,seconds,worker_pods,notes
+smoke,2026-10-04T12:03:28Z,5,1,120,1,tooling check
+users100,2026-10-04T13:08:50Z,100,20,120,1,
+workers8,2026-10-04T13:50:39Z,100,20,120,8,
+hpa-cpu,2026-10-04T14:08:37Z,100,20,120,1,CPU HPA target 50% max 8; never scaled
+kill-worker,2026-10-04T15:11:12Z,100,20,120,8,one worker force-deleted at 20:44:00 IST (about 38 s after load ended)
+kill-worker2,2026-10-04T15:27:55Z,100,20,120,8,one worker force-deleted at 20:59:05 IST (60 s into load)
+kill-worker3,2026-10-04T17:03:04Z,100,20,120,8,start approximate; one worker force-deleted at 22:34:04 IST (60 s into load)
