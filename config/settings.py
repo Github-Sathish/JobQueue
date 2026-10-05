@@ -1,5 +1,5 @@
 from pathlib import Path
-from decouple import config
+from decouple import config, Csv
 from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-c_ywqbgznpo*02+%#%*#*3yu%^@!-#!u-d955dgg-e(zt2!^ht'
+
 
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default = False, cast = bool)
@@ -19,7 +19,8 @@ DEBUG = config('DEBUG', default = False, cast = bool)
 # DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=Csv())
 
 
 # Application definition
@@ -82,11 +83,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'jobqueue_db',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': config('DB_NAME', default='jobqueue_db'),
+        'USER': config('DB_USER', default='postgres'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST', default='localhost'),
+        'PORT': config('DB_PORT', default='5432'),
         # 'PORT': '6432',  # PgBouncer port, not 5432
         # 'CONN_MAX_AGE': 60, 
         # 'CONN_MAX_AGE': 0,  # As PgBouncer manage pooling, not Django
@@ -107,6 +108,7 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Kolkata'
 CELERY_TASK_TRACK_STARTED = True             # important for timing
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 #Pririty queue cnfiguration
 CELERY_TASK_QUEUES = {
