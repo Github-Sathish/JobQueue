@@ -242,3 +242,6 @@ locust -f PerformanceTesting/locustfile.py --host=http://localhost:8000
 ```bash
 celery -A config worker -P threads --concurrency=4 -Q jobs.high,jobs.default,jobs.low --loglevel=INFO
 ```
+## Kubernetes deployment and load testing on AWS EKS
+
+The system was containerized, deployed on Amazon EKS and load tested with Locust. The results, charts and worker-failure findings are in [`k8s/README.md`](k8s/README.md).
